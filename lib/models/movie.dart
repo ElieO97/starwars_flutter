@@ -8,6 +8,17 @@ part 'movie.g.dart';
 
 @JsonSerializable()
 class Movie {
+
+  Movie(
+      this.title,
+      this.director,
+      this.releaseDate,
+      this.producer,
+      this.character,
+      this.id,
+      this.url
+      );
+
   @JsonKey(name: 'title')
   String title;
 
@@ -32,15 +43,7 @@ class Movie {
   @JsonKey(name: 'url')
   String url;
 
-  Movie(
-      this.title,
-      this.director,
-      this.releaseDate,
-      this.producer,
-      this.character,
-      this.id,
-      this.url
-      );
+
 
 
   factory Movie.fromJson(Map<String, dynamic> json) => _$MovieFromJson(json);

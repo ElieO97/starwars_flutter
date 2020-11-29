@@ -1,21 +1,24 @@
 
-import 'dart:convert';
-import 'package:star_wars_flutter/api/endpoints.dart';
-import 'package:http/http.dart' as http;
+import 'package:retrofit/http.dart';
+import 'package:star_wars_flutter/constants/api_constants.dart';
+import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/models/movies_response.dart';
+import 'package:dio/dio.dart';
 
-class Swapi {
+part 'swapi.g.dart';
 
-   Future<MoviesResponse> fetchAllMovies() async {
-      final response = await _makeGetRequest(Endpoints.fetchAllMoviesUrl());
-      print ('fetchAllMovies(): result = ${response.body}');
-      final MoviesResponse result =  MoviesResponse.fromJson(json.decode(response.body));
-      return result;
-   }
+@RestApi(baseUrl: BASE_URL)
+abstract class Swapi {
 
+   factory Swapi(Dio dio, {String baseUrl}) = _Swapi;
 
-   Future<http.Response>  _makeGetRequest(String url) async {
-      print('calling -> $url');
-      return await http.get(url);
-   }
+   static const String FILMS = 'films/';
+   static const String PEOPLE = 'people/{id}';
+
+   @GET(FILMS)
+   Future<MoviesResponse> fetchAllMovies();
+
+   @GET(PEOPLE)
+   Future<Character> fetchMovieCharacter(@Path() String id);
+
 }
