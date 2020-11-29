@@ -9,9 +9,12 @@ import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
 
 class MoviesBloc extends BlocBase {
+
+  MoviesBloc(this.moviesRepository) {
+    init();
+  }
+
   MoviesRepository moviesRepository;
-
-
   MoviesPopulated moviesPopulated = MoviesPopulated([]);
   bool _hasNoExistingData() => moviesPopulated.movies?.isEmpty ?? true;
 
@@ -26,10 +29,6 @@ class MoviesBloc extends BlocBase {
       _streamController = BehaviorSubject<MoviesState>();
     }
     return _streamController.stream;
-  }
-
-  MoviesBloc(this.moviesRepository) {
-    init();
   }
 
   Stream<MoviesState> fetchMoviesFromNetwork() async* {

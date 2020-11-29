@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
+import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
@@ -31,13 +32,13 @@ class _HomeRouteState extends State<HomeRoute>  {
 
   @override
   Widget build(BuildContext context) {
-    MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
+    final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
     // print("moviesbloc stream = ${moviesBloc.stream}");
       return Scaffold (
         appBar: AppBar (
-          title: new Text(S().appName),
+          title: Text(S().appName),
         ),
-          body: Column(key: Key("rootColumn"), children: [
+          body: Column(key: const Key('rootColumn'), children: <Widget>[
             Flexible(child: buildStreamBuilder(context, moviesBloc),),
           ])
       );
@@ -45,12 +46,12 @@ class _HomeRouteState extends State<HomeRoute>  {
 
 
   StreamBuilder<MoviesState> buildStreamBuilder(BuildContext context, MoviesBloc moviesBloc) {
-      return StreamBuilder (
-           key: Key('streamBuilder'),
+      return StreamBuilder<MoviesState> (
+           key: const Key('streamBuilder'),
            initialData: moviesBloc.moviesPopulated,
            stream: moviesBloc.stream,
-           builder: (context, snapshot) {
-             final data = snapshot.data;
+           builder: (BuildContext context, AsyncSnapshot<MoviesState> snapshot) {
+             final MoviesState data = snapshot.data;
              print('data snapshot = $data');
              return Column (
                children: <Widget> [
@@ -69,13 +70,12 @@ class _HomeRouteState extends State<HomeRoute>  {
                       // the results
                       ErrorsWidget(
                           visible: data is MoviesError,
-                          error: data is MoviesError ? data.error : ""),
+                          error: data is MoviesError ? data.error : ''),
 
                       // Fade in the Result if available
                       MoviesWidget(
                           moviesBloc: moviesBloc,
-                          movies: data is MoviesPopulated
-                              ? data.movies  : []),
+                          movies: data is MoviesPopulated ? data.movies  : <Movie>[]),
 
                     ]
 

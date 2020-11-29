@@ -9,11 +9,11 @@ import 'package:star_wars_flutter/ui/home_route/movie_summary_widget.dart';
 
 class MoviesWidget extends StatefulWidget {
 
+  const MoviesWidget ({Key key, @required this.movies, @required this.moviesBloc }): super(key: key);
+
   final List<Movie> movies;
   final MoviesBloc moviesBloc;
 
-  MoviesWidget (
-  {Key key, @required this.movies, @required this.moviesBloc }): super(key: key);
 
   @override
   MoviesWidgetState createState() {
@@ -53,7 +53,7 @@ class MoviesListView extends StatelessWidget {
         itemCount: movies.length,
         itemBuilder: (BuildContext context, int index) {
 
-          final movie = movies[index];
+          final Movie movie = movies[index];
           return MovieSummaryWidget(movie: movie);
         },
       ),

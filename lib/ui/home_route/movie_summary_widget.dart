@@ -11,9 +11,10 @@ import 'package:star_wars_flutter/navigation/star_wars_router.dart';
 
 class MovieSummaryWidget extends StatelessWidget {
 
+  const MovieSummaryWidget({this.movie});
+
   final Movie movie;
 
-  MovieSummaryWidget({this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class MovieSummaryWidget extends StatelessWidget {
                child: Column(
                  mainAxisAlignment: MainAxisAlignment.start,
                  crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
+                 children: <Widget>[
                    Text(movie.title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0)),
                    Text(movie.releaseDate, style:  const TextStyle(fontSize: 12.0)),
                    Padding (

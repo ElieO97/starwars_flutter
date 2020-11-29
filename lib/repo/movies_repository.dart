@@ -5,7 +5,7 @@ import 'package:star_wars_flutter/models/movies_response.dart';
 
 class MoviesRepository {
 
-  final swapi = new Swapi();
+  final Swapi swapi = Swapi();
 
 
 

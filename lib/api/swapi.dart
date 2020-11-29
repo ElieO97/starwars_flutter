@@ -8,7 +8,7 @@ class Swapi {
 
    Future<MoviesResponse> fetchAllMovies() async {
       final response = await _makeGetRequest(Endpoints.fetchAllMoviesUrl());
-      print ("fetchAllMovies(): result = ${response.body}");
+      print ('fetchAllMovies(): result = ${response.body}');
       final MoviesResponse result =  MoviesResponse.fromJson(json.decode(response.body));
       return result;
    }

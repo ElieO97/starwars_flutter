@@ -33,8 +33,8 @@ class _MovieDetailsStatefulState extends State<MovieDetailsRoute> {
         key: const Key('streamBuilder'),
         stream: movieDetailsBloc.stream,
         // initialData: movieDetailsBloc.initialData(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          final Movie data = snapshot.data as Movie;
+        builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
+          final Movie data = snapshot.data;
            if(data is Movie) {
              title = data.title;
            }
