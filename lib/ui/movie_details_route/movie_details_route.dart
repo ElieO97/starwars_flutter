@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/bloc/movie_details_bloc.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/models/movie_details_state.dart';
+import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
+import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
+import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/movie_details_route/movie_details_widget.dart';
 
 class MovieDetailsRoute extends StatefulWidget {
@@ -29,22 +32,41 @@ class _MovieDetailsStatefulState extends State<MovieDetailsRoute> {
     movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context);
     return Scaffold(
       appBar: AppBar(title: Text(movieDetailsBloc.movie.title),),
-      body: StreamBuilder<Movie>(
+      body: StreamBuilder<MovieDetailsState>(
         key: const Key('streamBuilder'),
         stream: movieDetailsBloc.stream,
-        // initialData: movieDetailsBloc.initialData(),
-        builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
-          final Movie data = snapshot.data;
-           if(data is Movie) {
-             title = data.title;
-           }
-           return Stack(
-            key: const Key('content'),
-            children: <Widget>[
-              MovieDetailsWidget(movie: movieDetailsBloc.movie)
+        initialData: movieDetailsBloc.movieDetailsState,
+        builder: (BuildContext context, AsyncSnapshot<MovieDetailsState> snapshot) {
+
+          final MovieDetailsState data = snapshot.data;
+
+          return Column (
+            children: <Widget> [
+              Expanded (
+                child: Stack (
+                    key: const Key('content'),
+                    children: <Widget> [
+                      EmptyWidget(visible: data is MovieDetailsEmpty),
+                      LoadingWidget(visible: data is MovieDetailsLoading),
+
+                      ErrorsWidget(
+                          visible: data is MovieDetailsError,
+                          error: data is MovieDetailsError ? data.error : ''),
+                      Stack(
+                        key: const Key('content'),
+                        children: <Widget>[
+                          if (data is MovieDetailsPopulated)
+                               MovieDetailsWidget(movie: data.movie)
+                        ],
+                      )
+                    ]
+
+                ),
+              ),
             ],
-          );
-        },
+          ) ;
+
+          },
       ),
     );
   }

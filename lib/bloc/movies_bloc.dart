@@ -1,6 +1,7 @@
 
 
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
+import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/models/movies_response.dart';
 import 'package:rxdart/rxdart.dart';
@@ -15,14 +16,13 @@ class MoviesBloc extends BlocBase {
   }
 
   MoviesRepository moviesRepository;
-  MoviesPopulated moviesPopulated = MoviesPopulated([]);
+  MoviesPopulated moviesPopulated = MoviesPopulated(<Movie>[]);
   bool _hasNoExistingData() => moviesPopulated.movies?.isEmpty ?? true;
 
-  // This is the internal object whose stream/sink is provided by this component
+
   BehaviorSubject<MoviesState> _streamController = BehaviorSubject<MoviesState>();
 
 
-  // This is the stream of movies. Use this to show the contents
   Stream<MoviesState> get stream {
     if (_streamController.isClosed) {
       print('stream closed, resetting it');

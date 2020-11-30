@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/models/movie_details_state.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 
 class MovieDetailsBloc extends BlocBase {
@@ -14,23 +15,40 @@ class MovieDetailsBloc extends BlocBase {
   }
 
   Future<void> init() async {
-    final List<Character> characters = await moviesRepository.fetchMovieCharacters(movie.character);
-    movie.character = characters.map((Character character) => character.name).toList();
-    _streamController.add(movie);
+    _streamController.addStream(fetchCharacters());
   }
 
-  //the internal object whose sink/stream we can use
-  final BehaviorSubject<Movie> _streamController = BehaviorSubject<Movie>();
+  MovieDetailsState movieDetailsState = MovieDetailsLoading();
+  BehaviorSubject<MovieDetailsState> _streamController = BehaviorSubject<MovieDetailsState>();
   MoviesRepository moviesRepository;
-
-  //the stream of movie details. use this to show the details
-  Stream<Movie> get stream => _streamController.stream;
-
   Movie movie;
+
+  Stream<MovieDetailsState> get stream {
+    if (_streamController.isClosed) {
+      print('stream closed, resetting it');
+      _streamController = BehaviorSubject<MovieDetailsState>();
+    }
+    return _streamController.stream;
+  }
+
+
+  Stream<MovieDetailsState> fetchCharacters() async* {
+    try  {
+      final List<Character> characters = await moviesRepository.fetchMovieCharacters(movie.character);
+      if (characters.isEmpty) {
+        yield MovieDetailsEmpty();
+      } else  {
+        movie.character = characters.map((Character character) => character.name).toList();
+        yield MovieDetailsPopulated(movie);
+      }
+    } catch (e) {
+      print('error $e');
+      yield MovieDetailsError(e.toString());
+    }
+  }
 
   @override
   void dispose() {
-    print('closing movie details streamcontroller');
     _streamController.close();
   }
 }
