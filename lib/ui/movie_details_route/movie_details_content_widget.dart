@@ -2,13 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 
 class MovieDetailsContentWidget extends StatelessWidget {
 
   const MovieDetailsContentWidget(this.movie);
 
-  final Movie movie;
+  final SwapiMovie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +67,12 @@ class MovieDetailsContentWidget extends StatelessWidget {
 
 
 abstract class ListItem {
-  Widget buildItem(BuildContext context, Movie movie);
+  Widget buildItem(BuildContext context, SwapiMovie movie);
 }
 
 class HeaderItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, Movie movie) {
+  Widget buildItem(BuildContext context, SwapiMovie movie) {
     return Column(
        mainAxisAlignment: MainAxisAlignment.start,
        crossAxisAlignment: CrossAxisAlignment.start ,
@@ -93,24 +93,25 @@ class HeaderItem implements ListItem {
 
 class CharactersItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, Movie movie) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start ,
-      children: <Widget>[
-        Container(
-            margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
-            child: Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold))),
-
-        Text(movie.character.toString())
-      ],
-    );
+  Widget buildItem(BuildContext context, SwapiMovie movie) {
+    return Material(
+        elevation: 20,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start ,
+          children: <Widget>[
+            Container(
+                margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
+                child: Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold))),
+            Text(movie.character.join(', '))
+          ],
+    ));
   }
 }
 
 class PlotItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, Movie movie) {
+  Widget buildItem(BuildContext context, SwapiMovie movie) {
     return Text(movie.plot);
   }
 }

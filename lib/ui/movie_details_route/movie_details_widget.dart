@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/ui/movie_details_route/movie_details_content_widget.dart';
 
 class MovieDetailsWidget extends StatelessWidget {
@@ -9,7 +9,7 @@ class MovieDetailsWidget extends StatelessWidget {
 
   const MovieDetailsWidget({@required this.movie});
 
-  final Movie movie;
+  final SwapiMovie movie;
 
   @override
   Widget build(BuildContext context) {

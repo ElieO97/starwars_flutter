@@ -3,8 +3,8 @@
 
 import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
-import 'package:star_wars_flutter/models/character.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_character.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/models/movie_details_state.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 
@@ -21,7 +21,7 @@ class MovieDetailsBloc extends BlocBase {
   MovieDetailsState movieDetailsState = MovieDetailsLoading();
   BehaviorSubject<MovieDetailsState> _streamController = BehaviorSubject<MovieDetailsState>();
   MoviesRepository moviesRepository;
-  Movie movie;
+  SwapiMovie movie;
 
   Stream<MovieDetailsState> get stream {
     if (_streamController.isClosed) {
@@ -34,11 +34,11 @@ class MovieDetailsBloc extends BlocBase {
 
   Stream<MovieDetailsState> fetchCharacters() async* {
     try  {
-      final List<Character> characters = await moviesRepository.fetchMovieCharacters(movie.character);
+      final List<SwapiCharacter> characters = await moviesRepository.fetchMovieCharacters(movie.character);
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
       } else  {
-        movie.character = characters.map((Character character) => character.name).toList();
+        movie.character = characters.map((SwapiCharacter character) => character.name).toList();
         yield MovieDetailsPopulated(movie);
       }
     } catch (e) {

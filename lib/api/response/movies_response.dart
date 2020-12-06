@@ -2,7 +2,7 @@
 
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 
 part 'movies_response.g.dart';
 
@@ -11,7 +11,7 @@ class MoviesResponse {
 
 
   MoviesResponse({this.results});
-  List<Movie> results;
+  List<SwapiMovie> results;
 
 
   bool get isEmpty => !hasResults();

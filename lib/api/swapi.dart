@@ -1,8 +1,8 @@
 
 import 'package:retrofit/http.dart';
 import 'package:star_wars_flutter/constants/api_constants.dart';
-import 'package:star_wars_flutter/models/character.dart';
-import 'package:star_wars_flutter/models/movies_response.dart';
+import 'package:star_wars_flutter/api/models/swapi_character.dart';
+import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:dio/dio.dart';
 
 part 'swapi.g.dart';
@@ -19,6 +19,6 @@ abstract class Swapi {
    Future<MoviesResponse> fetchAllMovies();
 
    @GET(PEOPLE)
-   Future<Character> fetchMovieCharacter(@Path() String id);
+   Future<SwapiCharacter> fetchMovieCharacter(@Path() String id);
 
 }

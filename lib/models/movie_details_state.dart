@@ -1,6 +1,6 @@
 
 
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 
 class MovieDetailsState {
   MovieDetailsState();
@@ -17,9 +17,9 @@ class MovieDetailsNoResults extends MovieDetailsState {}
 class MovieDetailsPopulated extends MovieDetailsState {
 
   MovieDetailsPopulated(this.movie);
-  Movie movie;
+  SwapiMovie movie;
 
-  MovieDetailsPopulated update({Movie nuMovie}) {
+  MovieDetailsPopulated update({SwapiMovie nuMovie}) {
     return this..movie = nuMovie;
   }
 }

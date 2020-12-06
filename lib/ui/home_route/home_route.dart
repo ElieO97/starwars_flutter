@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
@@ -75,7 +75,7 @@ class _HomeRouteState extends State<HomeRoute>  {
                       // Fade in the Result if available
                       MoviesWidget(
                           moviesBloc: moviesBloc,
-                          movies: data is MoviesPopulated ? data.movies  : <Movie>[]),
+                          movies: data is MoviesPopulated ? data.movies  : <SwapiMovie>[]),
 
                     ]
 

@@ -4,7 +4,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/navigation/star_wars_router.dart';
 
 
@@ -13,7 +13,7 @@ class MovieSummaryWidget extends StatelessWidget {
 
   const MovieSummaryWidget({this.movie});
 
-  final Movie movie;
+  final SwapiMovie movie;
 
 
   @override

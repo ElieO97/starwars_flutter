@@ -1,14 +1,10 @@
 
 
-import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
-part 'character.g.dart';
-
-@JsonSerializable()
 class Character {
 
   Character(
+      this.id,
       this.birthDay,
       this.eyeColor,
       this.gender,
@@ -19,30 +15,27 @@ class Character {
       this.name
       );
 
-  @JsonKey(name: 'birth_year')
-  String birthDay;
+  final String id;
+  final String birthDay;
+  final String eyeColor;
+  final String gender;
+  final String hairColor;
+  final String height;
+  final String homeWorld;
+  final String mass;
+  final String name;
 
-  @JsonKey(name: 'eye_color')
-  String eyeColor;
-
-  @JsonKey(name: 'gender')
-  String gender;
-
-  @JsonKey(name: 'hair_color')
-  String hairColor;
-
-  String height;
-
-  @JsonKey(name: 'homeworld')
-  String homeWorld;
-
-  String mass;
-
-  String name;
-
-
-
-  factory Character.fromJson(Map<String, dynamic> json) => _$CharacterFromJson(json);
-  Map<String, dynamic> toJson() => _$CharacterToJson(this);
-
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'birthDay': birthDay,
+      'eyeColor': eyeColor,
+      'gender': gender,
+      'hairColor': hairColor,
+      'height': height,
+      'homeWorld': homeWorld,
+      'mass': mass,
+      'name': name
+    };
+  }
 }
