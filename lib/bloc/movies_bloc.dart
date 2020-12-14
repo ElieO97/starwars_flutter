@@ -1,7 +1,6 @@
-
-
-import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/api/models/swapi_movie.dart';
+import 'package:star_wars_flutter/bloc/bloc_provider.dart';
+import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:rxdart/rxdart.dart';
@@ -16,7 +15,7 @@ class MoviesBloc extends BlocBase {
   }
 
   MoviesRepository moviesRepository;
-  MoviesPopulated moviesPopulated = MoviesPopulated(<SwapiMovie>[]);
+  MoviesPopulated moviesPopulated = MoviesPopulated(<Movie>[]);
   bool _hasNoExistingData() => moviesPopulated.movies?.isEmpty ?? true;
 
 
@@ -42,7 +41,7 @@ class MoviesBloc extends BlocBase {
       if (response.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
       } else  {
-        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(response.results));
+        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(SwapiMovie.toMovies(response.results)));
       }
 
     } catch (e) {

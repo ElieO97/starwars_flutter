@@ -1,5 +1,7 @@
 
 
+import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
+
 class Movie {
 
   Movie(this.id, this.title, this.director, this.releaseDate, this.producer, this.plot, this.url);
@@ -23,5 +25,13 @@ class Movie {
       'plot': plot,
       'url': url
     };
+  }
+
+  List<String> supportedWidgets() {
+    return <String>['title', 'characters', 'plot'];
+  }
+
+  String getImagePath() {
+    return findMovieImageAssetPath(title);
   }
 }

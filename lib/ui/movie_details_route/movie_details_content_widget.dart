@@ -1,14 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/api/models/swapi_movie.dart';
+import 'package:star_wars_flutter/models/movie.dart';
 
 class MovieDetailsContentWidget extends StatelessWidget {
 
   const MovieDetailsContentWidget(this.movie);
 
-  final SwapiMovie movie;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +66,12 @@ class MovieDetailsContentWidget extends StatelessWidget {
 
 
 abstract class ListItem {
-  Widget buildItem(BuildContext context, SwapiMovie movie);
+  Widget buildItem(BuildContext context, Movie movie);
 }
 
 class HeaderItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, SwapiMovie movie) {
+  Widget buildItem(BuildContext context, Movie movie) {
     return Column(
        mainAxisAlignment: MainAxisAlignment.start,
        crossAxisAlignment: CrossAxisAlignment.start ,
@@ -93,7 +92,7 @@ class HeaderItem implements ListItem {
 
 class CharactersItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, SwapiMovie movie) {
+  Widget buildItem(BuildContext context, Movie movie) {
     return Material(
         elevation: 20,
         child: Column(
@@ -103,7 +102,7 @@ class CharactersItem implements ListItem {
             Container(
                 margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
                 child: Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold))),
-            Text(movie.character.join(', '))
+            Text(/*movie.character.join(', ')*/'')
           ],
     ));
   }
@@ -111,7 +110,7 @@ class CharactersItem implements ListItem {
 
 class PlotItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, SwapiMovie movie) {
+  Widget buildItem(BuildContext context, Movie movie) {
     return Text(movie.plot);
   }
 }
