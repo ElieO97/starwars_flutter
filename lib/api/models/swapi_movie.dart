@@ -48,13 +48,13 @@ class SwapiMovie {
 
   Movie toMovie() {
     return Movie(
-        id,
-        title,
-        director,
-        releaseDate,
-        producer,
-        plot,
-        url);
+        id: id,
+        title: title,
+        director: director,
+        releaseDate: releaseDate,
+        producer: producer,
+        plot: plot,
+        url: url);
   }
 
   static List<Movie> toMovies(List<SwapiMovie> swapiMovies) {

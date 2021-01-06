@@ -4,7 +4,7 @@ import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
 class Movie {
 
-  Movie(this.id, this.title, this.director, this.releaseDate, this.producer, this.plot, this.url);
+  Movie({this.id, this.title, this.director, this.releaseDate, this.producer, this.plot, this.url});
 
   final int id;
   final String title;
@@ -33,5 +33,10 @@ class Movie {
 
   String getImagePath() {
     return findMovieImageAssetPath(title);
+  }
+
+  @override
+  String toString() {
+    return 'Movie{id: $id, title: $title, director: $director, releaseDate: $releaseDate, producer: $producer, plot: $plot, url: $url }';
   }
 }

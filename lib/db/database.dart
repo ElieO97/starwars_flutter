@@ -2,12 +2,14 @@
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:star_wars_flutter/models/movie.dart';
+
 
 class StarWarsDatabase {
 
    StarWarsDatabase._();
 
-   static final StarWarsDatabase starWarsDatabased = StarWarsDatabase._();
+   static final StarWarsDatabase starWarsDatabase = StarWarsDatabase._();
    Database _database;
 
 
@@ -39,6 +41,34 @@ class StarWarsDatabase {
        },
        version: 1,
      );
+   }
+
+   Future<void> insertMovie(Movie movie) async {
+     final Database db = await database;
+
+     await db.insert(
+       'Movie',
+        movie.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace
+     );
+   }
+
+   Future<List<Movie>> getMovies() async {
+     final Database db = await database;
+     final List<Map<String, dynamic>> maps = await db.query('Movie');
+
+     return List.generate(maps.length, (int i) {
+       return Movie(
+           id: maps[i]['id'] as int,
+           title: maps[i]['title'] as String,
+           director: maps[i]['director'] as String,
+           releaseDate: maps[i]['releaseDate'] as String,
+           producer: maps[i]['producer'] as String,
+           plot: maps[i]['plot'] as String,
+           url: maps[i]['url'] as String
+       );
+
+     });
    }
 
 

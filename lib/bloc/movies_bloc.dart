@@ -1,8 +1,6 @@
-import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
-import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
@@ -36,12 +34,12 @@ class MoviesBloc extends BlocBase {
     }
 
     try  {
-      final MoviesResponse response = await fetchAllMovies();
-      print('fetchMoviesFromNetwork: nuMovies = ${response.results}');
-      if (response.isEmpty && _hasNoExistingData()) {
+      final List<Movie> movies = await fetchAllMovies();
+      print('fetchMovies: nuMovies = $movies');
+      if (movies.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
       } else  {
-        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(SwapiMovie.toMovies(response.results)));
+        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(movies));
       }
 
     } catch (e) {
@@ -54,9 +52,9 @@ class MoviesBloc extends BlocBase {
     _streamController.addStream(fetchMoviesFromNetwork());
   }
 
-  Future<MoviesResponse> fetchAllMovies() {
-    final Future<MoviesResponse> apiCall = moviesRepository.fetchAllMovies();
-    return apiCall;
+  Future<List<Movie>> fetchAllMovies() {
+    final Future<List<Movie>> movies = moviesRepository.fetchAllMovies();
+    return movies;
   }
 
   @override
