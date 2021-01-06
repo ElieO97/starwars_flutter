@@ -2,6 +2,7 @@
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 
 
@@ -71,5 +72,19 @@ class StarWarsDatabase {
      });
    }
 
+   Future<void> insertCharacter(Movie movie, Character character) async {
+     final Database db = await database;
+
+     await db.insert(
+         'Character',
+         character.toMap(),
+         conflictAlgorithm: ConflictAlgorithm.replace
+     );
+
+   }
+
+   Future<Character> getCharacterWithMovieId(Movie movie) async {
+
+   }
 
 }

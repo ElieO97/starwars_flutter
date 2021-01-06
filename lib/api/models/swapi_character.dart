@@ -1,6 +1,7 @@
 
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:star_wars_flutter/models/character.dart';
 
 part 'swapi_character.g.dart';
 
@@ -15,7 +16,7 @@ class SwapiCharacter {
       this.height,
       this.homeWorld,
       this.mass,
-      this.name
+      this.name,
       );
 
   @JsonKey(name: 'birth_year')
@@ -39,9 +40,13 @@ class SwapiCharacter {
 
   String name;
 
+  String id;
 
 
   factory SwapiCharacter.fromJson(Map<String, dynamic> json) => _$SwapiCharacterFromJson(json);
   Map<String, dynamic> toJson() => _$SwapiCharacterToJson(this);
 
+  Character toCharacter() {
+    return Character(id, birthDay, eyeColor, gender, hairColor, height, homeWorld, mass, name);
+  }
 }

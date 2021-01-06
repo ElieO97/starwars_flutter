@@ -28,6 +28,7 @@ class MovieClient extends BaseNetworkClient{
 
     for (final String id in ids) {
        final SwapiCharacter character =  await fetchMovieCharacter(id);
+       character.id = id;
        characters.add(character);
     }
 

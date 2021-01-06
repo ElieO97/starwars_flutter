@@ -5,6 +5,7 @@ import 'package:star_wars_flutter/api/movie_client.dart';
 import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:star_wars_flutter/api/models/swapi_character.dart';
 import 'package:star_wars_flutter/db/database.dart';
+import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/utils/movie_utils.dart';
 
@@ -15,7 +16,8 @@ class MoviesRepository {
 
   Future<void> fetchAllMoviesFromApi() async {
     final MoviesResponse response =  await _movieClient.fetchAllMovies();
-    final List<Movie> movies = response.results.map((SwapiMovie swapiMovie) => swapiMovie.toMovie()).toList();
+    final List<SwapiMovie> swapiMovies = response.results;
+    final List<Movie> movies = swapiMovies.map((SwapiMovie swapiMovie) => swapiMovie.toMovie()).toList();
     movies.forEach(_database.insertMovie);
   }
 
@@ -31,7 +33,20 @@ class MoviesRepository {
      return movies;
   }
 
-  Future<List<SwapiCharacter>> fetchMovieCharacters(List<String> charactersUrls) async {
-    return _movieClient.fetchMovieCharacters(MovieUtils.charatersUrlsToIds(charactersUrls));
+  Future<void> fetchMovieCharactersFromApi(Movie movie, List<String> charactersUrls) async {
+    final List<SwapiCharacter> swapiCharacters = await _movieClient.fetchMovieCharacters(MovieUtils.charatersUrlsToIds(charactersUrls));
+    final List<Character> characters = swapiCharacters.map((SwapiCharacter swapiCharacter) => swapiCharacter.toCharacter()).toList();
+    characters.forEach(_database.insertCharacter);
+  }
+
+  Future<List<Character>> fetchMovieCharacters(Movie movie, List<String> charactersUrls) async {
+    List<Character> movieCharacters = await _database.getCharacterWithMovieId(movie.id);
+
+    if (movieCharacters == null || movieCharacters.isEmpty) {
+      await fetchMovieCharactersFromApi(movie, charactersUrls);
+      movieCharacters = await _database.getCharacterWithMovieId(movie.id);
+    }
+
+    return movieCharacters;
   }
 }
