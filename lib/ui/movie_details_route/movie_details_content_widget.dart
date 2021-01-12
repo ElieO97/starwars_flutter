@@ -102,7 +102,7 @@ class CharactersItem implements ListItem {
             Container(
                 margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
                 child: Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold))),
-            Text(/*movie.character.join(', ')*/'')
+            Text(movie.character)
           ],
     ));
   }

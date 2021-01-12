@@ -1,1 +1,1 @@
-const String BASE_URL = 'https://swapi.dev/api/';
+const String BASE_URL = 'https://www.swapi.tech/api/';

@@ -3,17 +3,17 @@
 
 class Character {
 
-  Character(
-      this.id,
-      this.birthDay,
-      this.eyeColor,
-      this.gender,
-      this.hairColor,
-      this.height,
-      this.homeWorld,
-      this.mass,
-      this.name
-      );
+  Character({
+    this.id,
+    this.birthDay,
+    this.eyeColor,
+    this.gender,
+    this.hairColor,
+    this.height,
+    this.homeWorld,
+    this.mass,
+    this.name
+  });
 
   final String id;
   final String birthDay;

@@ -17,6 +17,8 @@ class _MovieDetailsStatefulState extends State<MovieDetailsRoute> {
   MovieDetailsBloc movieDetailsBloc;
   String title = '';
 
+
+
   @override
   void initState() {
     super.initState();

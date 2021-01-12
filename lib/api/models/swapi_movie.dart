@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie_properties.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 
 part 'swapi_movie.g.dart';
@@ -6,40 +7,11 @@ part 'swapi_movie.g.dart';
 @JsonSerializable()
 class SwapiMovie {
 
-  SwapiMovie(
-      this.title,
-      this.director,
-      this.releaseDate,
-      this.producer,
-      this.character,
-      this.id,
-      this.url
-      );
+  SwapiMovie(this.properties,);
 
-  @JsonKey(name: 'title')
-  String title;
 
-  @JsonKey(name: 'director')
-  String director;
 
-  @JsonKey(name: 'release_date')
-  String releaseDate;
-
-  @JsonKey(name: 'producer')
-  String producer;
-
-  @JsonKey(name: 'opening_crawl')
-  String plot;
-
-  @JsonKey(name: 'characters')
-  List<String> character;
-
-  @JsonKey(name: 'episode_id')
-  int id;
-
-  @JsonKey(name: 'url')
-  String url;
-
+  SwapiMovieProperties properties;
 
 
   factory SwapiMovie.fromJson(Map<String, dynamic> json) => _$SwapiMovieFromJson(json);
@@ -47,14 +19,7 @@ class SwapiMovie {
 
 
   Movie toMovie() {
-    return Movie(
-        id: id,
-        title: title,
-        director: director,
-        releaseDate: releaseDate,
-        producer: producer,
-        plot: plot,
-        url: url);
+    return properties.toMovie();
   }
 
   static List<Movie> toMovies(List<SwapiMovie> swapiMovies) {
@@ -66,3 +31,4 @@ class SwapiMovie {
     return <String>['title', 'characters', 'plot'];
   }
 }
+

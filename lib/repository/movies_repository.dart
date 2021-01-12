@@ -33,18 +33,21 @@ class MoviesRepository {
      return movies;
   }
 
-  Future<void> fetchMovieCharactersFromApi(Movie movie, List<String> charactersUrls) async {
-    final List<SwapiCharacter> swapiCharacters = await _movieClient.fetchMovieCharacters(MovieUtils.charatersUrlsToIds(charactersUrls));
+  Future<void> fetchMovieCharactersFromApi(Movie movie) async {
+    final List<SwapiCharacter> swapiCharacters = await _movieClient.fetchMovieCharacters(MovieUtils.charatersUrlsToIds(movie.character.split(',')));
     final List<Character> characters = swapiCharacters.map((SwapiCharacter swapiCharacter) => swapiCharacter.toCharacter()).toList();
-    characters.forEach(_database.insertCharacter);
+
+    for (final Character character in characters) {
+       _database.insertCharacter(movie, character);
+    }
   }
 
-  Future<List<Character>> fetchMovieCharacters(Movie movie, List<String> charactersUrls) async {
-    List<Character> movieCharacters = await _database.getCharacterWithMovieId(movie.id);
+  Future<List<Character>> fetchMovieCharacters(Movie movie) async {
+    List<Character> movieCharacters = await _database.getCharacterWithMovieId(movie);
 
     if (movieCharacters == null || movieCharacters.isEmpty) {
-      await fetchMovieCharactersFromApi(movie, charactersUrls);
-      movieCharacters = await _database.getCharacterWithMovieId(movie.id);
+      await fetchMovieCharactersFromApi(movie);
+      movieCharacters = await _database.getCharacterWithMovieId(movie);
     }
 
     return movieCharacters;

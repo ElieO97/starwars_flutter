@@ -1,6 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/api/models/swapi_character.dart';
+import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_details_state.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
@@ -31,12 +32,12 @@ class MovieDetailsBloc extends BlocBase {
 
   Stream<MovieDetailsState> fetchCharacters() async* {
     try  {
-      final List<SwapiCharacter> characters = await moviesRepository.fetchMovieCharacters(/*movie.character*/ <String>['']);
+      final List<Character> characters = await moviesRepository.fetchMovieCharacters(movie);
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
       } else  {
-//        movie.character = characters.map((SwapiCharacter character) => character.name).toList();
-        yield MovieDetailsPopulated(movie);
+        movie.character = characters.join(',');
+        yield MovieDetailsPopulated(movie, characters);
       }
     } catch (e) {
       print('error $e');

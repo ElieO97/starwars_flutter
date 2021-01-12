@@ -47,6 +47,6 @@ class SwapiCharacter {
   Map<String, dynamic> toJson() => _$SwapiCharacterToJson(this);
 
   Character toCharacter() {
-    return Character(id, birthDay, eyeColor, gender, hairColor, height, homeWorld, mass, name);
+    return Character(id: id, birthDay: birthDay, eyeColor: eyeColor, gender: gender, hairColor: hairColor, height: height, homeWorld: homeWorld, mass: mass, name: name);
   }
 }
