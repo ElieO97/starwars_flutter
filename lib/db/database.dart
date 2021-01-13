@@ -36,7 +36,7 @@ class StarWarsDatabase {
          );
 
          await db.execute(
-           'CREATE TABLE movie_character_join(id TEXT PRIMARY KEY, FOREIGN KEY (movie_id) REFERENCES Movie(id), FOREIGN KEY (character_id) REFERENCES Character(id));',
+           'CREATE TABLE movie_character_join(id TEXT PRIMARY KEY, movie_id TEXT,  character_id TEXT, FOREIGN KEY (movie_id) REFERENCES Movie(id), FOREIGN KEY (character_id) REFERENCES Character(id));',
          );
 
        },
