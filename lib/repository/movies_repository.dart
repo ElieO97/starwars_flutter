@@ -2,6 +2,7 @@
 
 import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/api/movie_client.dart';
+import 'package:star_wars_flutter/api/response/base_response.dart';
 import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:star_wars_flutter/api/models/swapi_character.dart';
 import 'package:star_wars_flutter/db/database.dart';
@@ -15,8 +16,8 @@ class MoviesRepository {
   final StarWarsDatabase _database = StarWarsDatabase.starWarsDatabase;
 
   Future<void> fetchAllMoviesFromApi() async {
-    final MoviesResponse response =  await _movieClient.fetchAllMovies();
-    final List<SwapiMovie> swapiMovies = response.results;
+    final BaseResponse<SwapiMovie> response =  await _movieClient.fetchAllMovies();
+    final List<SwapiMovie> swapiMovies = response.result;
     final List<Movie> movies = swapiMovies.map((SwapiMovie swapiMovie) => swapiMovie.toMovie()).toList();
     movies.forEach(_database.insertMovie);
   }
