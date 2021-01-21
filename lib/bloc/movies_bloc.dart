@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
@@ -35,7 +36,7 @@ class MoviesBloc extends BlocBase {
 
     try  {
       final List<Movie> movies = await fetchAllMovies();
-      print('fetchMovies: nuMovies = $movies');
+      debugPrint('fetchMovies: nuMovies = ${movies.length} $movies');
       if (movies.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
       } else  {

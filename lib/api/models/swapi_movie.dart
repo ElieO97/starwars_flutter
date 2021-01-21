@@ -10,7 +10,6 @@ class SwapiMovie {
   SwapiMovie(this.properties,);
 
 
-
   SwapiMovieProperties properties;
 
 
@@ -25,10 +24,6 @@ class SwapiMovie {
   static List<Movie> toMovies(List<SwapiMovie> swapiMovies) {
     return swapiMovies.map((SwapiMovie swapiMovie) => swapiMovie.toMovie()).toList();
 
-  }
-
-  List<String> supportedWidgets() {
-    return <String>['title', 'characters', 'plot'];
   }
 }
 

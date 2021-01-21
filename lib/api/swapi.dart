@@ -17,7 +17,7 @@ abstract class Swapi {
    static const String PEOPLE = 'people/{id}';
 
    @GET(FILMS)
-   Future<BaseResponse<SwapiMovie>> fetchAllMovies();
+   Future<MoviesResponse> fetchAllMovies();
 
    @GET(PEOPLE)
    Future<BaseResponse<SwapiCharacter>> fetchMovieCharacter(@Path() String id);

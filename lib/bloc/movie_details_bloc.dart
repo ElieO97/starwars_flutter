@@ -36,7 +36,7 @@ class MovieDetailsBloc extends BlocBase {
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
       } else  {
-        movie.character = characters.join(',');
+        movie.character = characters.map((Character character) => character.name).join(',');
         yield MovieDetailsPopulated(movie, characters);
       }
     } catch (e) {

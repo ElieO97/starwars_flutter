@@ -38,4 +38,15 @@ class Character {
       'name': name
     };
   }
+
+  @override
+  String toString() {
+   return  '''id: $id, birthDay: $birthDay, eyeColor: $eyeColor,
+    gender: $gender,
+    hairColor: $hairColor,
+    height: $height,
+    homeWorld: $homeWorld,
+    mass: $mass,
+    name: $name''';
+  }
 }
