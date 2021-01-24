@@ -11,7 +11,7 @@ import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
-import 'package:star_wars_flutter/ui/home_route/movies_widget.dart';
+import 'package:star_wars_flutter/ui/home/movies_widget.dart';
 
 class HomeRoute extends StatefulWidget {
 

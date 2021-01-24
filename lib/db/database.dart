@@ -1,5 +1,3 @@
-
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:star_wars_flutter/models/character.dart';

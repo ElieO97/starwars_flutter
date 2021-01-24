@@ -5,7 +5,7 @@ import 'package:star_wars_flutter/models/movie_details_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
-import 'package:star_wars_flutter/ui/movie_details_route/movie_details_widget.dart';
+import 'package:star_wars_flutter/ui/movie_details/movie_details_widget.dart';
 
 class MovieDetailsRoute extends StatefulWidget {
 
