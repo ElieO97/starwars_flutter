@@ -1,9 +1,8 @@
-
-
 import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 import 'package:star_wars_flutter/api/movie_client.dart';
 import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:star_wars_flutter/api/models/swapi_character.dart';
+import 'package:star_wars_flutter/api/response/omdb_movie_response.dart';
 import 'package:star_wars_flutter/db/database.dart';
 import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/models/movie.dart';
@@ -16,8 +15,21 @@ class MoviesRepository {
 
   Future<void> fetchAllMoviesFromApi() async {
     final MoviesResponse response =  await _movieClient.fetchAllMovies();
-    final List<SwapiMovie> swapiMovies = response.results;
+    final List<SwapiMovie> swapiMovies = response.result;
+
+    print('response = ${response.result}, swapiMovies = $swapiMovies');
+
     final List<Movie> movies = swapiMovies.map((SwapiMovie swapiMovie) => swapiMovie.toMovie()).toList();
+
+    for (final Movie movie in movies) {
+      final OMDBMovieResponse ratingResponse = await fetchMovieRating(movie);
+      print('movie rating: ${ratingResponse.imdbRating}');
+
+      if (ratingResponse.imdbRating.isNotEmpty && ratingResponse.imdbRating != 'N/A') {
+        movie.imdbRating = double.parse(ratingResponse.imdbRating);
+      }
+    }
+
     movies.forEach(_database.insertMovie);
   }
 
@@ -25,10 +37,10 @@ class MoviesRepository {
      List<Movie> movies = await _database.getMovies();
      print('fetchAllMovies: movies = $movies');
      
-     if (movies == null || movies.isEmpty) {
+     // if (movies == null || movies.isEmpty) {
        await fetchAllMoviesFromApi();
        movies = await _database.getMovies();
-     }
+     // }
 
      return movies;
   }
@@ -51,5 +63,9 @@ class MoviesRepository {
     }
 
     return movieCharacters;
+  }
+
+  Future<OMDBMovieResponse> fetchMovieRating(Movie movie) async {
+    return _movieClient.fetchMovieRating(movie.title);
   }
 }

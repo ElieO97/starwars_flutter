@@ -28,7 +28,7 @@ class StarWarsDatabase {
        join(await getDatabasesPath(), 'starwars_database.db'),
        onCreate: (Database db, int version) async {
          await db.execute(
-           'CREATE TABLE Movie(id INTEGER PRIMARY KEY, title TEXT, director TEXT, releaseDate TEXT, producer TEXT, plot TEXT, url TEXT, character TEXT);',
+           'CREATE TABLE Movie(id INTEGER PRIMARY KEY, title TEXT, director TEXT, releaseDate TEXT, producer TEXT, plot TEXT, url TEXT, character TEXT, imdbRating FLOAT);',
          );
 
          await db.execute(
@@ -68,6 +68,7 @@ class StarWarsDatabase {
            plot: maps[i]['plot'] as String,
            url: maps[i]['url'] as String,
            character:  maps[i]['character'] as String,
+           imdbRating:  maps[i]['imdbRating'] as double,
        );
 
      });

@@ -4,7 +4,7 @@ import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
 class Movie {
 
-  Movie({this.id, this.title, this.director, this.releaseDate, this.producer, this.plot, this.url, this.character});
+  Movie({this.id, this.title, this.director, this.releaseDate, this.producer, this.plot, this.url, this.character, this.imdbRating});
 
   final int id;
   final String title;
@@ -14,6 +14,7 @@ class Movie {
   final String plot;
   final String url;
   String character;
+  double imdbRating;
 
 
   Map<String, dynamic> toMap() {

@@ -4,7 +4,7 @@ import 'package:star_wars_flutter/constants/api_constants.dart';
 import 'package:star_wars_flutter/api/models/swapi_character.dart';
 import 'package:star_wars_flutter/api/response/movies_response.dart';
 import 'package:dio/dio.dart';
-import 'models/swapi_movie.dart';
+
 
 part 'swapi.g.dart';
 
