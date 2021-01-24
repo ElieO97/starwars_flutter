@@ -14,7 +14,6 @@ import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/home/movies_widget.dart';
 
 class HomeRoute extends StatefulWidget {
-
   const HomeRoute({Key key}) : super(key: key);
 
   @override
@@ -22,7 +21,6 @@ class HomeRoute extends StatefulWidget {
 }
 
 class _HomeRouteState extends State<HomeRoute>  {
-
   _HomeRouteState();
 
   @override

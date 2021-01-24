@@ -3,7 +3,7 @@ import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
-import 'package:star_wars_flutter/ui/home/home_route.dart';
+import 'package:star_wars_flutter/ui/home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
