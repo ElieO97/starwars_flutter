@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/models/movie.dart';

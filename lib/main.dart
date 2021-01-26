@@ -20,10 +20,12 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             dividerColor: Colors.white,
             brightness: Brightness.dark,
-            primarySwatch: Colors.blueGrey,
+            primaryColor: Colors.black,
+            // primarySwatch: Colors.blueGrey,
             accentColor: Colors.deepOrange,
+            scaffoldBackgroundColor: Colors.white,
           ),
-            home: const HomeRoute(),
+            home: const HomeScreen(),
            localizationsDelegates: const<LocalizationsDelegate<dynamic>>[
              S.delegate,
 
