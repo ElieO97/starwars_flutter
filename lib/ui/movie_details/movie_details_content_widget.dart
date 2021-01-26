@@ -93,18 +93,15 @@ class HeaderItem implements ListItem {
 class CharactersItem implements ListItem {
   @override
   Widget buildItem(BuildContext context, Movie movie) {
-    return Material(
-        elevation: 20,
-        child: Column(
+    return Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start ,
           children: <Widget>[
-            Container(
-                margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
-                child: Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold))),
+            Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5.0),
             Text(movie.character)
           ],
-    ));
+    );
   }
 }
 

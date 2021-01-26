@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.dark,
             primaryColor: Colors.black,
             // primarySwatch: Colors.blueGrey,
-            accentColor: Colors.deepOrange,
+            accentColor: Colors.black,
             scaffoldBackgroundColor: Colors.white,
           ),
             home: const HomeScreen(),
