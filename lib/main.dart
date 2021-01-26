@@ -24,6 +24,9 @@ class MyApp extends StatelessWidget {
             // primarySwatch: Colors.blueGrey,
             accentColor: Colors.black,
             scaffoldBackgroundColor: Colors.white,
+            textTheme:  Theme.of(context).textTheme.apply(
+              bodyColor: Colors.black,
+            )
           ),
             home: const HomeScreen(),
            localizationsDelegates: const<LocalizationsDelegate<dynamic>>[

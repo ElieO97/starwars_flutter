@@ -39,7 +39,7 @@ class MovieSummaryWidget extends StatelessWidget {
             child: Row (
                 children: <Widget>[
                   Container (
-                    width: 200,
+                    width: 150,
                     child:  AspectRatio(
                       aspectRatio: 1 / 1,
                       child:  Image(
