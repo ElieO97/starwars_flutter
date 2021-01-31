@@ -26,7 +26,8 @@ class Movie {
       'producer': producer,
       'plot': plot,
       'url': url,
-      'character': character
+      'character': character,
+      'imdbRating': imdbRating
     };
   }
 
@@ -40,6 +41,6 @@ class Movie {
 
   @override
   String toString() {
-    return 'Movie{id: $id, title: $title, director: $director, releaseDate: $releaseDate, producer: $producer, plot: $plot, url: $url, character: $character}';
+    return 'Movie{id: $id, title: $title, director: $director, releaseDate: $releaseDate, producer: $producer, plot: $plot, url: $url, character: $character, imdbRating: $imdbRating}';
   }
 }

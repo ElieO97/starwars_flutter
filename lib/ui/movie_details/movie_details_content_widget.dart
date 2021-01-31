@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 
@@ -47,21 +48,6 @@ class MovieDetailsContentWidget extends StatelessWidget {
       },
     );
   }
-
-  Widget buildDirectorName() {
-    if (movie.director.isEmpty) {
-      return Container();
-    }
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text('directed by ${movie.director}',
-              style: const TextStyle(fontSize: 13.0)),
-        ),
-      ],
-    );
-  }
 }
 
 
@@ -80,8 +66,19 @@ class HeaderItem implements ListItem {
              margin: const EdgeInsets.only(bottom: 5.0, top: 20.0),
              child: Text(movie.title, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))),
          Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: <Widget>[
-             Text(movie.releaseDate)
+             Text(movie.releaseDate),
+             SmoothStarRating(
+                   allowHalfRating: false,
+                   starCount: 5,
+                   rating: (movie.imdbRating ?? 0.0) / 2.0,
+                   size: 20.0,
+                   isReadOnly:true,
+                   color: Colors.black,
+                   borderColor: Colors.black,
+                   spacing:0.0
+             )
            ],
          )
        ],
