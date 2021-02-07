@@ -1,5 +1,3 @@
-
-
 import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
 class Movie {
@@ -29,10 +27,6 @@ class Movie {
       'character': character,
       'imdbRating': imdbRating
     };
-  }
-
-  List<String> supportedWidgets() {
-    return <String>['title', 'characters', 'plot'];
   }
 
   String getImagePath() {

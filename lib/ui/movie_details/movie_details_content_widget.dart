@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:marquee/marquee.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/models/movie.dart';
@@ -10,12 +11,16 @@ class MovieDetailsContentWidget extends StatelessWidget {
 
   final Movie movie;
 
+  List<String> _supportedWidgets() {
+    return <String>['title', 'characters', 'plot'];
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<ListItem> items = List<ListItem>.generate(
-      movie.supportedWidgets().length,
+      _supportedWidgets().length,
           (int position) {
-            switch(movie.supportedWidgets()[position]) {
+            switch(_supportedWidgets()[position]) {
               case 'title':
                 return HeaderItem();
                 break;
@@ -40,7 +45,7 @@ class MovieDetailsContentWidget extends StatelessWidget {
       ),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
-        final ListItem item = items[index];
+        final ListItem item = items[index] ;
 
         return ListTile(
           title: item.buildItem(context, movie)
@@ -105,7 +110,13 @@ class CharactersItem implements ListItem {
 class PlotItem implements ListItem {
   @override
   Widget buildItem(BuildContext context, Movie movie) {
-    return Text(movie.plot);
+    return Container (
+      height: 400,
+      child: Marquee(
+          text: movie.plot,
+          scrollAxis: Axis.vertical,
+          style: const TextStyle(fontWeight: FontWeight.bold))
+    );
   }
 }
 
