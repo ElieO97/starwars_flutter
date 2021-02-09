@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
@@ -16,7 +19,7 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>  {
+class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState();
 
   @override
@@ -24,60 +27,78 @@ class _HomeScreenState extends State<HomeScreen>  {
     super.dispose();
   }
 
+  StreamBuilder<MoviesState> buildStreamBuilder(BuildContext context,
+      MoviesBloc moviesBloc) {
+    return StreamBuilder<MoviesState>(
+        key: const Key('streamBuilder'),
+        initialData: moviesBloc.moviesPopulated,
+        stream: moviesBloc.stream,
+        builder: (BuildContext context, AsyncSnapshot<MoviesState> snapshot) {
+          final MoviesState data = snapshot.data;
+          print('data snapshot = $data');
+          return Column(
+            children: <Widget>[
+              Expanded(
+                child: Stack(key: const Key('content'), children: <Widget>[
+                  // Fade in an Empty Result screen if the search contained
+                  // no items
+                  EmptyWidget(visible: data is MoviesEmpty),
+
+                  // Fade in a loading screen when results are being fetched
+                  LoadingWidget(visible: data is MoviesLoading),
+
+                  // Fade in an error if something went wrong when fetching
+                  // the results
+                  ErrorsWidget(
+                      visible: data is MoviesError,
+                      error: data is MoviesError ? data.error : ''),
+
+                  // Fade in the Result if available
+                  MoviesWidget(
+                      moviesBloc: moviesBloc,
+                      movies:
+                      data is MoviesPopulated ? data.movies : <Movie>[]),
+                ]),
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
-      return Scaffold (
-        appBar: AppBar (
+    return Scaffold(
+        appBar: AppBar(
           title: Text(S().appName),
         ),
-          body: Column(key: const Key('rootColumn'), children: <Widget>[
-            Flexible(child: buildStreamBuilder(context, moviesBloc),),
-          ])
-      );
-  }
-
-
-  StreamBuilder<MoviesState> buildStreamBuilder(BuildContext context, MoviesBloc moviesBloc) {
-      return StreamBuilder<MoviesState> (
-           key: const Key('streamBuilder'),
-           initialData: moviesBloc.moviesPopulated,
-           stream: moviesBloc.stream,
-           builder: (BuildContext context, AsyncSnapshot<MoviesState> snapshot) {
-             final MoviesState data = snapshot.data;
-             print('data snapshot = $data');
-             return Column (
-               children: <Widget> [
-               Expanded (
-                  child: Stack (
-                    key: const Key('content'),
-                    children: <Widget> [
-                      // Fade in an Empty Result screen if the search contained
-                      // no items
-                      EmptyWidget(visible: data is MoviesEmpty),
-
-                      // Fade in a loading screen when results are being fetched
-                      LoadingWidget(visible: data is MoviesLoading),
-
-                      // Fade in an error if something went wrong when fetching
-                      // the results
-                      ErrorsWidget(
-                          visible: data is MoviesError,
-                          error: data is MoviesError ? data.error : ''),
-
-                      // Fade in the Result if available
-                      MoviesWidget(
-                          moviesBloc: moviesBloc,
-                          movies: data is MoviesPopulated ? data.movies  : <Movie>[]),
-
-                    ]
-
-                 ),
+        drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                DrawerHeader(
+                  child: Text(S().appName),
+                  decoration: const BoxDecoration(
+                      color: Colors.black
+                  ),
                 ),
-               ],
-             ) ;
-      });
-   }
-
-
+                ListTile(
+                    title: Text('Turn on Dark Mode'),
+                    trailing: Platform.isIOS
+                        ? CupertinoSwitch(
+                      value: false,
+                      onChanged: (bool value) {},
+                    )
+                        : Switch(
+                      value: false,
+                      onChanged: (bool value) {},
+                    )),
+              ],
+            )),
+        body: Column(key: const Key('rootColumn'), children: <Widget>[
+          Flexible(
+            child: buildStreamBuilder(context, moviesBloc),
+          ),
+        ]));
+  }
 }
