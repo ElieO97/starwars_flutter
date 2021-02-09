@@ -37,10 +37,10 @@ class MoviesRepository {
      List<Movie> movies = await _database.getMovies();
      print('fetchAllMovies: movies = $movies');
      
-     // if (movies == null || movies.isEmpty) {
+     if (movies == null || movies.isEmpty) {
        await fetchAllMoviesFromApi();
        movies = await _database.getMovies();
-     // }
+     }
 
      return movies;
   }
