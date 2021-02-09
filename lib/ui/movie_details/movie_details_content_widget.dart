@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:marquee/marquee.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 
@@ -10,12 +11,16 @@ class MovieDetailsContentWidget extends StatelessWidget {
 
   final Movie movie;
 
+  List<String> _supportedWidgets() {
+    return <String>['title', 'characters', 'plot'];
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<ListItem> items = List<ListItem>.generate(
-      movie.supportedWidgets().length,
+      _supportedWidgets().length,
           (int position) {
-            switch(movie.supportedWidgets()[position]) {
+            switch(_supportedWidgets()[position]) {
               case 'title':
                 return HeaderItem();
                 break;
@@ -40,27 +45,12 @@ class MovieDetailsContentWidget extends StatelessWidget {
       ),
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
-        final ListItem item = items[index];
+        final ListItem item = items[index] ;
 
         return ListTile(
           title: item.buildItem(context, movie)
         );
       },
-    );
-  }
-
-  Widget buildDirectorName() {
-    if (movie.director.isEmpty) {
-      return Container();
-    }
-    return Row(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text('directed by ${movie.director}',
-              style: const TextStyle(fontSize: 13.0)),
-        ),
-      ],
     );
   }
 }
@@ -81,8 +71,19 @@ class HeaderItem implements ListItem {
              margin: const EdgeInsets.only(bottom: 5.0, top: 20.0),
              child: Text(movie.title, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold))),
          Row(
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
            children: <Widget>[
-             Text(movie.releaseDate)
+             Text(movie.releaseDate),
+             SmoothStarRating(
+                   allowHalfRating: false,
+                   starCount: 5,
+                   rating: (movie.imdbRating ?? 0.0) / 2.0,
+                   size: 20.0,
+                   isReadOnly:true,
+                   color: Colors.black,
+                   borderColor: Colors.black,
+                   spacing:0.0
+             )
            ],
          )
        ],
@@ -95,15 +96,13 @@ class CharactersItem implements ListItem {
   @override
   Widget buildItem(BuildContext context, Movie movie) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start ,
-      children: <Widget>[
-        Container(
-            margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
-            child: Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold))),
-
-        Text(movie.character.toString())
-      ],
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start ,
+          children: <Widget>[
+            Text(S().characters.toUpperCase(), style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 5.0),
+            Text(movie.character)
+          ],
     );
   }
 }
@@ -111,7 +110,20 @@ class CharactersItem implements ListItem {
 class PlotItem implements ListItem {
   @override
   Widget buildItem(BuildContext context, Movie movie) {
-    return Text(movie.plot);
+    return Transform(
+      transform: Matrix4.identity()
+        ..setEntry(3, 2, 0.007)
+        ..rotateX(-0.2),
+      alignment: FractionalOffset.center,
+      child: Container (
+          height: 400,
+          child: Marquee(
+              text: movie.plot,
+              scrollAxis: Axis.vertical,
+              style: const TextStyle(fontWeight: FontWeight.bold))
+      ),
+    );
+
   }
 }
 

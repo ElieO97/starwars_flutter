@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:star_wars_flutter/models/movie.dart';
 
 
@@ -25,11 +21,11 @@ String findMovieImageAssetPath(String movieTitle) {
 
 
 List<Movie> sortMoviesByReleaseDate(List<Movie> movies) {
-  movies.sort((Movie movie1, Movie movie2) => _releaseDateTiem(movie1).compareTo(_releaseDateTiem(movie2)));
+  movies.sort((Movie movie1, Movie movie2) => _releaseDateTime(movie1).compareTo(_releaseDateTime(movie2)));
   return movies.reversed.toList();
 }
 
-DateTime _releaseDateTiem(Movie movie) {
+DateTime _releaseDateTime(Movie movie) {
   return DateTime.parse(movie.releaseDate);
 }
 

@@ -1,7 +1,3 @@
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
@@ -11,19 +7,17 @@ import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
-import 'package:star_wars_flutter/ui/home_route/movies_widget.dart';
+import 'package:star_wars_flutter/ui/home/movies_widget.dart';
 
-class HomeRoute extends StatefulWidget {
-
-  const HomeRoute({Key key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key key}) : super(key: key);
 
   @override
-  _HomeRouteState createState() => _HomeRouteState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeRouteState extends State<HomeRoute>  {
-
-  _HomeRouteState();
+class _HomeScreenState extends State<HomeScreen>  {
+  _HomeScreenState();
 
   @override
   void dispose() {
@@ -33,7 +27,6 @@ class _HomeRouteState extends State<HomeRoute>  {
   @override
   Widget build(BuildContext context) {
     final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
-    // print("moviesbloc stream = ${moviesBloc.stream}");
       return Scaffold (
         appBar: AppBar (
           title: Text(S().appName),

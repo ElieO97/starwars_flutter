@@ -1,11 +1,7 @@
-
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/models/movie.dart';
-import 'package:star_wars_flutter/ui/home_route/movie_summary_widget.dart';
+import 'package:star_wars_flutter/ui/home/movie_summary_widget.dart';
 
 class MoviesWidget extends StatefulWidget {
 

@@ -1,10 +1,9 @@
-
-
+import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
+import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
-import 'package:star_wars_flutter/models/movies_response.dart';
-import 'package:star_wars_flutter/repo/movies_repository.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:star_wars_flutter/repository/movies_repository.dart';
 import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
 
@@ -15,14 +14,13 @@ class MoviesBloc extends BlocBase {
   }
 
   MoviesRepository moviesRepository;
-  MoviesPopulated moviesPopulated = MoviesPopulated([]);
+  MoviesPopulated moviesPopulated = MoviesPopulated(<Movie>[]);
   bool _hasNoExistingData() => moviesPopulated.movies?.isEmpty ?? true;
 
-  // This is the internal object whose stream/sink is provided by this component
-  var _streamController = BehaviorSubject<MoviesState>();
+
+  BehaviorSubject<MoviesState> _streamController = BehaviorSubject<MoviesState>();
 
 
-  // This is the stream of movies. Use this to show the contents
   Stream<MoviesState> get stream {
     if (_streamController.isClosed) {
       print('stream closed, resetting it');
@@ -37,12 +35,12 @@ class MoviesBloc extends BlocBase {
     }
 
     try  {
-      final MoviesResponse response = await fetchAllMovies();
-      print('fetchMoviesFromNetwork: nuMovies = ${response.results}');
-      if (response.isEmpty && _hasNoExistingData()) {
+      final List<Movie> movies = await fetchAllMovies();
+      debugPrint('fetchMovies: nuMovies = ${movies.length} $movies');
+      if (movies.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
       } else  {
-        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(response.results));
+        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(movies));
       }
 
     } catch (e) {
@@ -53,14 +51,12 @@ class MoviesBloc extends BlocBase {
 
   void init() {
     _streamController.addStream(fetchMoviesFromNetwork());
-    // _streamController.sink.add(fetchMoviesFromNetwork());
   }
 
-  Future<MoviesResponse> fetchAllMovies() {
-    final Future<MoviesResponse> apiCall = moviesRepository.fetchAllMovies();
-    return apiCall;
+  Future<List<Movie>> fetchAllMovies() {
+    final Future<List<Movie>> movies = moviesRepository.fetchAllMovies();
+    return movies;
   }
-
 
   @override
   void dispose() {

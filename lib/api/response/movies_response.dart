@@ -1,8 +1,5 @@
-
-
-
 import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 
 part 'movies_response.g.dart';
 
@@ -10,13 +7,13 @@ part 'movies_response.g.dart';
 class MoviesResponse {
 
 
-  MoviesResponse({this.results});
-  List<Movie> results;
+  MoviesResponse({this.result});
+  List<SwapiMovie> result;
 
 
   bool get isEmpty => !hasResults();
   bool hasResults() {
-    return results != null && results.isNotEmpty;
+    return result != null && result.isNotEmpty;
   }
 
   factory  MoviesResponse.fromJson(Map<String, dynamic> json) =>

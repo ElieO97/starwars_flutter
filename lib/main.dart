@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/repo/movies_repository.dart';
-import 'package:star_wars_flutter/ui/home_route/home_route.dart';
-
-
+import 'package:star_wars_flutter/repository/movies_repository.dart';
+import 'package:star_wars_flutter/ui/home/home_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,10 +20,15 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             dividerColor: Colors.white,
             brightness: Brightness.dark,
-            primarySwatch: Colors.blueGrey,
-            accentColor: Colors.deepOrange,
+            primaryColor: Colors.black,
+            // primarySwatch: Colors.blueGrey,
+            accentColor: Colors.black,
+            scaffoldBackgroundColor: Colors.white,
+            textTheme:  Theme.of(context).textTheme.apply(
+              bodyColor: Colors.black,
+            )
           ),
-            home: const HomeRoute(),
+            home: const HomeScreen(),
            localizationsDelegates: const<LocalizationsDelegate<dynamic>>[
              S.delegate,
 
