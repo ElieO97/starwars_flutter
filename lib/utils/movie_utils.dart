@@ -1,9 +1,5 @@
-
-
-
 class MovieUtils {
-
-   static RegExp regex = RegExp(r'(?<=/)[^/]+(?=/[^/]*$)');
+  static RegExp regex = RegExp(r'(?<=/)[^/]+(?=/[^/]*$)');
 
   static List<String> charatersUrlsToIds(List<String> charactersUrls) {
     final Iterable<String> ids = charactersUrls.map((String url) {

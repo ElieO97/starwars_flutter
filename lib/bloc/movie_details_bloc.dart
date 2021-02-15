@@ -7,7 +7,6 @@ import 'package:star_wars_flutter/models/movie_details_state.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 
 class MovieDetailsBloc extends BlocBase {
-
   MovieDetailsBloc({this.movie, this.moviesRepository}) {
     init();
   }
@@ -17,7 +16,8 @@ class MovieDetailsBloc extends BlocBase {
   }
 
   MovieDetailsState movieDetailsState = MovieDetailsLoading();
-  BehaviorSubject<MovieDetailsState> _streamController = BehaviorSubject<MovieDetailsState>();
+  BehaviorSubject<MovieDetailsState> _streamController =
+      BehaviorSubject<MovieDetailsState>();
   MoviesRepository moviesRepository;
   Movie movie;
 
@@ -29,14 +29,15 @@ class MovieDetailsBloc extends BlocBase {
     return _streamController.stream;
   }
 
-
   Stream<MovieDetailsState> fetchCharacters() async* {
-    try  {
-      final List<Character> characters = await moviesRepository.fetchMovieCharacters(movie);
+    try {
+      final List<Character> characters =
+          await moviesRepository.fetchMovieCharacters(movie);
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
-      } else  {
-        movie.character = characters.map((Character character) => character.name).join(',');
+      } else {
+        movie.character =
+            characters.map((Character character) => character.name).join(',');
         yield MovieDetailsPopulated(movie, characters);
       }
     } catch (e) {

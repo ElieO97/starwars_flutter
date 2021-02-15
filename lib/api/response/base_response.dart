@@ -5,22 +5,18 @@ import 'package:star_wars_flutter/api/models/swapi_movie.dart';
 part 'base_response.g.dart';
 
 @JsonSerializable()
-class BaseResponse <T> implements JsonConverterGenerics {
-
+class BaseResponse<T> implements JsonConverterGenerics {
   BaseResponse({this.message, this.result});
 
   final String message;
-
 
   factory BaseResponse.fromJson(Map<String, dynamic> json) =>
       _$BaseResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaseResponseToJson(this);
 
-
   @JsonKey(fromJson: dataFromJson, toJson: dataToJson)
   final T result;
-
 }
 
 T dataFromJson<T>(dynamic input) {
@@ -39,14 +35,13 @@ T dataFromJson<T>(dynamic input) {
       'Unknown type, please ensure that you have added a conversion for data from json above');
 }
 
-
 dynamic dataToJson<T>(dynamic input) {
   if (input == null) {
     return null;
   }
   if (input is List) {
     final List<dynamic> value =
-    input.map<dynamic>((dynamic e) => dataToJson<dynamic>(e)).toList();
+        input.map<dynamic>((dynamic e) => dataToJson<dynamic>(e)).toList();
     return value;
   }
   return (input as JsonConverterGenerics).toJson();

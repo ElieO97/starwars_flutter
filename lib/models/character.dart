@@ -1,19 +1,14 @@
-
-
-
 class Character {
-
-  Character({
-    this.id,
-    this.birthDay,
-    this.eyeColor,
-    this.gender,
-    this.hairColor,
-    this.height,
-    this.homeWorld,
-    this.mass,
-    this.name
-  });
+  Character(
+      {this.id,
+      this.birthDay,
+      this.eyeColor,
+      this.gender,
+      this.hairColor,
+      this.height,
+      this.homeWorld,
+      this.mass,
+      this.name});
 
   final String id;
   final String birthDay;
@@ -41,7 +36,7 @@ class Character {
 
   @override
   String toString() {
-   return  '''id: $id, birthDay: $birthDay, eyeColor: $eyeColor,
+    return '''id: $id, birthDay: $birthDay, eyeColor: $eyeColor,
     gender: $gender,
     hairColor: $hairColor,
     height: $height,

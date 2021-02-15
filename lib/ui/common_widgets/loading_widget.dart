@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LoadingWidget extends StatelessWidget {
-
   const LoadingWidget({Key key, @required this.visible}) : super(key: key);
 
   final bool visible;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ErrorsWidget extends StatelessWidget {
-
   const ErrorsWidget({Key key, this.visible, this.error}) : super(key: key);
 
   final bool visible;

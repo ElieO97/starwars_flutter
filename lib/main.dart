@@ -10,34 +10,27 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     final MoviesBloc moviesBloc = MoviesBloc(MoviesRepository());
     return BlocProvider(
-        child: MaterialApp (
+        child: MaterialApp(
           theme: ThemeData(
-            dividerColor: Colors.white,
-            brightness: Brightness.dark,
-            primaryColor: Colors.black,
-            // primarySwatch: Colors.blueGrey,
-            accentColor: Colors.black,
-            scaffoldBackgroundColor: Colors.white,
-            textTheme:  Theme.of(context).textTheme.apply(
-              bodyColor: Colors.black,
-            )
-          ),
-            home: const HomeScreen(),
-           localizationsDelegates: const<LocalizationsDelegate<dynamic>>[
-             S.delegate,
-
-           ],
+              dividerColor: Colors.white,
+              brightness: Brightness.dark,
+              primaryColor: Colors.black,
+              // primarySwatch: Colors.blueGrey,
+              accentColor: Colors.black,
+              scaffoldBackgroundColor: Colors.white,
+              textTheme: Theme.of(context).textTheme.apply(
+                    bodyColor: Colors.black,
+                  )),
+          home: const HomeScreen(),
+          localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+            S.delegate,
+          ],
           supportedLocales: S.delegate.supportedLocales,
         ),
         bloc: moviesBloc);
   }
 }
-
-
-

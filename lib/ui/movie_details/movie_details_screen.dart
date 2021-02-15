@@ -8,7 +8,6 @@ import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/movie_details/movie_details_widget.dart';
 
 class MovieDetailsRoute extends StatefulWidget {
-
   @override
   _MovieDetailsStatefulState createState() => _MovieDetailsStatefulState();
 }
@@ -16,8 +15,6 @@ class MovieDetailsRoute extends StatefulWidget {
 class _MovieDetailsStatefulState extends State<MovieDetailsRoute> {
   MovieDetailsBloc movieDetailsBloc;
   String title = '';
-
-
 
   @override
   void initState() {
@@ -33,42 +30,38 @@ class _MovieDetailsStatefulState extends State<MovieDetailsRoute> {
   Widget build(BuildContext context) {
     movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context);
     return Scaffold(
-      appBar: AppBar(title: Text(movieDetailsBloc.movie.title),),
+      appBar: AppBar(
+        title: Text(movieDetailsBloc.movie.title),
+      ),
       body: StreamBuilder<MovieDetailsState>(
         key: const Key('streamBuilder'),
         stream: movieDetailsBloc.stream,
         initialData: movieDetailsBloc.movieDetailsState,
-        builder: (BuildContext context, AsyncSnapshot<MovieDetailsState> snapshot) {
-
+        builder:
+            (BuildContext context, AsyncSnapshot<MovieDetailsState> snapshot) {
           final MovieDetailsState data = snapshot.data;
 
-          return Column (
-            children: <Widget> [
-              Expanded (
-                child: Stack (
+          return Column(
+            children: <Widget>[
+              Expanded(
+                child: Stack(key: const Key('content'), children: <Widget>[
+                  EmptyWidget(visible: data is MovieDetailsEmpty),
+                  LoadingWidget(visible: data is MovieDetailsLoading),
+                  ErrorsWidget(
+                      visible: data is MovieDetailsError,
+                      error: data is MovieDetailsError ? data.error : ''),
+                  Stack(
                     key: const Key('content'),
-                    children: <Widget> [
-                      EmptyWidget(visible: data is MovieDetailsEmpty),
-                      LoadingWidget(visible: data is MovieDetailsLoading),
-
-                      ErrorsWidget(
-                          visible: data is MovieDetailsError,
-                          error: data is MovieDetailsError ? data.error : ''),
-                      Stack(
-                        key: const Key('content'),
-                        children: <Widget>[
-                          if (data is MovieDetailsPopulated)
-                               MovieDetailsWidget(movie: data.movie)
-                        ],
-                      )
-                    ]
-
-                ),
+                    children: <Widget>[
+                      if (data is MovieDetailsPopulated)
+                        MovieDetailsWidget(movie: data.movie)
+                    ],
+                  )
+                ]),
               ),
             ],
-          ) ;
-
-          },
+          );
+        },
       ),
     );
   }

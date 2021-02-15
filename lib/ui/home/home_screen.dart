@@ -27,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  StreamBuilder<MoviesState> buildStreamBuilder(BuildContext context,
-      MoviesBloc moviesBloc) {
+  StreamBuilder<MoviesState> buildStreamBuilder(
+      BuildContext context, MoviesBloc moviesBloc) {
     return StreamBuilder<MoviesState>(
         key: const Key('streamBuilder'),
         initialData: moviesBloc.moviesPopulated,
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   MoviesWidget(
                       moviesBloc: moviesBloc,
                       movies:
-                      data is MoviesPopulated ? data.movies : <Movie>[]),
+                          data is MoviesPopulated ? data.movies : <Movie>[]),
                 ]),
               ),
             ],
@@ -74,27 +74,25 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         drawer: Drawer(
             child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                DrawerHeader(
-                  child: Text(S().appName),
-                  decoration: const BoxDecoration(
-                      color: Colors.black
-                  ),
-                ),
-                ListTile(
-                    title: Text('Turn on Dark Mode'),
-                    trailing: Platform.isIOS
-                        ? CupertinoSwitch(
-                      value: false,
-                      onChanged: (bool value) {},
-                    )
-                        : Switch(
-                      value: false,
-                      onChanged: (bool value) {},
-                    )),
-              ],
-            )),
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(S().appName),
+              decoration: const BoxDecoration(color: Colors.black),
+            ),
+            ListTile(
+                title: Text('Turn on Dark Mode'),
+                trailing: Platform.isIOS
+                    ? CupertinoSwitch(
+                        value: false,
+                        onChanged: (bool value) {},
+                      )
+                    : Switch(
+                        value: false,
+                        onChanged: (bool value) {},
+                      )),
+          ],
+        )),
         body: Column(key: const Key('rootColumn'), children: <Widget>[
           Flexible(
             child: buildStreamBuilder(context, moviesBloc),
