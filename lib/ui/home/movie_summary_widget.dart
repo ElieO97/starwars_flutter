@@ -14,10 +14,8 @@ class MovieSummaryWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(movie.title,
-            style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 15.0)),
+            style:
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0)),
         Text(movie.releaseDate,
             style: const TextStyle(
               fontSize: 12.0,
@@ -36,8 +34,7 @@ class MovieSummaryWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 12.0)),
         const SizedBox(height: 5.0),
-        Text(movie.director,
-            style: const TextStyle(color: Colors.black, fontSize: 12.0)),
+        Text(movie.director, style: const TextStyle(fontSize: 12.0)),
         const SizedBox(height: 20),
         Text(S.of(context).producers,
             style: const TextStyle(
@@ -45,15 +42,13 @@ class MovieSummaryWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 12.0)),
         const SizedBox(height: 5.0),
-        Text(movie.producer,
-            style: const TextStyle(color: Colors.black, fontSize: 12.0)),
+        Text(movie.producer, style: const TextStyle(fontSize: 12.0)),
       ],
     );
   }
 
   Widget _buildContent(BuildContext context) {
     return Card(
-        color: Colors.white,
         elevation: 8.0,
         child: InkWell(
             onTap: () => goToMovieDetailsScreen(context, movie),

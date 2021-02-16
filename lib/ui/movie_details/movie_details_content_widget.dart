@@ -76,8 +76,8 @@ class HeaderItem implements ListItem {
                 rating: (movie.imdbRating ?? 0.0) / 2.0,
                 size: 20.0,
                 isReadOnly: true,
-                color: Colors.black,
-                borderColor: Colors.black,
+                color: Theme.of(context).accentColor,
+                borderColor: Theme.of(context).accentColor,
                 spacing: 0.0)
           ],
         )
