@@ -7,16 +7,33 @@ import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:star_wars_flutter/ui/home/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({Key key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State {
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final MoviesBloc moviesBloc = MoviesBloc(MoviesRepository());
     return BlocProvider<MoviesBloc>(
         child: MaterialApp(
-          theme: CustomTheme.darkTheme(context),
+          theme: CustomTheme.lightTheme(context),
+          darkTheme: CustomTheme.darkTheme(context),
+          themeMode: currentTheme.currentTheme,
           home: const HomeScreen(),
           localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
             S.delegate,

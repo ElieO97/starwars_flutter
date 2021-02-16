@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CustomTheme {
+CustomTheme currentTheme = CustomTheme();
+
+class CustomTheme with ChangeNotifier {
+  static bool isDarkTheme = false;
+
+  ThemeMode get currentTheme => isDarkTheme ? ThemeMode.dark : ThemeMode.light;
+
+  void toggleTheme() {
+    isDarkTheme = !isDarkTheme;
+    notifyListeners();
+  }
+
   static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
         dividerColor: Colors.white,
@@ -12,12 +23,11 @@ class CustomTheme {
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Colors.black,
             ),
-        cardColor: Colors.white
-    );
+        cardColor: Colors.white);
   }
 
   static ThemeData darkTheme(BuildContext context) {
-    return  ThemeData(
+    return ThemeData(
         dividerColor: Colors.black,
         brightness: Brightness.dark,
         primaryColor: Colors.white,
@@ -25,10 +35,8 @@ class CustomTheme {
         scaffoldBackgroundColor: Colors.white12,
         fontFamily: 'Montserrat',
         textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: Colors.white,
-        ),
-        cardColor: Colors.white12
-
-    );
+              bodyColor: Colors.white,
+            ),
+        cardColor: Colors.white12);
   }
 }
