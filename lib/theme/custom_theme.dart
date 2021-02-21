@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_flutter/shared_prefs.dart';
 
 CustomTheme currentTheme = CustomTheme();
 
 class CustomTheme with ChangeNotifier {
-  static bool isDarkTheme = false;
-
-  ThemeMode get currentTheme => isDarkTheme ? ThemeMode.dark : ThemeMode.light;
+  ThemeMode get currentTheme =>
+      sharedPrefs.isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
   void toggleTheme() {
-    isDarkTheme = !isDarkTheme;
+    sharedPrefs.isDarkTheme = !sharedPrefs.isDarkTheme;
     notifyListeners();
   }
 
@@ -32,7 +32,7 @@ class CustomTheme with ChangeNotifier {
         brightness: Brightness.dark,
         primaryColor: Colors.white,
         accentColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white12,
+        scaffoldBackgroundColor: Colors.black,
         fontFamily: 'Montserrat',
         textTheme: Theme.of(context).textTheme.apply(
               bodyColor: Colors.white,

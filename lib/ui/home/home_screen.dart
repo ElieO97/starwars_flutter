@@ -7,6 +7,7 @@ import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/models/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
+import 'package:star_wars_flutter/shared_prefs.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
@@ -85,13 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: Text('Turn on Dark Mode'),
                 trailing: Platform.isIOS
                     ? CupertinoSwitch(
-                        value: CustomTheme.isDarkTheme,
+                        value: sharedPrefs.isDarkTheme,
                         onChanged: (bool value) {
                           currentTheme.toggleTheme();
                         },
                       )
                     : Switch(
-                        value: CustomTheme.isDarkTheme,
+                        value: sharedPrefs.isDarkTheme,
                         onChanged: (bool value) {
                           currentTheme.toggleTheme();
                         },

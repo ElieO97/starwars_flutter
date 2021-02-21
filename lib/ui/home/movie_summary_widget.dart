@@ -56,7 +56,7 @@ class MovieSummaryWidget extends StatelessWidget {
               Container(
                 width: 150,
                 child: AspectRatio(
-                  aspectRatio: 1 / 1,
+                  aspectRatio: 1,
                   child: Image(
                     image: AssetImage(movie.getImagePath()),
                     fit: BoxFit.cover,

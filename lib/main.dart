@@ -3,10 +3,12 @@ import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
+import 'package:star_wars_flutter/shared_prefs.dart';
 import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:star_wars_flutter/ui/home/home_screen.dart';
 
-void main() {
+Future<void> main() async {
+  await sharedPrefs.init();
   runApp(const MyApp());
 }
 
@@ -33,7 +35,9 @@ class _MyAppState extends State {
         child: MaterialApp(
           theme: CustomTheme.lightTheme(context),
           darkTheme: CustomTheme.darkTheme(context),
-          themeMode: currentTheme.currentTheme,
+          themeMode: sharedPrefs.hasUserOverriddenSystemTheme
+              ? currentTheme.currentTheme
+              : ThemeMode.system,
           home: const HomeScreen(),
           localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
             S.delegate,
