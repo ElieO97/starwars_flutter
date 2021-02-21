@@ -80,7 +80,7 @@ class StarWarsDatabase {
 
   Future<List<Character>> getCharacterWithMovieId(Movie movie) async {
     final Database db = await database;
-    List<Map> entities = await db.rawQuery(
+    final List<Map> entities = await db.rawQuery(
         'SELECT * FROM  movie_character_join WHERE movie_id = ${movie.id}');
     final List<dynamic> characterIds =
         entities.map<dynamic>((Map map) => map['character_id']).toList();

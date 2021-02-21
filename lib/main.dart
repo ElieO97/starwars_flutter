@@ -8,6 +8,7 @@ import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:star_wars_flutter/ui/home/home_screen.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await sharedPrefs.init();
   runApp(const MyApp());
 }

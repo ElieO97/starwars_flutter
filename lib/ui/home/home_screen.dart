@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
@@ -11,6 +9,7 @@ import 'package:star_wars_flutter/shared_prefs.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
+import 'package:star_wars_flutter/ui/common_widgets/platform_switch.dart';
 import 'package:star_wars_flutter/ui/home/movies_widget.dart';
 import 'package:star_wars_flutter/theme/custom_theme.dart';
 
@@ -23,6 +22,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState();
+
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   void dispose() {
@@ -70,6 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
+
     return Scaffold(
         appBar: AppBar(
           title: Text(S().appName),
@@ -79,24 +87,21 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text(S().appName),
-              decoration: const BoxDecoration(color: Colors.black),
+              child: Text(S().appName.toUpperCase()),
+              decoration:
+                  BoxDecoration(color: Theme.of(context).appBarTheme.color),
             ),
             ListTile(
-                title: Text('Turn on Dark Mode'),
-                trailing: Platform.isIOS
-                    ? CupertinoSwitch(
-                        value: sharedPrefs.isDarkTheme,
-                        onChanged: (bool value) {
-                          currentTheme.toggleTheme();
-                        },
-                      )
-                    : Switch(
-                        value: sharedPrefs.isDarkTheme,
-                        onChanged: (bool value) {
-                          currentTheme.toggleTheme();
-                        },
-                      )),
+                title: Text( sharedPrefs.isDarkTheme ? S.of(context).turn_off_dark_mode : S.of(context).turn_on_dark_mode),
+                trailing: PlatformSwitch(
+                  value: sharedPrefs.isDarkTheme,
+                  onChanged: (bool value) {
+                    currentTheme.toggleTheme();
+                  },
+                  activeColor: Colors.amber,
+                  trackColor: Colors.grey,
+                  inactiveTrackColor: Colors.grey,
+                )),
           ],
         )),
         body: Column(key: const Key('rootColumn'), children: <Widget>[

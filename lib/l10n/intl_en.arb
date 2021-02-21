@@ -4,5 +4,7 @@
   "appName" : "Starwars",
   "director": "director",
   "producers": "producers",
-  "characters": "characters"
+  "characters": "characters",
+  "turn_on_dark_mode": "Turn On Dark Mode",
+  "turn_off_dark_mode": "Turn Off Dark Mode"
 }
