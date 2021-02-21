@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class EmptyWidget extends StatelessWidget {
-
   const EmptyWidget({Key key, this.visible}) : super(key: key);
 
   final bool visible;

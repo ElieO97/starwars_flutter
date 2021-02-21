@@ -1,7 +1,5 @@
-
 //code taken from https://www.didierboelens.com/2018/12/reactive-programming---streams---bloc---practical-use-cases/#1-bloc-provider-and-inheritedwidget
 import 'package:flutter/material.dart';
-
 
 abstract class BlocBase {
   void dispose();
@@ -21,7 +19,9 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
   _BlocProviderState<T> createState() => _BlocProviderState<T>();
 
   static T of<T extends BlocBase>(BuildContext context) {
-    final _BlocProviderInherited<T> provider = context.getElementForInheritedWidgetOfExactType<_BlocProviderInherited<T>>().widget as _BlocProviderInherited<T>;
+    final _BlocProviderInherited<T> provider = context
+        .getElementForInheritedWidgetOfExactType<_BlocProviderInherited<T>>()
+        .widget as _BlocProviderInherited<T>;
     return provider?.bloc;
   }
 }
@@ -55,4 +55,3 @@ class _BlocProviderInherited<T> extends InheritedWidget {
   @override
   bool updateShouldNotify(_BlocProviderInherited oldWidget) => false;
 }
-

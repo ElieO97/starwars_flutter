@@ -4,17 +4,19 @@ class MoviesState {
   MoviesState();
 }
 
-class MoviesLoading extends MoviesState{}
+class MoviesLoading extends MoviesState {}
+
 class MoviesError extends MoviesState {
   MoviesError(this.error);
+
   final String error;
 }
 
 class MoviesNoResults extends MoviesState {}
 
 class MoviesPopulated extends MoviesState {
-
   MoviesPopulated(this.movies);
+
   final List<Movie> movies;
 
   MoviesPopulated update({List<Movie> nuMovies}) {

@@ -12,10 +12,10 @@ class SwapiMovie {
 
   SwapiMovieProperties properties;
 
+  factory SwapiMovie.fromJson(Map<String, dynamic> json) =>
+      _$SwapiMovieFromJson(json);
 
-  factory SwapiMovie.fromJson(Map<String, dynamic> json) => _$SwapiMovieFromJson(json);
   Map<String, dynamic> toJson() => _$SwapiMovieToJson(this);
-
 
   Movie toMovie() {
     return properties.toMovie();

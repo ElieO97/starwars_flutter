@@ -6,20 +6,18 @@ import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
 
-
 class MoviesBloc extends BlocBase {
-
   MoviesBloc(this.moviesRepository) {
     init();
   }
 
   MoviesRepository moviesRepository;
   MoviesPopulated moviesPopulated = MoviesPopulated(<Movie>[]);
+
   bool _hasNoExistingData() => moviesPopulated.movies?.isEmpty ?? true;
 
-
-  BehaviorSubject<MoviesState> _streamController = BehaviorSubject<MoviesState>();
-
+  BehaviorSubject<MoviesState> _streamController =
+      BehaviorSubject<MoviesState>();
 
   Stream<MoviesState> get stream {
     if (_streamController.isClosed) {
@@ -34,15 +32,14 @@ class MoviesBloc extends BlocBase {
       yield MoviesLoading();
     }
 
-    try  {
+    try {
       final List<Movie> movies = await fetchAllMovies();
       debugPrint('fetchMovies: nuMovies = ${movies.length} $movies');
       if (movies.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
-      } else  {
-        yield  moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(movies));
+      } else {
+        yield moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(movies));
       }
-
     } catch (e) {
       print('error $e');
       yield MoviesError(e.toString());
