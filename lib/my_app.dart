@@ -26,6 +26,7 @@ class _MyAppState extends State {
   @override
   Widget build(BuildContext context) {
     final MoviesBloc moviesBloc = MoviesBloc(MoviesRepository());
+
     return BlocProvider<MoviesBloc>(
         child: MaterialApp(
           theme: CustomTheme.lightTheme(context),

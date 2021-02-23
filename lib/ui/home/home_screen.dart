@@ -92,7 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   BoxDecoration(color: Theme.of(context).appBarTheme.color),
             ),
             ListTile(
-                title: Text( sharedPrefs.isDarkTheme ? S.of(context).turn_off_dark_mode : S.of(context).turn_on_dark_mode),
+                title: Text(sharedPrefs.isDarkTheme
+                    ? S.of(context).turn_off_dark_mode
+                    : S.of(context).turn_on_dark_mode),
                 trailing: PlatformSwitch(
                   value: sharedPrefs.isDarkTheme,
                   onChanged: (bool value) {

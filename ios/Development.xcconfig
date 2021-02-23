@@ -1,0 +1,21 @@
+//
+//  Development.xcconfig
+//  Runner
+//
+//  Created by Elie Omatuku on 2/22/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = http:/$()/dev.dwirandyh.com
+APP_NAME = MyApp (Dev)
+APP_BUNDLE_ID = com.dwirandyh.myapp.dev
+// Staging.xcconfig
+BASE_URL = http:/$()/staging.dwirandyh.com
+APP_NAME = MyApp (Staging)
+APP_BUNDLE_ID = com.dwirandyh.myapp.staging
+// Production.xcconfig
+BASE_URL = http:/$()/dwirandyh.com
+APP_NAME = MyApp
+APP_BUNDLE_ID = com.dwirandyh.myapp
