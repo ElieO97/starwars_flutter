@@ -1,0 +1,70 @@
+{
+    "configurations": [
+        {
+            "name": "Starwars Dev Debug",
+            "program": "lib/main_dev.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--debug",
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "Starwars Dev Release",
+            "program": "lib/main_dev.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--release",
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "Starwars Beta Debug",
+            "program": "lib/main_beta.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--debug",
+                "--flavor",
+                "beta"
+            ]
+        },
+        {
+            "name": "Starwars Beta Release",
+            "program": "lib/main_beta.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--release",
+                "--flavor",
+                "beta"
+            ]
+        },
+        {
+            "name": "Starwars Prod Debug",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--debug",
+                "--flavor",
+                "prod"
+            ]
+        },
+        {
+            "name": "Starwars Prod Release",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--release",
+                "--flavor",
+                "prod"
+            ]
+        }
+    ]
+}

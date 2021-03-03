@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {
@@ -19,7 +20,8 @@ class SharedPrefs {
   }
 
   bool get isDarkTheme =>
-      _sharedPrefs.getBool(IS_DARK_THEME) ?? ThemeMode.system == ThemeMode.dark;
+      _sharedPrefs.getBool(IS_DARK_THEME) ??
+      SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
 
   set isDarkTheme(bool value) {
     _sharedPrefs.setBool(IS_DARK_THEME, value);
