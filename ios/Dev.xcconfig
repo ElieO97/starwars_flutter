@@ -7,6 +7,6 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
-#include "Generated.xcconfig"
+#include  "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug-dev.xcconfig"
 APP_NAME = Starwars (dev)
 APP_BUNDLE_ID = com.elieomatuku.starWarsFlutter.dev
