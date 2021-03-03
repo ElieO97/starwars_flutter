@@ -1,0 +1,12 @@
+//
+//  Production.xcconfig
+//  Runner
+//
+//  Created by Elie Omatuku on 3/3/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Generated.xcconfig"
+APP_NAME = Starwars
+APP_BUNDLE_ID = com.elieomatuku.starWarsFlutter
