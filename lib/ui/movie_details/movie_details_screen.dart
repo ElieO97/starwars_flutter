@@ -7,12 +7,12 @@ import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/movie_details/movie_details_widget.dart';
 
-class MovieDetailsRoute extends StatefulWidget {
+class MovieDetailsScreen extends StatefulWidget {
   @override
-  _MovieDetailsStatefulState createState() => _MovieDetailsStatefulState();
+  _MovieDetailsScreenStatefulState createState() => _MovieDetailsScreenStatefulState();
 }
 
-class _MovieDetailsStatefulState extends State<MovieDetailsRoute> {
+class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
   MovieDetailsBloc movieDetailsBloc;
   String title = '';
 
