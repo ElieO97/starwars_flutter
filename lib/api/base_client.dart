@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 abstract class BaseNetworkClient {
   static const int CONNECTION_TIMEOUT = 10000; //milliseconds
@@ -13,7 +12,7 @@ abstract class BaseNetworkClient {
     dio.options.receiveTimeout = RECEIVE_TIMEOUT;
     dio.options.headers.addAll(<String, dynamic>{
       'Accept-Encoding': 'gzip',
-      'User-Agent': '${Platform.operatingSystem}/0.1.0-1',
+      'User-Agent': '${platformName()}/0.1.0-1',
     });
 
     dio.interceptors.add(logging);
@@ -23,5 +22,17 @@ abstract class BaseNetworkClient {
 
   static LogInterceptor _getLogInterceptor() {
     return LogInterceptor(responseBody: true);
+  }
+}
+
+String platformName() {
+  if (UniversalPlatform.isAndroid) {
+    return 'Android';
+  } else if (UniversalPlatform.isIOS) {
+    return 'iOS';
+  } else if (UniversalPlatform.isWeb) {
+    return 'web';
+  } else {
+    return 'unknown';
   }
 }
