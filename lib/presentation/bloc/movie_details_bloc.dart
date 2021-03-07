@@ -1,9 +1,8 @@
 import 'package:rxdart/rxdart.dart';
-import 'package:star_wars_flutter/bloc/bloc_provider.dart';
-import 'package:star_wars_flutter/api/models/swapi_character.dart';
 import 'package:star_wars_flutter/models/character.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/models/movie_details_state.dart';
+import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 
 class MovieDetailsBloc extends BlocBase {

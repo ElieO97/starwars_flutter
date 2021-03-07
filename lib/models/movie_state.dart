@@ -1,4 +1,5 @@
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/domain/model/movie.dart';
+import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 
 class MoviesState {
   MoviesState();
@@ -17,9 +18,9 @@ class MoviesNoResults extends MoviesState {}
 class MoviesPopulated extends MoviesState {
   MoviesPopulated(this.movies);
 
-  final List<Movie> movies;
+  final List<MovieView> movies;
 
-  MoviesPopulated update({List<Movie> nuMovies}) {
+  MoviesPopulated update({List<MovieView> nuMovies}) {
     return this..movies.addAll(nuMovies ?? movies);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/domain/model/movie.dart';
 
 part 'swapi_movie_properties.g.dart';
 

@@ -1,5 +1,5 @@
 import 'package:star_wars_flutter/models/character.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/domain/model/movie.dart';
 
 class MovieDetailsState {
   MovieDetailsState();

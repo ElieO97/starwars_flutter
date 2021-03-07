@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/models/movie_state.dart';
 import 'package:star_wars_flutter/shared_prefs.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
