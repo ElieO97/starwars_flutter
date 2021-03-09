@@ -1,17 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/domain/model/movie.dart';
-import 'package:star_wars_flutter/models/movie_state.dart';
+import 'package:star_wars_flutter/presentation/model/movie_state.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/cache/shared_prefs.dart';
+import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/platform_switch.dart';
 import 'package:star_wars_flutter/ui/home/movies_widget.dart';
 import 'package:star_wars_flutter/theme/custom_theme.dart';
+import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -21,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  _HomeScreenState();
+  MovieMapper mapper;
 
   @override
   void initState() {
@@ -65,8 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Fade in the Result if available
                   MoviesWidget(
                       moviesBloc: moviesBloc,
-                      movies:
-                          data is MoviesPopulated ? data.movies : <Movie>[]),
+                      movies: data is MoviesPopulated
+                          ? data.movies
+                              .map((MovieView movie) =>
+                                  mapper.mapToViewModel(movie))
+                              .toList()
+                          : <MovieViewModel>[]),
                 ]),
               ),
             ],

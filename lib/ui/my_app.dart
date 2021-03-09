@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:star_wars_flutter/data/movie_data_repository.dart';
+import 'package:star_wars_flutter/domain/interactor/movies/get_movies.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
-import 'package:star_wars_flutter/repository/movies_repository.dart';
 import 'package:star_wars_flutter/cache/shared_prefs.dart';
 import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class _MyAppState extends State {
 
   @override
   Widget build(BuildContext context) {
-    final MoviesBloc moviesBloc = MoviesBloc(MoviesRepository());
+    final MoviesBloc moviesBloc = MoviesBloc(GetMovies(MoviesDataRepository(MovieDataStoreFactory())));
     final StarWarsRouterDelegate delegate = StarWarsRouterDelegate();
     final StarWarsParser parser = StarWarsParser();
 

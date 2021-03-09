@@ -1,4 +1,3 @@
-import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 
 class MoviesState {

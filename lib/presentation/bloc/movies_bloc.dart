@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/domain/interactor/future_use_case.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
-import 'package:star_wars_flutter/models/movie_state.dart';
+import 'package:star_wars_flutter/presentation/model/movie_state.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart';
