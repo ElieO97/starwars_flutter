@@ -21,4 +21,19 @@ class CachedMovie {
   final String url;
   String character;
   double imdbRating;
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'title': title,
+      'director': director,
+      'releaseDate': releaseDate,
+      'producer': producer,
+      'plot': plot,
+      'url': url,
+      'character': character,
+      'imdbRating': imdbRating
+    };
+  }
 }

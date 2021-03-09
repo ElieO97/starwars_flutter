@@ -14,7 +14,7 @@ class MoviesDataRepository implements MoviesRepository {
 
   @override
   Future<List<Movie>> fetchAllMovies() async {
-    final MovieDataStore dataStore = _factory.retrieveDataStore();
+    final MovieDataStore dataStore = await _factory.retrieveDataStore();
     final List<MovieEntity> movies = await dataStore.fetchAllMovies();
     return movies
         .map((MovieEntity movieEntity) =>

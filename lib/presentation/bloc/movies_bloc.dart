@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view.dart';
-import 'package:star_wars_flutter/utils/star_wars_image_utils.dart';
+import 'package:star_wars_flutter/ui/utils/star_wars_image_utils.dart';
 
 class MoviesBloc extends BlocBase {
   MoviesBloc(this.getMoviesUseCase, this.mapper) {
@@ -41,7 +41,9 @@ class MoviesBloc extends BlocBase {
       if (movies.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
       } else {
-        yield moviesPopulated.update(nuMovies: sortMoviesByReleaseDate(movies.map((Movie movie) => mapper.mapToView(movie)).toList()));
+        yield moviesPopulated.update(
+            nuMovies: sortMoviesByReleaseDate(
+                movies.map((Movie movie) => mapper.mapToView(movie)).toList()));
       }
     } catch (e) {
       print('error $e');

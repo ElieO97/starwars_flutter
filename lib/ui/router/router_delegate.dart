@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/router/ui_pages.dart';
 import 'package:star_wars_flutter/ui/home/home_screen.dart';
+import 'package:star_wars_flutter/ui/router/ui_pages.dart';
 
 class StarWarsRouterDelegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {

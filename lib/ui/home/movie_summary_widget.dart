@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/domain/model/movie.dart';
-import 'package:star_wars_flutter/router/star_wars_router.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/ui/router/star_wars_router.dart';
 
 class MovieSummaryWidget extends StatelessWidget {
   const MovieSummaryWidget({this.movie});
 
-  final Movie movie;
+  final MovieViewModel movie;
 
   Widget _buildSummaryWidget(BuildContext context) {
     return Column(

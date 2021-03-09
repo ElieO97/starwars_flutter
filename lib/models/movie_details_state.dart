@@ -1,5 +1,5 @@
 import 'package:star_wars_flutter/models/character.dart';
-import 'package:star_wars_flutter/domain/model/movie.dart';
+import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 
 class MovieDetailsState {
   MovieDetailsState();
@@ -18,10 +18,10 @@ class MovieDetailsNoResults extends MovieDetailsState {}
 class MovieDetailsPopulated extends MovieDetailsState {
   MovieDetailsPopulated(this.movie, this.characters);
 
-  Movie movie;
+  MovieView movie;
   List<Character> characters;
 
-  MovieDetailsPopulated update({Movie nuMovie}) {
+  MovieDetailsPopulated update({MovieView nuMovie}) {
     return this..movie = nuMovie;
   }
 }

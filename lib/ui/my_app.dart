@@ -3,12 +3,12 @@ import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
-import 'package:star_wars_flutter/router/router_delegate.dart';
-import 'package:star_wars_flutter/router/starwars_parser.dart';
-import 'package:star_wars_flutter/router/ui_pages.dart';
-import 'package:star_wars_flutter/shared_prefs.dart';
+import 'package:star_wars_flutter/cache/shared_prefs.dart';
 import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:get/get.dart';
+import 'package:star_wars_flutter/ui/router/router_delegate.dart';
+import 'package:star_wars_flutter/ui/router/starwars_parser.dart';
+import 'package:star_wars_flutter/ui/router/ui_pages.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);

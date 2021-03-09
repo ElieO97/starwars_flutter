@@ -11,8 +11,8 @@ class MovieDataStoreFactory {
   final MovieRemoteDataStore _movieRemoteDataStore;
   final MovieCache _movieCache;
 
-  MovieDataStore retrieveDataStore() {
-    if (_movieCache.isCached()) {
+  Future<MovieDataStore> retrieveDataStore() async {
+    if (await _movieCache.isCached()) {
       return retrieveCachedDataStore();
     }
     return retrieveRemoteDataStore();

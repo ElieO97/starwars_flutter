@@ -1,5 +1,6 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:star_wars_flutter/cache/model/cached_movie.dart';
 import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
 
@@ -36,19 +37,19 @@ class StarWarsDatabase {
     );
   }
 
-  Future<void> insertMovie(Movie movie) async {
+  Future<void> insertMovie(CachedMovie movie) async {
     final Database db = await database;
 
     await db.insert('Movie', movie.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<List<Movie>> getMovies() async {
+  Future<List<CachedMovie>> getMovies() async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query('Movie');
 
     return List.generate(maps.length, (int i) {
-      return Movie(
+      return CachedMovie(
         id: maps[i]['id'] as int,
         title: maps[i]['title'] as String,
         director: maps[i]['director'] as String,
@@ -62,7 +63,7 @@ class StarWarsDatabase {
     });
   }
 
-  Future<void> insertCharacter(Movie movie, Character character) async {
+  Future<void> insertCharacter(int movieId, Character character) async {
     final Database db = await database;
 
     await db.insert('Character', character.toMap(),
@@ -71,17 +72,17 @@ class StarWarsDatabase {
     await db.insert(
         'movie_character_join',
         <String, dynamic>{
-          'id': '${movie.id}_${character.id}',
-          'movie_id': movie.id,
+          'id': '${movieId}_${character.id}',
+          'movie_id': movieId,
           'character_id': character.id,
         },
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<List<Character>> getCharacterWithMovieId(Movie movie) async {
+  Future<List<Character>> getCharacterWithMovieId(int movieId) async {
     final Database db = await database;
     final List<Map> entities = await db.rawQuery(
-        'SELECT * FROM  movie_character_join WHERE movie_id = ${movie.id}');
+        'SELECT * FROM  movie_character_join WHERE movie_id = $movieId');
     final List<dynamic> characterIds =
         entities.map<dynamic>((Map map) => map['character_id']).toList();
 

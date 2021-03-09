@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/ui/home/movie_summary_widget.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 
 class MoviesWidget extends StatefulWidget {
   const MoviesWidget(
       {Key key, @required this.movies, @required this.moviesBloc})
       : super(key: key);
 
-  final List<Movie> movies;
+  final List<MovieViewModel> movies;
   final MoviesBloc moviesBloc;
 
   @override
@@ -28,7 +29,7 @@ class MoviesWidgetState extends State<MoviesWidget> {
 class MoviesListView extends StatelessWidget {
   const MoviesListView({Key key, @required this.movies}) : super(key: key);
 
-  final List<Movie> movies;
+  final List<MovieViewModel> movies;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,7 @@ class MoviesListView extends StatelessWidget {
         ),
         itemCount: movies.length,
         itemBuilder: (BuildContext context, int index) {
-          final Movie movie = movies[index];
+          final MovieViewModel movie = movies[index];
           return MovieSummaryWidget(movie: movie);
         },
       ),

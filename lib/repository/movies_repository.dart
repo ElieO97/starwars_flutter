@@ -1,4 +1,4 @@
-import 'package:star_wars_flutter/cache/database.dart';
+import 'package:star_wars_flutter/cache/db/database.dart';
 import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/remote/model/swapi_character.dart';
@@ -35,38 +35,37 @@ class MoviesRepository {
     movies.forEach(_database.insertMovie);
   }
 
-  Future<List<Movie>> fetchAllMovies() async {
-    List<Movie> movies = await _database.getMovies();
-    print('fetchAllMovies: movies = $movies');
+  // Future<List<Movie>> fetchAllMovies() async {
+  //   List<Movie> movies = await _database.getMovies();
+  //   print('fetchAllMovies: movies = $movies');
+  //
+  //   if (movies == null || movies.isEmpty) {
+  //     await fetchAllMoviesFromApi();
+  //     movies = await _database.getMovies();
+  //   }
+  //
+  //   return movies;
+  // }
 
-    if (movies == null || movies.isEmpty) {
-      await fetchAllMoviesFromApi();
-      movies = await _database.getMovies();
-    }
-
-    return movies;
-  }
-
-  Future<void> fetchMovieCharactersFromApi(Movie movie) async {
+  Future<void> fetchMovieCharactersFromApi(int movieId, List<String> charactersIds) async {
     final List<SwapiCharacter> swapiCharacters =
-        await _movieClient.fetchMovieCharacters(
-            MovieUtils.charatersUrlsToIds(movie.character.split(',')));
+        await _movieClient.fetchMovieCharacters(charactersIds);
     final List<Character> characters = swapiCharacters
         .map((SwapiCharacter swapiCharacter) => swapiCharacter.toCharacter())
         .toList();
 
     for (final Character character in characters) {
-      await _database.insertCharacter(movie, character);
+      await _database.insertCharacter(movieId, character);
     }
   }
 
-  Future<List<Character>> fetchMovieCharacters(Movie movie) async {
+  Future<List<Character>> fetchMovieCharacters(int movieId, List<String> charactersIds) async {
     List<Character> movieCharacters =
-        await _database.getCharacterWithMovieId(movie);
+        await _database.getCharacterWithMovieId(movieId);
 
     if (movieCharacters == null || movieCharacters.isEmpty) {
-      await fetchMovieCharactersFromApi(movie);
-      movieCharacters = await _database.getCharacterWithMovieId(movie);
+      await fetchMovieCharactersFromApi(movieId, charactersIds);
+      movieCharacters = await _database.getCharacterWithMovieId(movieId);
     }
 
     return movieCharacters;

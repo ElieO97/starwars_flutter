@@ -1,4 +1,3 @@
-import 'package:star_wars_flutter/constants/api_constants.dart';
 import 'package:star_wars_flutter/remote/base_client.dart';
 import 'package:star_wars_flutter/remote/model/swapi_character.dart';
 import 'package:star_wars_flutter/remote/omdb_api.dart';
@@ -6,6 +5,8 @@ import 'package:star_wars_flutter/remote/response/base_response.dart';
 import 'package:star_wars_flutter/remote/response/movies_response.dart';
 import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
 import 'package:star_wars_flutter/remote/swapi.dart';
+
+import 'constants/api_constants.dart';
 
 class MovieClient extends BaseNetworkClient {
   MovieClient()

@@ -1,5 +1,8 @@
-class Movie {
-  Movie(
+import 'package:star_wars_flutter/ui/utils/star_wars_image_utils.dart';
+
+/// Representation for a [MovieViewModel] fetched from an external layer data source
+class MovieViewModel {
+  MovieViewModel(
       {this.id,
       this.title,
       this.director,
@@ -19,6 +22,10 @@ class Movie {
   final String url;
   String character;
   double imdbRating;
+
+  String getImagePath() {
+    return findMovieImageAssetPath(title);
+  }
 
   @override
   String toString() {
