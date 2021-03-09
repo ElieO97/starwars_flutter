@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/bloc/movies_bloc.dart';
-import 'package:star_wars_flutter/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
+import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/repository/movies_repository.dart';
 import 'package:star_wars_flutter/router/router_delegate.dart';

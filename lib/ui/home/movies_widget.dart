@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
+import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/ui/home/movie_summary_widget.dart';
 
 class MoviesWidget extends StatefulWidget {

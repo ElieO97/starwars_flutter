@@ -1,7 +1,7 @@
 import 'package:retrofit/http.dart';
-import 'package:star_wars_flutter/api/response/omdb_movie_response.dart';
 import 'package:star_wars_flutter/constants/api_constants.dart';
 import 'package:dio/dio.dart';
+import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
 
 part 'omdb_api.g.dart';
 

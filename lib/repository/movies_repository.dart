@@ -1,11 +1,11 @@
-import 'package:star_wars_flutter/api/models/swapi_movie.dart';
-import 'package:star_wars_flutter/api/movie_client.dart';
-import 'package:star_wars_flutter/api/response/movies_response.dart';
-import 'package:star_wars_flutter/api/models/swapi_character.dart';
-import 'package:star_wars_flutter/api/response/omdb_movie_response.dart';
-import 'package:star_wars_flutter/db/database.dart';
+import 'package:star_wars_flutter/cache/database.dart';
 import 'package:star_wars_flutter/models/character.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
+import 'package:star_wars_flutter/remote/model/swapi_character.dart';
+import 'package:star_wars_flutter/remote/model/swapi_movie.dart';
+import 'package:star_wars_flutter/remote/movie_client.dart';
+import 'package:star_wars_flutter/remote/response/movies_response.dart';
+import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
 import 'package:star_wars_flutter/utils/movie_utils.dart';
 
 class MoviesRepository {

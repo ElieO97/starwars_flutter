@@ -1,11 +1,11 @@
-import 'package:star_wars_flutter/api/base_client.dart';
-import 'package:star_wars_flutter/api/omdb_api.dart';
-import 'package:star_wars_flutter/api/response/base_response.dart';
-import 'package:star_wars_flutter/api/response/movies_response.dart';
-import 'package:star_wars_flutter/api/response/omdb_movie_response.dart';
-import 'package:star_wars_flutter/api/swapi.dart';
-import 'package:star_wars_flutter/api/models/swapi_character.dart';
 import 'package:star_wars_flutter/constants/api_constants.dart';
+import 'package:star_wars_flutter/remote/base_client.dart';
+import 'package:star_wars_flutter/remote/model/swapi_character.dart';
+import 'package:star_wars_flutter/remote/omdb_api.dart';
+import 'package:star_wars_flutter/remote/response/base_response.dart';
+import 'package:star_wars_flutter/remote/response/movies_response.dart';
+import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
+import 'package:star_wars_flutter/remote/swapi.dart';
 
 class MovieClient extends BaseNetworkClient {
   MovieClient()
@@ -18,7 +18,7 @@ class MovieClient extends BaseNetworkClient {
   Future<MoviesResponse> fetchAllMovies() async {
     MoviesResponse response = await _swapi.fetchAllMovies();
     print('MoviesResponse  = ${response.result}');
-    return response; //_swapi.fetchAllMovies();
+    return response;
   }
 
   Future<BaseResponse<SwapiCharacter>> fetchMovieCharacter(String id) async {

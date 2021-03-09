@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/api/models/swapi_character.dart';
-import 'package:star_wars_flutter/api/models/swapi_movie.dart';
+import 'package:star_wars_flutter/remote/model/swapi_character.dart';
+import 'package:star_wars_flutter/remote/model/swapi_movie.dart';
 
 part 'base_response.g.dart';
 
