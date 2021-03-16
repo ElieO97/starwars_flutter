@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/data/movie_data_repository.dart';
+import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movie_details_bloc.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ void goToMovieDetailsScreen(
       BlocProvider<MovieDetailsBloc>(
         bloc: MovieDetailsBloc(
             movie: mapper.mapToView(movie),
-            moviesRepository: MoviesDataRepository()),
+            getCharactersUseCase: GetCharacters(moviesRepository)),
         child: MovieDetailsScreen(),
       ),
       MovieDetailsPageConfig);

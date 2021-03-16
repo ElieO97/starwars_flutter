@@ -1,5 +1,5 @@
 import 'package:rxdart/rxdart.dart';
-import 'package:star_wars_flutter/data/movie_data_repository.dart';
+import 'package:star_wars_flutter/domain/interactor/future_use_case.dart';
 import 'package:star_wars_flutter/domain/model/character.dart';
 import 'package:star_wars_flutter/presentation/model/movie_details_state.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
@@ -7,7 +7,7 @@ import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 import 'package:star_wars_flutter/ui/utils/movie_utils.dart';
 
 class MovieDetailsBloc extends BlocBase {
-  MovieDetailsBloc({this.movie, this.moviesRepository}) {
+  MovieDetailsBloc({this.movie, this.getCharactersUseCase}) {
     init();
   }
 
@@ -18,7 +18,7 @@ class MovieDetailsBloc extends BlocBase {
   MovieDetailsState movieDetailsState = MovieDetailsLoading();
   BehaviorSubject<MovieDetailsState> _streamController =
       BehaviorSubject<MovieDetailsState>();
-  MoviesDataRepository moviesRepository;
+  FutureUseCase<Map<int, List<String>>, List<Character>> getCharactersUseCase;
   MovieView movie;
 
   Stream<MovieDetailsState> get stream {
@@ -31,9 +31,8 @@ class MovieDetailsBloc extends BlocBase {
 
   Stream<MovieDetailsState> fetchCharacters() async* {
     try {
-      final List<Character> characters =
-          await moviesRepository.fetchMovieCharacters(movie.id,
-              MovieUtils.charatersUrlsToIds(movie.character.split(',')));
+      final List<Character> characters = await getCharactersUseCase.execute(
+          movie.id, MovieUtils.charatersUrlsToIds(movie.character.split(',')));
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
       } else {
