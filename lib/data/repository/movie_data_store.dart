@@ -7,6 +7,9 @@ abstract class MovieDataStore {
 
   Future<void> saveMovies(List<MovieEntity> movies);
 
+  Future<void> saveCharacters(
+      int movieId, List<CharacterEntity> characterEntities);
+
   Future<void> clearMovies();
 
   Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity);

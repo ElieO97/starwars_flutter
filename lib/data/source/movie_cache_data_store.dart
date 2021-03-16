@@ -32,4 +32,9 @@ class MovieCacheDataStore implements MovieDataStore {
       int movieId, List<String> charactersIds) async {
     return await _movieCache.fetchMovieCharacters(movieId);
   }
+
+  @override
+  Future<void> saveCharacters(int movieId, List<CharacterEntity> characterEntities) async {
+    await _movieCache.saveCharacters(characterEntities);
+  }
 }

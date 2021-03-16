@@ -34,4 +34,9 @@ class MovieRemoteDataStore implements MovieDataStore {
       int movieId, List<String> charactersIds) {
     return _movieRemote.fetchMovieCharacters(movieId, charactersIds);
   }
+
+  @override
+  Future<void> saveCharacters(int movieId, List<CharacterEntity> characterEntities) {
+    throw UnimplementedError();
+  }
 }

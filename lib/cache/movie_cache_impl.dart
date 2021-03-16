@@ -52,4 +52,21 @@ class MovieCacheImpl implements MovieCache {
             characterEntityMapper.mapFromCached(character))
         .toList();
   }
+
+  @override
+  Future<bool> isCachedCharacters(int id) async {
+    final List<CachedCharacter> movieCharacters =
+        await _database.getCharacterWithMovieId(id);
+
+    return movieCharacters == null || movieCharacters.isEmpty;
+  }
+
+  @override
+  Future<void> saveCharacters(
+      int movieId, List<CharacterEntity> characterEntities) async {
+    for (final CharacterEntity character in characterEntities) {
+      await _database.insertCharacter(
+          movieId, characterEntityMapper.mapToCached(character));
+    }
+  }
 }

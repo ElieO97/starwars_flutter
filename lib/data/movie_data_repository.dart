@@ -1,3 +1,5 @@
+import 'package:star_wars_flutter/data/mapper/character_mapper.dart';
+import 'package:star_wars_flutter/data/model/character_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_rating_entity.dart';
 import 'package:star_wars_flutter/data/repository/movie_data_store.dart';
@@ -9,10 +11,11 @@ import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
 import 'mapper/movie_mapper.dart';
 
 class MoviesDataRepository implements MoviesRepository {
-  MoviesDataRepository(this._factory, this._movieMapper);
+  MoviesDataRepository(this._factory, this._movieMapper, this._characterMapper);
 
   final MovieDataStoreFactory _factory;
   final MovieMapper _movieMapper;
+  final CharacterMapper _characterMapper;
 
   @override
   Future<List<Movie>> fetchAllMovies() async {
@@ -54,7 +57,23 @@ class MoviesDataRepository implements MoviesRepository {
   }
 
   @override
-  Future<List<Character>> fetchMovieCharacters(int movieId, List<String> charactersIds) {
+  Future<List<Character>> fetchMovieCharacters(
+      int movieId, List<String> charactersIds) async {
+    final MovieDataStore dataStore =
+        await _factory.retrieveDataStore(id: movieId);
 
+    final List<CharacterEntity> characters =
+        await dataStore.fetchMovieCharacters(movieId, charactersIds);
+
+    if (dataStore is MovieRemoteDataStore) {
+      for (final CharacterEntity characterEntity in characters) {
+
+      }
+    }
+
+    return characters
+        .map((CharacterEntity characterEntity) =>
+            _characterMapper.mapFromEntity(characterEntity))
+        .toList();
   }
 }
