@@ -14,7 +14,9 @@ class MovieCacheDataStore implements MovieDataStore {
   }
 
   @override
-  Future<void> saveMovies(List<MovieEntity> movies) {}
+  Future<void> saveMovies(List<MovieEntity> movies) async {
+    await _movieCache.saveMovies(movies);
+  }
 
   @override
   Future<void> clearMovies() {}
