@@ -35,6 +35,6 @@ class MovieCacheDataStore implements MovieDataStore {
 
   @override
   Future<void> saveCharacters(int movieId, List<CharacterEntity> characterEntities) async {
-    await _movieCache.saveCharacters(characterEntities);
+    await _movieCache.saveCharacters(movieId, characterEntities);
   }
 }

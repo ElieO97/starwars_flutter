@@ -56,6 +56,13 @@ class MoviesDataRepository implements MoviesRepository {
     return _factory.retrieveCachedDataStore().saveMovies(movies);
   }
 
+  Future<void> _saveCharactersEntities(
+      int movieId, List<CharacterEntity> characters) {
+    return _factory
+        .retrieveCachedDataStore()
+        .saveCharacters(movieId, characters);
+  }
+
   @override
   Future<List<Character>> fetchMovieCharacters(
       int movieId, List<String> charactersIds) async {
@@ -66,9 +73,7 @@ class MoviesDataRepository implements MoviesRepository {
         await dataStore.fetchMovieCharacters(movieId, charactersIds);
 
     if (dataStore is MovieRemoteDataStore) {
-      for (final CharacterEntity characterEntity in characters) {
-
-      }
+      await _saveCharactersEntities(movieId, characters);
     }
 
     return characters
