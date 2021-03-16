@@ -1,3 +1,4 @@
+import 'package:star_wars_flutter/data/model/character_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_rating_entity.dart';
 import 'package:star_wars_flutter/data/repository/movie_data_store.dart';
@@ -26,5 +27,11 @@ class MovieRemoteDataStore implements MovieDataStore {
   @override
   Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity) {
     return _movieRemote.fetchMovieRating(movieEntity);
+  }
+
+  @override
+  Future<List<CharacterEntity>> fetchMovieCharacters(
+      int movieId, List<String> charactersIds) {
+    return _movieRemote.fetchMovieCharacters(movieId, charactersIds);
   }
 }

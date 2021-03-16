@@ -1,5 +1,5 @@
 import 'package:star_wars_flutter/cache/db/database.dart';
-import 'package:star_wars_flutter/models/character.dart';
+import 'package:star_wars_flutter/domain/model/character.dart';
 import 'package:star_wars_flutter/remote/model/swapi_character.dart';
 import 'package:star_wars_flutter/remote/movie_client.dart';
 

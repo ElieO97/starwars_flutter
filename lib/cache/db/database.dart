@@ -1,8 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:star_wars_flutter/cache/model/cached_character.dart';
 import 'package:star_wars_flutter/cache/model/cached_movie.dart';
-import 'package:star_wars_flutter/models/character.dart';
-import 'package:star_wars_flutter/domain/model/movie.dart';
 
 class StarWarsDatabase {
   StarWarsDatabase._();
@@ -63,7 +62,7 @@ class StarWarsDatabase {
     });
   }
 
-  Future<void> insertCharacter(int movieId, Character character) async {
+  Future<void> insertCharacter(int movieId, CachedCharacter character) async {
     final Database db = await database;
 
     await db.insert('Character', character.toMap(),
@@ -79,29 +78,29 @@ class StarWarsDatabase {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<List<Character>> getCharacterWithMovieId(int movieId) async {
+  Future<List<CachedCharacter>> getCharacterWithMovieId(int movieId) async {
     final Database db = await database;
     final List<Map> entities = await db.rawQuery(
         'SELECT * FROM  movie_character_join WHERE movie_id = $movieId');
     final List<dynamic> characterIds =
         entities.map<dynamic>((Map map) => map['character_id']).toList();
 
-    final List<Character> characters = <Character>[];
+    final List<CachedCharacter> characters = <CachedCharacter>[];
     for (final dynamic id in characterIds) {
-      final Character character = await getCharacter(id as String);
+      final CachedCharacter character = await getCharacter(id as String);
       characters.add(character);
     }
 
     return characters;
   }
 
-  Future<Character> getCharacter(String characterId) async {
+  Future<CachedCharacter> getCharacter(String characterId) async {
     final Database db = await database;
     final List<Map<String, dynamic>> map =
         await db.rawQuery('SELECT * FROM Character WHERE id = $characterId');
 
     if (map != null || map.isNotEmpty) {
-      return Character(
+      return CachedCharacter(
           id: map[0]['id'] as String,
           birthDay: map[0]['birthDay'] as String,
           eyeColor: map[0]['eyeColor'] as String,

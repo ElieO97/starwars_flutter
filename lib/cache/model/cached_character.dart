@@ -1,5 +1,5 @@
-class Character {
-  Character(
+class CachedCharacter {
+  CachedCharacter(
       {this.id,
       this.birthDay,
       this.eyeColor,
@@ -32,16 +32,5 @@ class Character {
       'mass': mass,
       'name': name
     };
-  }
-
-  @override
-  String toString() {
-    return '''id: $id, birthDay: $birthDay, eyeColor: $eyeColor,
-    gender: $gender,
-    hairColor: $hairColor,
-    height: $height,
-    homeWorld: $homeWorld,
-    mass: $mass,
-    name: $name''';
   }
 }

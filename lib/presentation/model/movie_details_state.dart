@@ -1,4 +1,4 @@
-import 'package:star_wars_flutter/models/character.dart';
+import 'package:star_wars_flutter/domain/model/character.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 
 class MovieDetailsState {

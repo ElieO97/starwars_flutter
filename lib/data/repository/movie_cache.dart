@@ -1,3 +1,4 @@
+import 'package:star_wars_flutter/data/model/character_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_rating_entity.dart';
 
@@ -9,4 +10,6 @@ abstract class MovieCache {
   Future<void> saveMovies(List<MovieEntity> movies);
 
   Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity);
+
+  Future<List<CharacterEntity>> fetchMovieCharacters(int movieId);
 }

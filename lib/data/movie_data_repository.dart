@@ -3,6 +3,7 @@ import 'package:star_wars_flutter/data/model/movie_rating_entity.dart';
 import 'package:star_wars_flutter/data/repository/movie_data_store.dart';
 import 'package:star_wars_flutter/data/source/movie_data_store_factory.dart';
 import 'package:star_wars_flutter/data/source/movie_remote_data_store.dart';
+import 'package:star_wars_flutter/domain/model/character.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
 import 'mapper/movie_mapper.dart';
@@ -50,5 +51,10 @@ class MoviesDataRepository implements MoviesRepository {
 
   Future<void> _saveMoviesEntities(List<MovieEntity> movies) {
     return _factory.retrieveCachedDataStore().saveMovies(movies);
+  }
+
+  @override
+  Future<List<Character>> fetchMovieCharacters(int movieId, List<String> charactersIds) {
+
   }
 }

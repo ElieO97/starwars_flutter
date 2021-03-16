@@ -1,3 +1,4 @@
+import 'package:star_wars_flutter/data/model/character_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_entity.dart';
 import 'package:star_wars_flutter/data/model/movie_rating_entity.dart';
 import 'package:star_wars_flutter/data/repository/movie_cache.dart';
@@ -24,5 +25,11 @@ class MovieCacheDataStore implements MovieDataStore {
   @override
   Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity) {
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<CharacterEntity>> fetchMovieCharacters(
+      int movieId, List<String> charactersIds) async {
+    return await _movieCache.fetchMovieCharacters(movieId);
   }
 }
