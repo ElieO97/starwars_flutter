@@ -5,4 +5,6 @@ import 'package:star_wars_flutter/domain/model/movie.dart';
 /// operations that need to be implemented
 abstract class MoviesRepository {
   Future<List<Movie>> fetchAllMovies();
+  Future<void> clearMovies();
+  Future<void> saveMovies(List<Movie> movies);
 }

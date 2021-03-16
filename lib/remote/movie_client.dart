@@ -3,9 +3,8 @@ import 'package:star_wars_flutter/remote/model/swapi_character.dart';
 import 'package:star_wars_flutter/remote/omdb_api.dart';
 import 'package:star_wars_flutter/remote/response/base_response.dart';
 import 'package:star_wars_flutter/remote/response/movies_response.dart';
-import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
+import 'package:star_wars_flutter/remote/model/omdb_movie_rating.dart';
 import 'package:star_wars_flutter/remote/swapi.dart';
-
 import 'constants/api_constants.dart';
 
 class MovieClient extends BaseNetworkClient {
@@ -40,7 +39,7 @@ class MovieClient extends BaseNetworkClient {
     return characters;
   }
 
-  Future<OMDBMovieResponse> fetchMovieRating(String title) {
+  Future<OMDBMovieRating> fetchMovieRating(String title) {
     return _omdbApi.fetchMovie(OMDB_API_KEY, title);
   }
 }

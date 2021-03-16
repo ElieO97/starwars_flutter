@@ -1,6 +1,6 @@
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
-import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
+import 'package:star_wars_flutter/remote/model/omdb_movie_rating.dart';
 
 import 'constants/api_constants.dart';
 
@@ -14,6 +14,6 @@ abstract class OmdbApi {
   static const String API_KEY = 'apikey';
 
   @GET('')
-  Future<OMDBMovieResponse> fetchMovie(
+  Future<OMDBMovieRating> fetchMovie(
       @Query(API_KEY) String apiKey, @Query(MOVIE) String title);
 }

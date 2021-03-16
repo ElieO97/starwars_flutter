@@ -5,7 +5,7 @@ import 'package:star_wars_flutter/remote/model/swapi_character.dart';
 import 'package:star_wars_flutter/remote/model/swapi_movie.dart';
 import 'package:star_wars_flutter/remote/movie_client.dart';
 import 'package:star_wars_flutter/remote/response/movies_response.dart';
-import 'package:star_wars_flutter/remote/response/omdb_movie_response.dart';
+import 'package:star_wars_flutter/remote/model/omdb_movie_rating.dart';
 
 class MoviesRepository {
   final MovieClient _movieClient = MovieClient();
