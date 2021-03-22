@@ -31,8 +31,11 @@ class MovieDetailsBloc extends BlocBase {
 
   Stream<MovieDetailsState> fetchCharacters() async* {
     try {
-      final List<Character> characters = await getCharactersUseCase.execute(
-          movie.id, MovieUtils.charatersUrlsToIds(movie.character.split(',')));
+      final Map<int, List<String>> map = <int, List<String>>{};
+      map[movie.id] = MovieUtils.charatersUrlsToIds(movie.character.split(','));
+
+      final List<Character> characters =
+          await getCharactersUseCase.execute(map);
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
       } else {
