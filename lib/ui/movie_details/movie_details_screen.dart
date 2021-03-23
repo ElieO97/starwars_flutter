@@ -10,12 +10,13 @@ import 'package:star_wars_flutter/ui/movie_details/movie_details_widget.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   @override
-  _MovieDetailsScreenStatefulState createState() => _MovieDetailsScreenStatefulState();
+  _MovieDetailsScreenStatefulState createState() =>
+      _MovieDetailsScreenStatefulState();
 }
 
 class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
   MovieDetailsBloc movieDetailsBloc;
-  MovieMapper mapper;
+  MovieMapper mapper = MovieMapper();
   String title = '';
 
   @override
@@ -31,6 +32,7 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context);
+    print('movie title = ${movieDetailsBloc.movie.title}');
     return Scaffold(
       appBar: AppBar(
         title: Text(movieDetailsBloc.movie.title),
@@ -56,7 +58,8 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
                     key: const Key('content'),
                     children: <Widget>[
                       if (data is MovieDetailsPopulated)
-                        MovieDetailsWidget(movie: mapper.mapToViewModel(data.movie))
+                        MovieDetailsWidget(
+                            movie: mapper.mapToViewModel(data.movie))
                     ],
                   )
                 ]),

@@ -55,8 +55,8 @@ class MovieSummaryWidget extends StatelessWidget {
     return Card(
         elevation: 8.0,
         child: InkWell(
-            onTap: () => goToMovieDetailsScreen(context, movie, mapper,
-                Provider.of<MoviesRepository>(context, listen: false)),
+            onTap: () =>
+                goToMovieDetailsScreen(context, mapper.mapToView(movie)),
             child: Row(children: <Widget>[
               Container(
                 width: 150,

@@ -58,9 +58,11 @@ class StarWarsRouterDelegate extends RouterDelegate<PageConfiguration>
   }
 
   void _addPageData(Widget child, PageConfiguration pageConfig) {
+    print('_addPageData called before = ${_pages.length}');
     _pages.add(
       _createPage(child, pageConfig),
     );
+    print('_addPageData called after = ${_pages.length}');
   }
 
   void addPage(PageConfiguration pageConfig) {
@@ -104,6 +106,7 @@ class StarWarsRouterDelegate extends RouterDelegate<PageConfiguration>
   }
 
   void pushWidget(Widget child, PageConfiguration newRoute) {
+    print('pushWidget called');
     _addPageData(child, newRoute);
     notifyListeners();
   }

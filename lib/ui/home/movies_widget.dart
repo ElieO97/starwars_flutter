@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
+// import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/ui/home/movie_summary_widget.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 
 class MoviesWidget extends StatefulWidget {
   const MoviesWidget(
@@ -22,14 +24,15 @@ class MoviesWidgetState extends State<MoviesWidget> {
   @override
   Widget build(BuildContext context) {
     print('MoviesWidgetState build method: ${widget.movies}');
-    return MoviesListView(movies: widget.movies);
+    return MoviesListView(movies: widget.movies, mapper: MovieMapper(),);
   }
 }
 
 class MoviesListView extends StatelessWidget {
-  const MoviesListView({Key key, @required this.movies}) : super(key: key);
+  const MoviesListView({Key key, @required this.movies, @required this.mapper}) : super(key: key);
 
   final List<MovieViewModel> movies;
+  final MovieMapper mapper;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,7 @@ class MoviesListView extends StatelessWidget {
         itemCount: movies.length,
         itemBuilder: (BuildContext context, int index) {
           final MovieViewModel movie = movies[index];
-          return MovieSummaryWidget(movie: movie);
+          return MovieSummaryWidget(movie: movie, mapper: mapper);
         },
       ),
     );
