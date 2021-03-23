@@ -58,32 +58,33 @@ class _MyAppState extends State {
     delegate.setNewRoutePath(MoviesPageConfig);
     Get.put(delegate);
 
-    return buildProviders(context,
-        child: BlocProvider<MoviesBloc>(
-            child: MaterialApp.router(
-              theme: CustomTheme.lightTheme(context),
-              darkTheme: CustomTheme.darkTheme(context),
-              themeMode: sharedPrefs.hasUserOverriddenSystemTheme
-                  ? currentTheme.currentTheme
-                  : ThemeMode.system,
-              localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-                S.delegate,
-              ],
-              supportedLocales: S.delegate.supportedLocales,
-              routerDelegate: delegate,
-              routeInformationParser: parser,
-            ),
-            bloc: MoviesBloc(Provider.of<GetMovies>(context, listen: false),
-                presentation_mapper.MovieMapper())));
-  }
-
-  MultiProvider buildProviders(BuildContext context, {@required Widget child}) {
     return MultiProvider(
       providers: <Provider<dynamic>>[
         Provider<MovieMapper>(
           create: (_) {
             return MovieMapper();
           },
+        ),
+
+        Provider<StarWarsDatabase>(
+            create: (BuildContext context) =>
+                StarWarsDatabase.starWarsDatabase),
+
+        Provider<MovieClient>(create: (BuildContext context) => MovieClient()),
+
+        Provider<MovieCache>(create: (BuildContext context) {
+          return MovieCacheImpl(
+              Provider.of<StarWarsDatabase>(context, listen: false),
+              MovieEntityMapper(),
+              CharacterEntityMapper());
+        }),
+
+        Provider<MovieRemote>(
+          create: (BuildContext context) => MovieRemoteImpl(
+              Provider.of<MovieClient>(context, listen: false),
+              remote_mapper.MovieEntityMapper(),
+              MovieRatingEntityMapper(),
+              character_remote_mapper.CharacterEntityMapper()),
         ),
         Provider<MovieCacheDataStore>(
           create: (BuildContext context) => MovieCacheDataStore(
@@ -93,12 +94,14 @@ class _MyAppState extends State {
           create: (BuildContext context) => MovieRemoteDataStore(
               Provider.of<MovieRemote>(context, listen: false)),
         ),
-        Provider<MovieCache>(create: (BuildContext context) {
-          return MovieCacheImpl(
-              Provider.of<StarWarsDatabase>(context, listen: false),
-              MovieEntityMapper(),
-              CharacterEntityMapper());
-        }),
+
+
+        Provider<MovieDataStoreFactory>(
+            create: (BuildContext context) => MovieDataStoreFactory(
+                Provider.of<MovieCache>(context, listen: false),
+                Provider.of<MovieRemoteDataStore>(context, listen: false),
+                Provider.of<MovieCacheDataStore>(context, listen: false))),
+
         Provider<MoviesRepository>(
           create: (BuildContext context) => MoviesDataRepository(
               Provider.of<MovieDataStoreFactory>(context, listen: false),
@@ -115,27 +118,26 @@ class _MyAppState extends State {
               Provider.of<MoviesRepository>(context, listen: false)),
         ),
 
-        Provider<MovieRemote>(
-          create: (BuildContext context) => MovieRemoteImpl(
-              Provider.of<MovieClient>(context, listen: false),
-              remote_mapper.MovieEntityMapper(),
-              MovieRatingEntityMapper(),
-              character_remote_mapper.CharacterEntityMapper()),
-        ),
-
-        Provider<MovieClient>(create: (BuildContext context) => MovieClient()),
-        Provider<StarWarsDatabase>(
-            create: (BuildContext context) =>
-                StarWarsDatabase.starWarsDatabase),
-        Provider<MovieDataStoreFactory>(
-            create: (BuildContext context) => MovieDataStoreFactory(
-                Provider.of<MovieCache>(context, listen: false),
-                Provider.of<MovieRemoteDataStore>(context, listen: false),
-                Provider.of<MovieCacheDataStore>(context, listen: false))),
-
         // Add new global providers here
       ],
-      child: child,
+      builder: (BuildContext context, Widget child) {
+        return BlocProvider<MoviesBloc>(
+            child: MaterialApp.router(
+              theme: CustomTheme.lightTheme(context),
+              darkTheme: CustomTheme.darkTheme(context),
+              themeMode: sharedPrefs.hasUserOverriddenSystemTheme
+                  ? currentTheme.currentTheme
+                  : ThemeMode.system,
+              localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+                S.delegate,
+              ],
+              supportedLocales: S.delegate.supportedLocales,
+              routerDelegate: delegate,
+              routeInformationParser: parser,
+            ),
+            bloc: MoviesBloc(Provider.of<GetMovies>(context, listen: false),
+                presentation_mapper.MovieMapper()));
+      },
     );
   }
 }

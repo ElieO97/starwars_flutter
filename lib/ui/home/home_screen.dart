@@ -22,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  MovieMapper mapper;
+  final MovieMapper mapper = MovieMapper();
 
   @override
   void initState() {
