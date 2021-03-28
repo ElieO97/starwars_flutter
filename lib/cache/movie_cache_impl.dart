@@ -58,7 +58,7 @@ class MovieCacheImpl implements MovieCache {
     final List<CachedCharacter> movieCharacters =
         await _database.getCharacterWithMovieId(id);
 
-    return movieCharacters == null || movieCharacters.isEmpty;
+    return movieCharacters != null && movieCharacters.isNotEmpty;
   }
 
   @override

@@ -34,6 +34,8 @@ class MovieDetailsBloc extends BlocBase {
       final Map<int, List<String>> map = <int, List<String>>{};
       map[movie.id] = MovieUtils.charatersUrlsToIds(movie.character.split(','));
 
+      print('fetchCharacters called');
+
       final List<Character> characters =
           await getCharactersUseCase.execute(map);
       if (characters.isEmpty) {

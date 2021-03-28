@@ -12,13 +12,19 @@ class MovieDataStoreFactory {
   final MovieCache _movieCache;
 
   Future<MovieDataStore> retrieveDataStore({int id}) async {
-    if (id != null && await _movieCache.isCachedCharacters(id)) {
-      return retrieveCachedDataStore();
-    } else if (await _movieCache.isCached()) {
-      return retrieveCachedDataStore();
+    if (id != null) {
+      if (await _movieCache.isCachedCharacters(id)) {
+        return retrieveCachedDataStore();
+      } else {
+        return retrieveRemoteDataStore();
+      }
+    } else {
+      if (await _movieCache.isCached()) {
+        return retrieveCachedDataStore();
+      } else {
+        return retrieveRemoteDataStore();
+      }
     }
-
-    return retrieveRemoteDataStore();
   }
 
   MovieDataStore retrieveCachedDataStore() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
-import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movie_details_bloc.dart';
 import 'package:get/get.dart';

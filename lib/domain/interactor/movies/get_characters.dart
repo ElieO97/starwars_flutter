@@ -10,11 +10,16 @@ class GetCharacters
 
   @override
   Future<List<Character>> execute(Map<int, List<String>> params) async {
+    print('GetCharacters: execute method called: $params');
     final int movieId = params.keys.first;
     final List<String> charactersIds = params[movieId];
 
+    print('GetCharacters: execute method called: moviedId => $movieId, charactersIds: $charactersIds');
+
     final List<Character> characters =
         await moviesRepository.fetchMovieCharacters(movieId, charactersIds);
+
+    print('GetCharacters: execute method called:  characters: $characters');
     return characters;
   }
 }

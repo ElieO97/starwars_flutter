@@ -45,6 +45,8 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
             (BuildContext context, AsyncSnapshot<MovieDetailsState> snapshot) {
           final MovieDetailsState data = snapshot.data;
 
+          print('data shot = $data');
+
           return Column(
             children: <Widget>[
               Expanded(
