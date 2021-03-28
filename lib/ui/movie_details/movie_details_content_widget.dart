@@ -3,12 +3,13 @@ import 'package:flutter/rendering.dart';
 import 'package:marquee/marquee.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/models/movie.dart';
+import 'package:star_wars_flutter/domain/model/movie.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 
 class MovieDetailsContentWidget extends StatelessWidget {
   const MovieDetailsContentWidget(this.movie);
 
-  final Movie movie;
+  final MovieViewModel movie;
 
   List<String> _supportedWidgets() {
     return <String>['title', 'characters', 'plot'];
@@ -51,12 +52,12 @@ class MovieDetailsContentWidget extends StatelessWidget {
 }
 
 abstract class ListItem {
-  Widget buildItem(BuildContext context, Movie movie);
+  Widget buildItem(BuildContext context, MovieViewModel movie);
 }
 
 class HeaderItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, Movie movie) {
+  Widget buildItem(BuildContext context, MovieViewModel movie) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +89,7 @@ class HeaderItem implements ListItem {
 
 class CharactersItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, Movie movie) {
+  Widget buildItem(BuildContext context, MovieViewModel movie) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +106,7 @@ class CharactersItem implements ListItem {
 
 class PlotItem implements ListItem {
   @override
-  Widget buildItem(BuildContext context, Movie movie) {
+  Widget buildItem(BuildContext context, MovieViewModel movie) {
     return Transform(
       transform: Matrix4.identity()
         ..setEntry(3, 2, 0.007)

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
+import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/models/movie.dart';
-import 'package:star_wars_flutter/router/star_wars_router.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/ui/router/star_wars_router.dart';
 
 class MovieSummaryWidget extends StatelessWidget {
-  const MovieSummaryWidget({this.movie});
+  const MovieSummaryWidget({this.movie, this.mapper});
 
-  final Movie movie;
+  final MovieViewModel movie;
+  final MovieMapper mapper;
 
   Widget _buildSummaryWidget(BuildContext context) {
     return Column(
@@ -51,7 +55,8 @@ class MovieSummaryWidget extends StatelessWidget {
     return Card(
         elevation: 8.0,
         child: InkWell(
-            onTap: () => goToMovieDetailsScreen(context, movie),
+            onTap: () =>
+                goToMovieDetailsScreen(context, mapper.mapToView(movie)),
             child: Row(children: <Widget>[
               Container(
                 width: 150,

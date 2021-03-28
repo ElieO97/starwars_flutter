@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:universal_platform/universal_platform.dart';
 import 'package:flutter/material.dart';
 
 abstract class PlatformWidget extends StatelessWidget {
@@ -8,7 +8,7 @@ abstract class PlatformWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS) {
+    if (UniversalPlatform.isIOS) {
       return buildCupertinoWidget(context);
     }
     return buildMaterialWidget(context);
