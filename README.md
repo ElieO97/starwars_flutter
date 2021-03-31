@@ -4,6 +4,10 @@ A Flutter application that allows Star Wars fans to browse the information provi
 This Application queries the data from the API then caches it using [sqflite](https://pub.dev/packages/sqflite) then display it to the user, the Application makes use of the BLoC pattern and has light/dark mode features. 
 (Note: This project was started with the intention of learning flutter & clean architecture, so some of the practices used here may not be best practices and feedbacks are more than welcomed.)
 
+## IDE Setup
+This project contains build flavors `dev`, `beta` `prod`. In order to adapt the flutter build system run configurations were added for Visual Studio Code and for Android Studio. For Visual Studio Code duplicate the files located in `.vscode` and remove the `.default` from them, ie the new files should be `launch.json` and `tasks.json`. For Android Studio duplicate the files located in `.idea/runConfigurations/` and remove the `.default` from them, ie the new files should be `Dev_Debug.xml`, `Dev_Release.xml`, `Beta_Debug.xml`, `Beta_Release.xml` ,`Prod_Debug.xml` and `Prod_Release.xml` (You might also have a `main_dart.xml`, this is the default run configuration the IDE generates).
+
+
 ## Clean Architecture Boilerplate
 This Application makes use of clean Architecture, hence the project is divided into the following packages:
 
