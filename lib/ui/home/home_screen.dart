@@ -10,9 +10,9 @@ import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/platform_switch.dart';
 import 'package:star_wars_flutter/ui/home/movies_widget.dart';
-import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/ui/theme/custom_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);

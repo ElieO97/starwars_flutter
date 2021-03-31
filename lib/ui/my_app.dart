@@ -19,7 +19,6 @@ import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/cache/shared_prefs.dart';
 import 'package:star_wars_flutter/remote/movie_client.dart';
 import 'package:star_wars_flutter/remote/movie_remote_impl.dart';
-import 'package:star_wars_flutter/theme/custom_theme.dart';
 import 'package:get/get.dart';
 import 'package:star_wars_flutter/ui/router/router_delegate.dart';
 import 'package:star_wars_flutter/ui/router/starwars_parser.dart';
@@ -33,6 +32,7 @@ import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart'
     as character_remote_mapper;
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
     as presentation_mapper;
+import 'package:star_wars_flutter/ui/theme/custom_theme.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);
