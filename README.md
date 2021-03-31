@@ -17,7 +17,9 @@ This Application makes use of clean Architecture, hence the project is divided i
  For more details on Clean Architecture, check out the following links: 
  
   https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html 
+  
   https://github.com/LostInIreland/Flutter-Clean-Architecture
+  
   https://github.com/bufferapp/android-clean-architecture-boilerplate
  
 
