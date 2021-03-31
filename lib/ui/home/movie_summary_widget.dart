@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
 import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';

@@ -20,19 +20,9 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
   String title = '';
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context);
-    print('movie title = ${movieDetailsBloc.movie.title}');
+
     return Scaffold(
       appBar: AppBar(
         title: Text(movieDetailsBloc.movie.title),

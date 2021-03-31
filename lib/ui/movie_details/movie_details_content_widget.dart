@@ -3,7 +3,6 @@ import 'package:flutter/rendering.dart';
 import 'package:marquee/marquee.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 
 class MovieDetailsContentWidget extends StatelessWidget {

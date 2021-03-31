@@ -34,11 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   StreamBuilder<MoviesState> buildStreamBuilder(
       BuildContext context, MoviesBloc moviesBloc) {
     return StreamBuilder<MoviesState>(
