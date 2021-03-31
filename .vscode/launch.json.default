@@ -2,7 +2,7 @@
     "configurations": [
         {
             "name": "Starwars Dev Debug",
-            "program": "lib/main_dev.dart",
+            "program": "lib/main/main_dev.dart",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -13,7 +13,7 @@
         },
         {
             "name": "Starwars Dev Release",
-            "program": "lib/main_dev.dart",
+            "program": "lib/main/main_dev.dart",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -24,7 +24,7 @@
         },
         {
             "name": "Starwars Beta Debug",
-            "program": "lib/main_beta.dart",
+            "program": "lib/main/main_beta.dart",
             "request": "launch",
             "type": "dart",
             "args": [
@@ -35,7 +35,7 @@
         },
         {
             "name": "Starwars Beta Release",
-            "program": "lib/main_beta.dart",
+            "program": "lib/main/main_beta.dart",
             "request": "launch",
             "type": "dart",
             "args": [
