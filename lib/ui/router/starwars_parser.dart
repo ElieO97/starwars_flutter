@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'ui_pages.dart';
 
 class StarWarsParser extends RouteInformationParser<PageConfiguration> {
+  StarWarsParser._();
+
+  static StarWarsParser _instance;
+
+  static StarWarsParser getInstance() {
+    _instance ??= StarWarsParser._();
+
+    return _instance;
+  }
+
   @override
   Future<PageConfiguration> parseRouteInformation(
       RouteInformation routeInformation) async {

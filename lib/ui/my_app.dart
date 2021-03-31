@@ -52,11 +52,14 @@ class _MyAppState extends State {
 
   @override
   Widget build(BuildContext context) {
-    final StarWarsRouterDelegate delegate = StarWarsRouterDelegate();
-    final StarWarsParser parser = StarWarsParser();
+    final StarWarsRouterDelegate delegate =
+        StarWarsRouterDelegate.getInstance();
+    final StarWarsParser parser = StarWarsParser.getInstance();
 
     delegate.setNewRoutePath(MoviesPageConfig);
     Get.put(delegate);
+
+    print('build called');
 
     return MultiProvider(
       providers: <Provider<dynamic>>[
@@ -94,7 +97,6 @@ class _MyAppState extends State {
           create: (BuildContext context) => MovieRemoteDataStore(
               Provider.of<MovieRemote>(context, listen: false)),
         ),
-
 
         Provider<MovieDataStoreFactory>(
             create: (BuildContext context) => MovieDataStoreFactory(

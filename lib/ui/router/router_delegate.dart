@@ -4,6 +4,16 @@ import 'package:star_wars_flutter/ui/router/ui_pages.dart';
 
 class StarWarsRouterDelegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
+  StarWarsRouterDelegate._();
+
+  static StarWarsRouterDelegate _instance;
+
+  static StarWarsRouterDelegate getInstance() {
+    _instance ??= StarWarsRouterDelegate._();
+
+    return _instance;
+  }
+
   final List<Page> _pages = <Page>[];
 
   @override
@@ -118,5 +128,10 @@ class StarWarsRouterDelegate extends RouterDelegate<PageConfiguration>
       onPopPage: _onPopPage,
       pages: List.of(_pages),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

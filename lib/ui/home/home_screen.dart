@@ -28,7 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     currentTheme.addListener(() {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     });
   }
 
