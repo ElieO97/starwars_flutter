@@ -2,11 +2,12 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:star_wars_flutter/cache/model/cached_character.dart';
 import 'package:star_wars_flutter/cache/model/cached_movie.dart';
+import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 
-class StarWarsDatabase {
-  StarWarsDatabase._();
+class MobileDatabase implements StarWarsDatabase {
+  MobileDatabase._();
 
-  static final StarWarsDatabase starWarsDatabase = StarWarsDatabase._();
+  static final MobileDatabase moblieDatabase = MobileDatabase._();
   Database _database;
 
   Future<Database> get database async {

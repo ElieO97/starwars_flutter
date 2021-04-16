@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:star_wars_flutter/cache/db/database.dart';
+import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 import 'package:star_wars_flutter/cache/mapper/movie_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/movie_cache_impl.dart';
 import 'package:star_wars_flutter/data/mapper/movie_mapper.dart';
