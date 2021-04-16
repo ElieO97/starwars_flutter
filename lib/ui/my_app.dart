@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:star_wars_flutter/cache/db/mobile_database.dart';
 import 'package:star_wars_flutter/cache/db/starwars_database.dart';
+import 'package:star_wars_flutter/cache/db/web_database.dart';
 import 'package:star_wars_flutter/cache/mapper/movie_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/movie_cache_impl.dart';
 import 'package:star_wars_flutter/data/mapper/movie_mapper.dart';
@@ -33,6 +35,9 @@ import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart'
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
     as presentation_mapper;
 import 'package:star_wars_flutter/ui/theme/custom_theme.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:star_wars_flutter/cache/db/mobile_database.dart';
+import 'package:star_wars_flutter/cache/db/web_database.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key key}) : super(key: key);
@@ -60,7 +65,12 @@ class _MyAppState extends State {
     Get.put(delegate);
 
     print('build called');
-
+    StarWarsDatabase db;
+    if (kIsWeb) {
+      db = WebDatabase.webDatabase;
+    } else {
+      db = MobileDatabase.moblieDatabase;
+    }
     return MultiProvider(
       providers: <Provider<dynamic>>[
         Provider<MovieMapper>(
@@ -68,10 +78,7 @@ class _MyAppState extends State {
             return MovieMapper();
           },
         ),
-
-        Provider<StarWarsDatabase>(
-            create: (BuildContext context) =>
-                StarWarsDatabase.starWarsDatabase),
+        Provider<StarWarsDatabase>(create: (BuildContext context) => db),
 
         Provider<MovieClient>(create: (BuildContext context) => MovieClient()),
 

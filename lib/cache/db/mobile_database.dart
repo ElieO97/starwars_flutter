@@ -37,6 +37,7 @@ class MobileDatabase implements StarWarsDatabase {
     );
   }
 
+  @override
   Future<void> insertMovie(CachedMovie movie) async {
     final Database db = await database;
 
@@ -44,6 +45,7 @@ class MobileDatabase implements StarWarsDatabase {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  @override
   Future<List<CachedMovie>> getMovies() async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query('Movie');
@@ -63,6 +65,7 @@ class MobileDatabase implements StarWarsDatabase {
     });
   }
 
+  @override
   Future<void> insertCharacter(int movieId, CachedCharacter character) async {
     final Database db = await database;
 
@@ -79,6 +82,7 @@ class MobileDatabase implements StarWarsDatabase {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  @override
   Future<List<CachedCharacter>> getCharacterWithMovieId(int movieId) async {
     final Database db = await database;
     final List<Map> entities = await db.rawQuery(
@@ -95,6 +99,7 @@ class MobileDatabase implements StarWarsDatabase {
     return characters;
   }
 
+  @override
   Future<CachedCharacter> getCharacter(String characterId) async {
     final Database db = await database;
     final List<Map<String, dynamic>> map =
