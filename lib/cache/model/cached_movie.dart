@@ -22,7 +22,6 @@ class CachedMovie {
   String character;
   double imdbRating;
 
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
