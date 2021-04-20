@@ -20,7 +20,7 @@ class MovieCacheDataStore implements MovieDataStore {
   }
 
   @override
-  Future<void> clearMovies() {}
+  Future<void> clearMovies() async {}
 
   @override
   Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity) {
@@ -34,7 +34,8 @@ class MovieCacheDataStore implements MovieDataStore {
   }
 
   @override
-  Future<void> saveCharacters(int movieId, List<CharacterEntity> characterEntities) async {
+  Future<void> saveCharacters(
+      int movieId, List<CharacterEntity> characterEntities) async {
     await _movieCache.saveCharacters(movieId, characterEntities);
   }
 }

@@ -6,7 +6,7 @@ part 'base_response.g.dart';
 
 @JsonSerializable()
 class BaseResponse<T> implements JsonConverterGenerics {
-  BaseResponse({this.message, this.result});
+  BaseResponse({required this.message, required this.result});
 
   final String message;
 
@@ -19,7 +19,7 @@ class BaseResponse<T> implements JsonConverterGenerics {
   final T result;
 }
 
-T dataFromJson<T>(dynamic input) {
+T? dataFromJson<T>(dynamic input) {
   final Map<String, dynamic> castedInput = input as Map<String, dynamic>;
   if (castedInput == null || castedInput.isEmpty) {
     return null;

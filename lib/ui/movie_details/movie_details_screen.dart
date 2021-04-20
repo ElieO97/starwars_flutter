@@ -15,13 +15,13 @@ class MovieDetailsScreen extends StatefulWidget {
 }
 
 class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
-  MovieDetailsBloc movieDetailsBloc;
+  late MovieDetailsBloc movieDetailsBloc;
   MovieMapper mapper = MovieMapper();
   String title = '';
 
   @override
   Widget build(BuildContext context) {
-    movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context);
+    movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,7 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
         initialData: movieDetailsBloc.movieDetailsState,
         builder:
             (BuildContext context, AsyncSnapshot<MovieDetailsState> snapshot) {
-          final MovieDetailsState data = snapshot.data;
+          final MovieDetailsState? data = snapshot.data;
 
           print('data shot = $data');
 

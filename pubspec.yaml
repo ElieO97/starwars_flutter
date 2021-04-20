@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -32,7 +32,7 @@ dependencies:
   sqflite: ^2.0.0+3
   path: ^1.8.0
   smooth_star_rating: 1.1.1
-  marquee: ^1.6.1
+  marquee: 2.1.0 
   shared_preferences: ^2.0.5
   get: ^4.1.4
   universal_platform: 1.0.0-nullsafety

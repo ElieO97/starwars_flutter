@@ -5,16 +5,17 @@ part 'swapi_character_properties.g.dart';
 
 @JsonSerializable()
 class SwapiCharacterProperties {
-  SwapiCharacterProperties(
-    this.birthDay,
-    this.eyeColor,
-    this.gender,
-    this.hairColor,
-    this.height,
-    this.homeWorld,
-    this.mass,
-    this.name,
-  );
+  SwapiCharacterProperties({
+    required this.id,
+    required this.birthDay,
+    required this.eyeColor,
+    required this.gender,
+    required this.hairColor,
+    required this.height,
+    required this.homeWorld,
+    required this.mass,
+    required this.name,
+  });
 
   @JsonKey(name: 'birth_year')
   String birthDay;

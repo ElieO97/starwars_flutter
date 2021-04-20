@@ -4,18 +4,18 @@ import 'ui_pages.dart';
 class StarWarsParser extends RouteInformationParser<PageConfiguration> {
   StarWarsParser._();
 
-  static StarWarsParser _instance;
+  static StarWarsParser? _instance;
 
   static StarWarsParser getInstance() {
     _instance ??= StarWarsParser._();
 
-    return _instance;
+    return _instance!;
   }
 
   @override
   Future<PageConfiguration> parseRouteInformation(
       RouteInformation routeInformation) async {
-    final Uri uri = Uri.parse(routeInformation.location);
+    final Uri uri = Uri.parse(routeInformation.location!);
 
     if (uri.pathSegments.isEmpty) {
       return MoviesPageConfig;

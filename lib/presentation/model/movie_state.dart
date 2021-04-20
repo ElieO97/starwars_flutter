@@ -19,7 +19,7 @@ class MoviesPopulated extends MoviesState {
 
   final List<MovieView> movies;
 
-  MoviesPopulated update({List<MovieView> nuMovies}) {
+  MoviesPopulated update({List<MovieView>? nuMovies}) {
     return this..movies.addAll(nuMovies ?? movies);
   }
 }
