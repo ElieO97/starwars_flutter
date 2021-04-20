@@ -31,7 +31,10 @@ dependencies:
   logger: ^1.0.0
   sqflite: ^2.0.0+3
   path: ^1.8.0
-  smooth_star_rating: 1.1.1
+  smooth_star_rating:
+    git:
+      url: https://github.com/bhavin-concetto/smoothratingbar.git
+      ref: dev
   marquee: 2.1.0 
   shared_preferences: ^2.0.5
   get: ^4.1.4

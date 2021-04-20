@@ -619,9 +619,11 @@ packages:
   smooth_star_rating:
     dependency: "direct main"
     description:
-      name: smooth_star_rating
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: dev
+      resolved-ref: eb02312f9adc6a40e2488050fb2e58852a163bb8
+      url: "https://github.com/bhavin-concetto/smoothratingbar.git"
+    source: git
     version: "1.1.1"
   source_gen:
     dependency: transitive
