@@ -35,49 +35,49 @@ class WebDatabase implements StarWarsDatabase {
 
   @override
   Future<CachedCharacter> getCharacter(String characterId) async {
-    final Box<Map<String, dynamic>> db = await characterDatabase;
-    // TODO: implement getCharacter
     throw UnimplementedError();
   }
 
   @override
   Future<List<CachedCharacter>> getCharacterWithMovieId(int movieId) async {
-    final Box<Map<String, dynamic>> db = await characterDatabase;
-    // TODO: implement getCharacterWithMovieId
-    throw UnimplementedError();
+    return [];
   }
 
   @override
   Future<void> insertCharacter(int movieId, CachedCharacter character) async {
-    final Box<Map<String, dynamic>> db = await characterDatabase;
-//     await db.put(movie.id, movie);
-    throw UnimplementedError();
+    final db = await characterDatabase;
+    await db.put(character.id.toString(), character.toMap());
   }
 
   @override
   Future<List<CachedMovie>> getMovies() async {
-    final Box<Map<String, dynamic>> db = await movieDatabase;
-    final List<Map<String, dynamic>> maps = db.values.toList();
-    var list = List.generate(maps.length, (int i) {
-      return CachedMovie(
-        id: maps[i]['id'] as int,
-        title: maps[i]['title'] as String,
-        director: maps[i]['director'] as String,
-        releaseDate: maps[i]['releaseDate'] as String,
-        producer: maps[i]['producer'] as String,
-        plot: maps[i]['plot'] as String,
-        url: maps[i]['url'] as String,
-        character: maps[i]['character'] as String,
-        imdbRating: maps[i]['imdbRating'] as double,
-      );
-    });
-    print(list);
-    return list;
+    // NOTE: when this is called on a refresh, this error is thrown:
+    // Expected a value of type 'Map<String, dynamic>', but got one of type 'LinkedMap<dynamic, dynamic>'
+    // Even though the data is stored in the db and can be accessed after insertMovie is called
+    // Not sure why this error comes up (possibly old version?)
+
+//     final db = await movieDatabase;
+//     var list = List.generate(db.values.length, (int i) {
+//       var movie = db.getAt(i);
+//       return CachedMovie(
+//         id: movie['id'] as int,
+//         title: movie['title'] as String,
+//         director: movie['director'] as String,
+//         releaseDate: movie['releaseDate'] as String,
+//         producer: movie['producer'] as String,
+//         plot: movie['plot'] as String,
+//         url: movie['url'] as String,
+//         character: movie['character'] as String,
+//         imdbRating: movie['imdbRating'] as double,
+//       );
+//     });
+//     return list;
+    return [];
   }
 
   @override
   Future<void> insertMovie(CachedMovie movie) async {
-    final Box<Map<String, dynamic>> db = await movieDatabase;
-    await db.put(movie.id, movie.toMap());
+    final db = await movieDatabase;
+    await db.put(movie.id.toString(), movie.toMap());
   }
 }
