@@ -4,6 +4,7 @@ import 'package:marquee/marquee.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MovieDetailsContentWidget extends StatelessWidget {
   const MovieDetailsContentWidget(this.movie);
@@ -106,18 +107,21 @@ class CharactersItem implements ListItem {
 class PlotItem implements ListItem {
   @override
   Widget buildItem(BuildContext context, MovieViewModel movie) {
-    return /*Transform(
-      transform: Matrix4.identity()
-        ..setEntry(3, 2, 0.007)
-        ..rotateX(-0.2),
-      alignment: FractionalOffset.center,
-      child:*/
-        Container(
-            height: 400,
-            child: Marquee(
-                text: movie.plot,
-                scrollAxis: Axis.vertical,
-                style: const TextStyle(fontWeight: FontWeight.bold)));
-    //);
+    final Container container = Container(
+        height: 400,
+        child: Marquee(
+            text: movie.plot,
+            scrollAxis: Axis.vertical,
+            style: const TextStyle(fontWeight: FontWeight.bold)));
+    if (kIsWeb) {
+      return container;
+    } else {
+      return Transform(
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, 0.007)
+            ..rotateX(-0.2),
+          alignment: FractionalOffset.center,
+          child: container);
+    }
   }
 }
