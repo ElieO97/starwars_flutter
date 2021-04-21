@@ -1,6 +1,6 @@
 class CharacterEntity {
   CharacterEntity(
-      {required this.id,
+      {this.id,
       required this.birthDay,
       required this.eyeColor,
       required this.gender,
@@ -10,7 +10,7 @@ class CharacterEntity {
       required this.mass,
       required this.name});
 
-  final String id;
+  final String? id;
   final String birthDay;
   final String eyeColor;
   final String gender;

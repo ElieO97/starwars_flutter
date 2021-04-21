@@ -5,7 +5,7 @@ part 'swapi_character_properties.g.dart';
 @JsonSerializable()
 class SwapiCharacterProperties {
   SwapiCharacterProperties({
-    required this.id,
+    this.id,
     required this.birthDay,
     required this.eyeColor,
     required this.gender,
@@ -37,7 +37,7 @@ class SwapiCharacterProperties {
 
   String name;
 
-  String id;
+  String? id;
 
   factory SwapiCharacterProperties.fromJson(Map<String, dynamic> json) =>
       _$SwapiCharacterPropertiesFromJson(json);

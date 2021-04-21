@@ -12,7 +12,7 @@ class MoviesResponse {
   bool get isEmpty => !hasResults();
 
   bool hasResults() {
-    return result != null && result.isNotEmpty;
+    return result.isNotEmpty;
   }
 
   factory MoviesResponse.fromJson(Map<String, dynamic> json) =>
