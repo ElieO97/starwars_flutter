@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:star_wars_flutter/remote/model/swapi_character.dart';
-import 'package:star_wars_flutter/remote/model/swapi_movie.dart';
 
 part 'base_response.g.dart';
 
@@ -26,9 +25,6 @@ T? dataFromJson<T>(dynamic input) {
   }
   if (T == SwapiCharacter) {
     return SwapiCharacter.fromJson(castedInput) as T;
-  }
-  if (T == SwapiMovie) {
-    return SwapiMovie.fromJson(castedInput) as T;
   }
 
   throw Exception(

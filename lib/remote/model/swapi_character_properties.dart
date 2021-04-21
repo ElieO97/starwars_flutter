@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/domain/model/character.dart';
 
 part 'swapi_character_properties.g.dart';
 
@@ -44,17 +43,4 @@ class SwapiCharacterProperties {
       _$SwapiCharacterPropertiesFromJson(json);
 
   Map<String, dynamic> toJson() => _$SwapiCharacterPropertiesToJson(this);
-
-  Character toCharacter() {
-    return Character(
-        id: id,
-        birthDay: birthDay,
-        eyeColor: eyeColor,
-        gender: gender,
-        hairColor: hairColor,
-        height: height,
-        homeWorld: homeWorld,
-        mass: mass,
-        name: name);
-  }
 }
