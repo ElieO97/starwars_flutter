@@ -5,8 +5,15 @@ part 'swapi_movie_properties.g.dart';
 
 @JsonSerializable()
 class SwapiMovieProperties {
-  SwapiMovieProperties(this.title, this.director, this.releaseDate,
-      this.producer, this.character, this.id, this.url);
+  SwapiMovieProperties(
+      {required this.title,
+      required this.director,
+      required this.releaseDate,
+      required this.producer,
+      required this.character,
+      required this.id,
+      required this.url,
+      required this.plot});
 
   @JsonKey(name: 'title')
   String title;

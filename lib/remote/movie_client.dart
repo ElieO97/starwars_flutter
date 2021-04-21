@@ -1,7 +1,7 @@
 import 'package:star_wars_flutter/remote/base_client.dart';
 import 'package:star_wars_flutter/remote/model/swapi_character.dart';
 import 'package:star_wars_flutter/remote/omdb_api.dart';
-import 'package:star_wars_flutter/remote/response/base_response.dart';
+import 'package:star_wars_flutter/remote/response/characters_response.dart';
 import 'package:star_wars_flutter/remote/response/movies_response.dart';
 import 'package:star_wars_flutter/remote/model/omdb_movie_rating.dart';
 import 'package:star_wars_flutter/remote/swapi.dart';
@@ -21,7 +21,7 @@ class MovieClient extends BaseNetworkClient {
     return response;
   }
 
-  Future<BaseResponse<SwapiCharacter>> fetchMovieCharacter(String id) async {
+  Future<CharactersResponse> fetchMovieCharacter(String id) async {
     return _swapi.fetchMovieCharacter(id);
   }
 
@@ -29,10 +29,12 @@ class MovieClient extends BaseNetworkClient {
     final List<SwapiCharacter> characters = <SwapiCharacter>[];
 
     for (final String id in ids) {
-      final SwapiCharacter character = (await fetchMovieCharacter(id)).result;
-      print('SwapiCharacter = ${character.properties}');
-      character.properties.id = id;
-      characters.add(character);
+      final SwapiCharacter? character = (await fetchMovieCharacter(id)).result;
+      if (character != null) {
+        print('SwapiCharacter = ${character.properties}');
+        character.properties.id = id;
+        characters.add(character);
+      }
     }
 
     print('SwapiCharacters = $characters');

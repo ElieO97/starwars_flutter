@@ -1,16 +1,16 @@
 class Character {
   Character(
       {this.id,
-      this.birthDay,
-      this.eyeColor,
-      this.gender,
-      this.hairColor,
-      this.height,
-      this.homeWorld,
-      this.mass,
-      this.name});
+      required this.birthDay,
+      required this.eyeColor,
+      required this.gender,
+      required this.hairColor,
+      required this.height,
+      required this.homeWorld,
+      required this.mass,
+      required this.name});
 
-  final String id;
+  final String? id;
   final String birthDay;
   final String eyeColor;
   final String gender;

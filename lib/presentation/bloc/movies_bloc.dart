@@ -17,7 +17,7 @@ class MoviesBloc extends BlocBase {
   MovieMapper mapper;
   MoviesPopulated moviesPopulated = MoviesPopulated(<MovieView>[]);
 
-  bool _hasNoExistingData() => moviesPopulated.movies?.isEmpty ?? true;
+  bool _hasNoExistingData() => moviesPopulated.movies.isEmpty;
 
   BehaviorSubject<MoviesState> _streamController =
       BehaviorSubject<MoviesState>();

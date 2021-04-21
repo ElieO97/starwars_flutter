@@ -1,4 +1,4 @@
-import 'package:star_wars_flutter/cache/db/database.dart';
+import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 import 'package:star_wars_flutter/cache/mapper/character_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/mapper/movie_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/model/cached_character.dart';
@@ -26,7 +26,7 @@ class MovieCacheImpl implements MovieCache {
   @override
   Future<bool> isCached() async {
     final List<MovieEntity> movies = await fetchAllMovies();
-    return movies != null && movies.isNotEmpty;
+    return movies.isNotEmpty;
   }
 
   @override
@@ -58,7 +58,7 @@ class MovieCacheImpl implements MovieCache {
     final List<CachedCharacter> movieCharacters =
         await _database.getCharacterWithMovieId(id);
 
-    return movieCharacters != null && movieCharacters.isNotEmpty;
+    return movieCharacters.isNotEmpty;
   }
 
   @override

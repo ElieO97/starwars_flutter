@@ -12,7 +12,8 @@ void main() {
           releaseDate: '2020-06-10',
           producer: '',
           plot: '',
-          url: ''),
+          url: '',
+          character: ''),
       MovieView(
           id: 2,
           title: 'film3',
@@ -20,7 +21,8 @@ void main() {
           releaseDate: '2020-06-30',
           producer: '',
           plot: '',
-          url: ''),
+          url: '',
+          character: ''),
       MovieView(
           id: 3,
           title: 'film2',
@@ -28,7 +30,8 @@ void main() {
           releaseDate: '2020-06-15',
           producer: '',
           plot: '',
-          url: ''),
+          url: '',
+          character: ''),
       MovieView(
           id: 4,
           title: 'film4',
@@ -36,7 +39,8 @@ void main() {
           releaseDate: '2020-12-15',
           producer: '',
           plot: '',
-          url: ''),
+          url: '',
+          character: ''),
     ];
 
     expect(sortMoviesByReleaseDate(movies)[0].title, 'film4');

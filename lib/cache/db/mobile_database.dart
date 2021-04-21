@@ -2,18 +2,19 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:star_wars_flutter/cache/model/cached_character.dart';
 import 'package:star_wars_flutter/cache/model/cached_movie.dart';
+import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 
-class StarWarsDatabase {
-  StarWarsDatabase._();
+class MobileDatabase implements StarWarsDatabase {
+  MobileDatabase._();
 
-  static final StarWarsDatabase starWarsDatabase = StarWarsDatabase._();
-  Database _database;
+  static final MobileDatabase moblieDatabase = MobileDatabase._();
+  Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database;
+    if (_database != null) return _database!;
 
     _database = await getDatabaseInstance();
-    return _database;
+    return _database!;
   }
 
   Future<Database> getDatabaseInstance() async {
@@ -36,6 +37,7 @@ class StarWarsDatabase {
     );
   }
 
+  @override
   Future<void> insertMovie(CachedMovie movie) async {
     final Database db = await database;
 
@@ -43,6 +45,7 @@ class StarWarsDatabase {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  @override
   Future<List<CachedMovie>> getMovies() async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query('Movie');
@@ -57,11 +60,12 @@ class StarWarsDatabase {
         plot: maps[i]['plot'] as String,
         url: maps[i]['url'] as String,
         character: maps[i]['character'] as String,
-        imdbRating: maps[i]['imdbRating'] as double,
+        imdbRating: maps[i]['imdbRating'] as double?,
       );
     });
   }
 
+  @override
   Future<void> insertCharacter(int movieId, CachedCharacter character) async {
     final Database db = await database;
 
@@ -78,6 +82,7 @@ class StarWarsDatabase {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  @override
   Future<List<CachedCharacter>> getCharacterWithMovieId(int movieId) async {
     final Database db = await database;
     final List<Map> entities = await db.rawQuery(
@@ -87,14 +92,17 @@ class StarWarsDatabase {
 
     final List<CachedCharacter> characters = <CachedCharacter>[];
     for (final dynamic id in characterIds) {
-      final CachedCharacter character = await getCharacter(id as String);
-      characters.add(character);
+      final CachedCharacter? character = await getCharacter(id as String);
+      if (character != null) {
+        characters.add(character);
+      }
     }
 
     return characters;
   }
 
-  Future<CachedCharacter> getCharacter(String characterId) async {
+  @override
+  Future<CachedCharacter?> getCharacter(String characterId) async {
     final Database db = await database;
     final List<Map<String, dynamic>> map =
         await db.rawQuery('SELECT * FROM Character WHERE id = $characterId');

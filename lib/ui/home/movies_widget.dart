@@ -5,8 +5,7 @@ import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 
 class MoviesWidget extends StatefulWidget {
-  const MoviesWidget(
-      {Key key, @required this.movies, @required this.moviesBloc})
+  const MoviesWidget({Key? key, required this.movies, required this.moviesBloc})
       : super(key: key);
 
   final List<MovieViewModel> movies;
@@ -30,7 +29,7 @@ class MoviesWidgetState extends State<MoviesWidget> {
 }
 
 class MoviesListView extends StatelessWidget {
-  const MoviesListView({Key key, @required this.movies, @required this.mapper})
+  const MoviesListView({Key? key, required this.movies, required this.mapper})
       : super(key: key);
 
   final List<MovieViewModel> movies;

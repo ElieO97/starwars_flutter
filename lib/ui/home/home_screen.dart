@@ -15,7 +15,7 @@ import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/theme/custom_theme.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         initialData: moviesBloc.moviesPopulated,
         stream: moviesBloc.stream,
         builder: (BuildContext context, AsyncSnapshot<MoviesState> snapshot) {
-          final MoviesState data = snapshot.data;
+          final MoviesState? data = snapshot.data;
           print('data snapshot = $data');
           return Column(
             children: <Widget>[
@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
+    final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context)!;
 
     return Scaffold(
         appBar: AppBar(
