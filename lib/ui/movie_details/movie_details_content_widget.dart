@@ -106,17 +106,18 @@ class CharactersItem implements ListItem {
 class PlotItem implements ListItem {
   @override
   Widget buildItem(BuildContext context, MovieViewModel movie) {
-    return Transform(
+    return /*Transform(
       transform: Matrix4.identity()
         ..setEntry(3, 2, 0.007)
         ..rotateX(-0.2),
       alignment: FractionalOffset.center,
-      child: Container(
-          height: 400,
-          child: Marquee(
-              text: movie.plot,
-              scrollAxis: Axis.vertical,
-              style: const TextStyle(fontWeight: FontWeight.bold))),
-    );
+      child:*/
+        Container(
+            height: 400,
+            child: Marquee(
+                text: movie.plot,
+                scrollAxis: Axis.vertical,
+                style: const TextStyle(fontWeight: FontWeight.bold)));
+    //);
   }
 }
