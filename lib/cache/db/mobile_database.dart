@@ -60,7 +60,7 @@ class MobileDatabase implements StarWarsDatabase {
         plot: maps[i]['plot'] as String,
         url: maps[i]['url'] as String,
         character: maps[i]['character'] as String,
-        imdbRating: maps[i]['imdbRating'] as double,
+        imdbRating: maps[i]['imdbRating'] as double?,
       );
     });
   }
