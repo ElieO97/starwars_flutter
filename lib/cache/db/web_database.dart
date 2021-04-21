@@ -8,14 +8,14 @@ class WebDatabase implements StarWarsDatabase {
 
   static final WebDatabase webDatabase = WebDatabase._();
 
-  Box<Map<String, dynamic>> _movieDatabase;
-  Box<Map<String, dynamic>> _characterDatabase;
+  Box<Map<String, dynamic>>? _movieDatabase;
+  Box<Map<String, dynamic>>? _characterDatabase;
 
   Future<Box<Map<String, dynamic>>> get characterDatabase async {
-    if (_characterDatabase != null) return _characterDatabase;
+    if (_characterDatabase != null) return _characterDatabase!;
 
     _characterDatabase = await getCharacterDatabaseInstance();
-    return _characterDatabase;
+    return _characterDatabase!;
   }
 
   Future<Box<Map<String, dynamic>>> getCharacterDatabaseInstance() async {
@@ -23,10 +23,10 @@ class WebDatabase implements StarWarsDatabase {
   }
 
   Future<Box<Map<String, dynamic>>> get movieDatabase async {
-    if (_movieDatabase != null) return _movieDatabase;
+    if (_movieDatabase != null) return _movieDatabase!;
 
     _movieDatabase = await getMovieDatabaseInstance();
-    return _movieDatabase;
+    return _movieDatabase!;
   }
 
   Future<Box<Map<String, dynamic>>> getMovieDatabaseInstance() async {

@@ -5,14 +5,14 @@ part 'movies_response.g.dart';
 
 @JsonSerializable()
 class MoviesResponse {
-  MoviesResponse({this.result});
+  MoviesResponse({required this.result});
 
   List<SwapiMovie> result;
 
   bool get isEmpty => !hasResults();
 
   bool hasResults() {
-    return result != null && result.isNotEmpty;
+    return result.isNotEmpty;
   }
 
   factory MoviesResponse.fromJson(Map<String, dynamic> json) =>

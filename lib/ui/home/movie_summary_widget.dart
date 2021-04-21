@@ -5,7 +5,7 @@ import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/router/star_wars_router.dart';
 
 class MovieSummaryWidget extends StatelessWidget {
-  const MovieSummaryWidget({this.movie, this.mapper});
+  const MovieSummaryWidget({required this.movie, required this.mapper});
 
   final MovieViewModel movie;
   final MovieMapper mapper;
@@ -61,7 +61,7 @@ class MovieSummaryWidget extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image(
-                    image: AssetImage(movie.getImagePath()),
+                    image: AssetImage(movie.getImagePath() ?? ''),
                     fit: BoxFit.cover,
                   ),
                 ),

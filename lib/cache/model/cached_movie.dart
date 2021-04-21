@@ -2,14 +2,14 @@
 
 class CachedMovie {
   CachedMovie(
-      {this.id,
-      this.title,
-      this.director,
-      this.releaseDate,
-      this.producer,
-      this.plot,
-      this.url,
-      this.character,
+      {required this.id,
+      required this.title,
+      required this.director,
+      required this.releaseDate,
+      required this.producer,
+      required this.plot,
+      required this.url,
+      required this.character,
       this.imdbRating});
 
   final int id;
@@ -20,7 +20,7 @@ class CachedMovie {
   final String plot;
   final String url;
   String character;
-  double imdbRating;
+  double? imdbRating;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
