@@ -5,7 +5,11 @@ import 'package:star_wars_flutter/ui/common_widgets/platform_widget.dart';
 
 class PlatformSwitch extends PlatformWidget {
   PlatformSwitch(
-      {this.value, this.onChanged, this.activeColor, this.trackColor, this.inactiveTrackColor});
+      {required this.value,
+      required this.onChanged,
+      required this.activeColor,
+      required this.trackColor,
+      required this.inactiveTrackColor});
 
   final Color activeColor;
   final Color trackColor;

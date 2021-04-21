@@ -7,7 +7,7 @@ enum Pages { Movies, MovieDetails }
 
 class PageConfiguration {
   PageConfiguration(
-      {@required this.key, @required this.path, @required this.uiPage});
+      {required this.key, required this.path, required this.uiPage});
 
   final String key;
   final String path;

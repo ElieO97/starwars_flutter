@@ -1,14 +1,14 @@
 class CharacterView {
   CharacterView(
-      {this.id,
-      this.birthDay,
-      this.eyeColor,
-      this.gender,
-      this.hairColor,
-      this.height,
-      this.homeWorld,
-      this.mass,
-      this.name});
+      {required this.id,
+      required this.birthDay,
+      required this.eyeColor,
+      required this.gender,
+      required this.hairColor,
+      required this.height,
+      required this.homeWorld,
+      required this.mass,
+      required this.name});
 
   final String id;
   final String birthDay;

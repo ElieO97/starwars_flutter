@@ -11,7 +11,7 @@ const Map<String, String> _imagesMoviesMap = <String, String>{
 
 const String _fallbackImagePath = 'assets/movie_placeholder.png';
 
-String findMovieImageAssetPath(String movieTitle) {
+String? findMovieImageAssetPath(String movieTitle) {
   if (_imagesMoviesMap.containsKey(movieTitle.toLowerCase())) {
     return _imagesMoviesMap[movieTitle.toLowerCase()];
   } else {

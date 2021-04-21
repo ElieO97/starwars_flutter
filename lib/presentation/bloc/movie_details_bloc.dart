@@ -7,7 +7,7 @@ import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 import 'package:star_wars_flutter/ui/utils/movie_utils.dart';
 
 class MovieDetailsBloc extends BlocBase {
-  MovieDetailsBloc({this.movie, this.getCharactersUseCase}) {
+  MovieDetailsBloc({required this.movie, required this.getCharactersUseCase}) {
     init();
   }
 

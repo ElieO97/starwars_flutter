@@ -6,12 +6,12 @@ class StarWarsRouterDelegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
   StarWarsRouterDelegate._();
 
-  static StarWarsRouterDelegate _instance;
+  static StarWarsRouterDelegate? _instance;
 
   static StarWarsRouterDelegate getInstance() {
     _instance ??= StarWarsRouterDelegate._();
 
-    return _instance;
+    return _instance!;
   }
 
   final List<Page> _pages = <Page>[];

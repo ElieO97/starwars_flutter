@@ -8,13 +8,13 @@ class MobileDatabase implements StarWarsDatabase {
   MobileDatabase._();
 
   static final MobileDatabase moblieDatabase = MobileDatabase._();
-  Database _database;
+  Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database;
+    if (_database != null) return _database!;
 
     _database = await getDatabaseInstance();
-    return _database;
+    return _database!;
   }
 
   Future<Database> getDatabaseInstance() async {
@@ -60,7 +60,7 @@ class MobileDatabase implements StarWarsDatabase {
         plot: maps[i]['plot'] as String,
         url: maps[i]['url'] as String,
         character: maps[i]['character'] as String,
-        imdbRating: maps[i]['imdbRating'] as double,
+        imdbRating: maps[i]['imdbRating'] as double?,
       );
     });
   }
@@ -92,15 +92,17 @@ class MobileDatabase implements StarWarsDatabase {
 
     final List<CachedCharacter> characters = <CachedCharacter>[];
     for (final dynamic id in characterIds) {
-      final CachedCharacter character = await getCharacter(id as String);
-      characters.add(character);
+      final CachedCharacter? character = await getCharacter(id as String);
+      if (character != null) {
+        characters.add(character);
+      }
     }
 
     return characters;
   }
 
   @override
-  Future<CachedCharacter> getCharacter(String characterId) async {
+  Future<CachedCharacter?> getCharacter(String characterId) async {
     final Database db = await database;
     final List<Map<String, dynamic>> map =
         await db.rawQuery('SELECT * FROM Character WHERE id = $characterId');

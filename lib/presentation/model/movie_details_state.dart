@@ -21,7 +21,7 @@ class MovieDetailsPopulated extends MovieDetailsState {
   MovieView movie;
   List<Character> characters;
 
-  MovieDetailsPopulated update({MovieView nuMovie}) {
+  MovieDetailsPopulated update({required MovieView nuMovie}) {
     return this..movie = nuMovie;
   }
 }

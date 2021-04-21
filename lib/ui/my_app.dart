@@ -40,7 +40,7 @@ import 'package:star_wars_flutter/cache/db/mobile_database.dart';
 import 'package:star_wars_flutter/cache/db/web_database.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -129,7 +129,7 @@ class _MyAppState extends State {
 
         // Add new global providers here
       ],
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return BlocProvider<MoviesBloc>(
             child: MaterialApp.router(
               theme: CustomTheme.lightTheme(context),
