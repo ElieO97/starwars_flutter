@@ -3,10 +3,10 @@ import 'package:star_wars_flutter/cache/model/cached_movie.dart';
 import 'package:star_wars_flutter/cache/model/cached_character.dart';
 import 'package:hive/hive.dart';
 
-class WebDatabase implements StarWarsDatabase {
-  WebDatabase._();
+class HiveDatabase implements StarWarsDatabase {
+  HiveDatabase._();
 
-  static final WebDatabase webDatabase = WebDatabase._();
+  static final HiveDatabase database = HiveDatabase._();
 
   Box<Map<String, dynamic>>? _movieDatabase;
   Box<Map<String, dynamic>>? _characterDatabase;

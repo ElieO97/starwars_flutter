@@ -29,7 +29,6 @@ dependencies:
   intl_utils: ^2.1.0
   retrofit: 2.0.0-beta1
   logger: ^1.0.0
-  sqflite: ^2.0.0+3
   path: ^1.8.0
   smooth_star_rating:
     git:
