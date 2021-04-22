@@ -13,7 +13,7 @@ class CachedMovie extends HiveObject {
       required this.producer,
       required this.plot,
       required this.url,
-      required this.character,
+      this.characters,
       this.imdbRating});
 
   @HiveField(0)
@@ -31,21 +31,7 @@ class CachedMovie extends HiveObject {
   @HiveField(6)
   final String url;
   @HiveField(7)
-  String character;
+  HiveList? characters;
   @HiveField(8)
   double? imdbRating;
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'title': title,
-      'director': director,
-      'releaseDate': releaseDate,
-      'producer': producer,
-      'plot': plot,
-      'url': url,
-      'character': character,
-      'imdbRating': imdbRating
-    };
-  }
 }

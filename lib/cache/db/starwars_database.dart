@@ -5,6 +5,6 @@ abstract class StarWarsDatabase {
   Future<void> insertMovie(CachedMovie movie);
   Future<List<CachedMovie>> getMovies();
   Future<void> insertCharacter(int movieId, CachedCharacter character);
-  Future<List<CachedCharacter>> getCharacterWithMovieId(int movieId);
+  Future<List<CachedCharacter>> getCharactersForMovieId(int movieId);
   Future<CachedCharacter?> getCharacter(String characterId);
 }

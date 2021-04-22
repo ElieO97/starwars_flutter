@@ -32,7 +32,7 @@ class MovieEntityMapper implements EntityMapper<CachedMovie, MovieEntity> {
         producer: type.producer,
         plot: type.plot,
         url: type.url,
-        character: type.character,
+        characters: type.character,
         imdbRating: type.imdbRating);
   }
 }

@@ -41,7 +41,7 @@ class HiveDatabase implements StarWarsDatabase {
   }
 
   @override
-  Future<List<CachedCharacter>> getCharacterWithMovieId(int movieId) async {
+  Future<List<CachedCharacter>> getCharactersForMovieId(int movieId) async {
     return [];
   }
 
@@ -49,32 +49,12 @@ class HiveDatabase implements StarWarsDatabase {
   Future<void> insertCharacter(int movieId, CachedCharacter character) async {
 //     final db = await characterDatabase;
 //     await db.put(character.id.toString(), character.toMap());
+//     final Box<CachedMovie> movies = await movieDatabase;
+//     movies.get()
   }
 
   @override
   Future<List<CachedMovie>> getMovies() async {
-    // NOTE: when this is called on a refresh, this error is thrown:
-    // Expected a value of type 'Map<String, dynamic>', but got one of type 'LinkedMap<dynamic, dynamic>'
-    // Even though the data is stored in the db and can be accessed after insertMovie is called
-    // Not sure why this error comes up (possibly old version?)
-
-//     final db = await movieDatabase;
-//     var list = List.generate(db.values.length, (int i) {
-//       var movie = db.getAt(i);
-//       return CachedMovie(
-//         id: movie['id'] as int,
-//         title: movie['title'] as String,
-//         director: movie['director'] as String,
-//         releaseDate: movie['releaseDate'] as String,
-//         producer: movie['producer'] as String,
-//         plot: movie['plot'] as String,
-//         url: movie['url'] as String,
-//         character: movie['character'] as String,
-//         imdbRating: movie['imdbRating'] as double,
-//       );
-//     });
-//     return list;
-//     return [];
     final Box<CachedMovie> movies = await movieDatabase;
     return movies.values.toList();
   }
@@ -82,6 +62,6 @@ class HiveDatabase implements StarWarsDatabase {
   @override
   Future<void> insertMovie(CachedMovie movie) async {
     final Box<CachedMovie> movies = await movieDatabase;
-    movies.add(movie);
+    movies.put(movie.id, movie);
   }
 }
