@@ -4,7 +4,7 @@ import 'package:hive/hive.dart';
 part 'cached_movie.g.dart';
 
 @HiveType(typeId: 1)
-class CachedMovie {
+class CachedMovie extends HiveObject {
   CachedMovie(
       {required this.id,
       required this.title,

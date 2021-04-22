@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 part 'cached_character.g.dart';
 
 @HiveType(typeId: 2)
-class CachedCharacter {
+class CachedCharacter extends HiveObject {
   CachedCharacter(
       {this.id,
       required this.birthDay,

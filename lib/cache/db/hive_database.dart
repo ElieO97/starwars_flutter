@@ -8,29 +8,31 @@ class HiveDatabase implements StarWarsDatabase {
 
   static final HiveDatabase database = HiveDatabase._();
 
-  Box<Map<String, dynamic>>? _movieDatabase;
-  Box<Map<String, dynamic>>? _characterDatabase;
+  Box<CachedMovie>? _movieDatabase;
+  Box<CachedCharacter>? _characterDatabase;
 
-  Future<Box<Map<String, dynamic>>> get characterDatabase async {
+  Future<Box<CachedCharacter>> get characterDatabase async {
     if (_characterDatabase != null) return _characterDatabase!;
 
     _characterDatabase = await getCharacterDatabaseInstance();
     return _characterDatabase!;
   }
 
-  Future<Box<Map<String, dynamic>>> getCharacterDatabaseInstance() async {
-    return await Hive.openBox<Map<String, dynamic>>('Character');
+  Future<Box<CachedCharacter>> getCharacterDatabaseInstance() async {
+    Hive.registerAdapter(CachedCharacterAdapter());
+    return await Hive.openBox<CachedCharacter>('Characters');
   }
 
-  Future<Box<Map<String, dynamic>>> get movieDatabase async {
+  Future<Box<CachedMovie>> get movieDatabase async {
     if (_movieDatabase != null) return _movieDatabase!;
 
     _movieDatabase = await getMovieDatabaseInstance();
     return _movieDatabase!;
   }
 
-  Future<Box<Map<String, dynamic>>> getMovieDatabaseInstance() async {
-    return await Hive.openBox<Map<String, dynamic>>('Movie');
+  Future<Box<CachedMovie>> getMovieDatabaseInstance() async {
+    Hive.registerAdapter(CachedMovieAdapter());
+    return await Hive.openBox<CachedMovie>('Movies');
   }
 
   @override
@@ -45,8 +47,8 @@ class HiveDatabase implements StarWarsDatabase {
 
   @override
   Future<void> insertCharacter(int movieId, CachedCharacter character) async {
-    final db = await characterDatabase;
-    await db.put(character.id.toString(), character.toMap());
+//     final db = await characterDatabase;
+//     await db.put(character.id.toString(), character.toMap());
   }
 
   @override
@@ -72,12 +74,14 @@ class HiveDatabase implements StarWarsDatabase {
 //       );
 //     });
 //     return list;
-    return [];
+//     return [];
+    final Box<CachedMovie> movies = await movieDatabase;
+    return movies.values.toList();
   }
 
   @override
   Future<void> insertMovie(CachedMovie movie) async {
-    final db = await movieDatabase;
-    await db.put(movie.id.toString(), movie.toMap());
+    final Box<CachedMovie> movies = await movieDatabase;
+    movies.add(movie);
   }
 }
