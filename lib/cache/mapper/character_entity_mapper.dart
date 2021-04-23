@@ -6,20 +6,30 @@ class CharacterEntityMapper
     implements EntityMapper<CachedCharacter, CharacterEntity> {
   @override
   CharacterEntity mapFromCached(CachedCharacter type) {
-    return CharacterEntity(
-        id: type.id,
-        birthDay: type.birthDay ?? '',
-        eyeColor: type.eyeColor ?? '',
-        gender: type.gender ?? '',
-        hairColor: type.hairColor ?? '',
-        height: type.height ?? '',
-        homeWorld: type.homeWorld ?? '',
-        mass: type.mass ?? '',
-        name: type.name ?? '');
+    final CharacterEntity char = CharacterEntity(
+        birthDay: type.birthDay,
+        eyeColor: type.eyeColor,
+        gender: type.gender,
+        hairColor: type.hairColor,
+        height: type.height,
+        homeWorld: type.homeWorld,
+        mass: type.mass,
+        name: type.name);
+    char.id = type.id;
+    return char;
   }
 
   @override
   CachedCharacter mapToCached(CharacterEntity type) {
-    throw UnimplementedError();
+    return CachedCharacter(
+        id: type.id,
+        birthDay: type.birthDay,
+        eyeColor: type.eyeColor,
+        gender: type.gender,
+        hairColor: type.hairColor,
+        height: type.height,
+        homeWorld: type.homeWorld,
+        mass: type.mass,
+        name: type.name);
   }
 }

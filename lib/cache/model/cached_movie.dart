@@ -14,6 +14,8 @@ class CachedMovie extends HiveObject {
       required this.producer,
       required this.plot,
       required this.url,
+      required this.characters,
+      required this.characterUrls,
       this.imdbRating});
 
   @HiveField(0)
@@ -31,7 +33,9 @@ class CachedMovie extends HiveObject {
   @HiveField(6)
   final String url;
   @HiveField(7)
-  HiveList characters;
+  final List<CachedCharacter> characters;
   @HiveField(8)
-  double? imdbRating;
+  final List<String> characterUrls;
+  @HiveField(9)
+  final double? imdbRating;
 }

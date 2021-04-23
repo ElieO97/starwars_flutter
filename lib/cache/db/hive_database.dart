@@ -2,8 +2,6 @@ import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 import 'package:star_wars_flutter/cache/model/cached_movie.dart';
 import 'package:star_wars_flutter/cache/model/cached_character.dart';
 import 'package:hive/hive.dart';
-import 'package:star_wars_flutter/data/model/character_entity.dart';
-import 'package:star_wars_flutter/data/model/movie_entity.dart';
 
 class HiveDatabase implements StarWarsDatabase {
   HiveDatabase._();
@@ -21,7 +19,6 @@ class HiveDatabase implements StarWarsDatabase {
   }
 
   Future<Box<CachedCharacter>> getCharacterDatabaseInstance() async {
-    Hive.registerAdapter(CachedCharacterAdapter());
     return await Hive.openBox<CachedCharacter>('Characters');
   }
 
@@ -33,26 +30,30 @@ class HiveDatabase implements StarWarsDatabase {
   }
 
   Future<Box<CachedMovie>> getMovieDatabaseInstance() async {
-    Hive.registerAdapter(CachedMovieAdapter());
     return await Hive.openBox<CachedMovie>('Movies');
   }
 
   @override
-  Future<CachedCharacter> getCharacter(String characterId) async {
-    throw UnimplementedError();
+  Future<CachedCharacter?> getCharacter(String characterId) async {
+    final Box<CachedCharacter> characters = await characterDatabase;
+    return characters.get(characterId);
   }
 
   @override
   Future<List<CachedCharacter>> getCharactersForMovieId(int movieId) async {
-    return [];
+    final Box<CachedMovie> movies = await movieDatabase;
+    final CachedMovie? movie = movies.get(movieId.toString());
+    return movie?.characters ?? [];
   }
 
   @override
-  Future<void> insertCharacter(int movieId, CharacterEntity character) async {
-//     final db = await characterDatabase;
-//     await db.put(character.id.toString(), character.toMap());
-//     final Box<CachedMovie> movies = await movieDatabase;
-//     movies.get()
+  Future<void> insertCharacter(int movieId, CachedCharacter character) async {
+    final Box<CachedCharacter> characters = await characterDatabase;
+    final Box<CachedMovie> movies = await movieDatabase;
+    final CachedMovie? movie = movies.get(movieId.toString());
+    characters.put(character.id, character);
+    movie?.characters.add(character);
+    movie?.save();
   }
 
   @override
@@ -62,24 +63,8 @@ class HiveDatabase implements StarWarsDatabase {
   }
 
   @override
-  Future<void> insertMovie(MovieEntity movie) async {
+  Future<void> insertMovie(CachedMovie movie) async {
     final Box<CachedMovie> movies = await movieDatabase;
-    final Box<CachedCharacter> characters = await characterDatabase;
-    final HiveList<CachedCharacter> characterList =
-        HiveList<CachedCharacter>(characters);
-    final CachedMovie cachedMovie = CachedMovie(
-        id: movie.id,
-        title: movie.title,
-        director: movie.director,
-        releaseDate: movie.releaseDate,
-        producer: movie.producer,
-        plot: movie.plot,
-        url: movie.url);
-    cachedMovie.characters = characterList;
-    final convertedCharacters =
-        movie.characters.map((String e) => CachedCharacter(url: e)).toList();
-    characters.addAll(convertedCharacters);
-    cachedMovie.characters.addAll(convertedCharacters);
-    movies.put(cachedMovie.id, cachedMovie);
+    movies.put(movie.id.toString(), movie);
   }
 }

@@ -36,7 +36,10 @@ class MovieCacheImpl implements MovieCache {
 
   @override
   Future<void> saveMovies(List<MovieEntity> movies) async {
-    movies.forEach(_database.insertMovie);
+    final List<CachedMovie> cachedMovies = movies
+        .map((MovieEntity movieEntity) => entityMapper.mapToCached(movieEntity))
+        .toList();
+    cachedMovies.forEach(_database.insertMovie);
   }
 
   @override
@@ -62,7 +65,8 @@ class MovieCacheImpl implements MovieCache {
   Future<void> saveCharacters(
       int movieId, List<CharacterEntity> characterEntities) async {
     for (final CharacterEntity character in characterEntities) {
-      await _database.insertCharacter(movieId, character);
+      await _database.insertCharacter(
+          movieId, characterEntityMapper.mapToCached(character));
     }
   }
 }
