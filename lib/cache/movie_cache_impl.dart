@@ -36,16 +36,13 @@ class MovieCacheImpl implements MovieCache {
 
   @override
   Future<void> saveMovies(List<MovieEntity> movies) async {
-    final List<CachedMovie> cachedMovies = movies
-        .map((MovieEntity movieEntity) => entityMapper.mapToCached(movieEntity))
-        .toList();
-    cachedMovies.forEach(_database.insertMovie);
+    movies.forEach(_database.insertMovie);
   }
 
   @override
   Future<List<CharacterEntity>> fetchMovieCharacters(int movieId) async {
     final List<CachedCharacter> cachedCharacters =
-        await _database.getCharacterWithMovieId(movieId);
+        await _database.getCharactersForMovieId(movieId);
 
     return cachedCharacters
         .map((CachedCharacter character) =>
@@ -56,7 +53,7 @@ class MovieCacheImpl implements MovieCache {
   @override
   Future<bool> isCachedCharacters(int id) async {
     final List<CachedCharacter> movieCharacters =
-        await _database.getCharacterWithMovieId(id);
+        await _database.getCharactersForMovieId(id);
 
     return movieCharacters.isNotEmpty;
   }
@@ -65,8 +62,7 @@ class MovieCacheImpl implements MovieCache {
   Future<void> saveCharacters(
       int movieId, List<CharacterEntity> characterEntities) async {
     for (final CharacterEntity character in characterEntities) {
-      await _database.insertCharacter(
-          movieId, characterEntityMapper.mapToCached(character));
+      await _database.insertCharacter(movieId, character);
     }
   }
 }

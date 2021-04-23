@@ -8,7 +8,7 @@ class MovieView {
       required this.producer,
       required this.plot,
       required this.url,
-      required this.character,
+      required this.characters,
       this.imdbRating});
 
   final int id;
@@ -18,6 +18,6 @@ class MovieView {
   final String producer;
   final String plot;
   final String url;
-  String character;
+  List<String> characters;
   double? imdbRating;
 }

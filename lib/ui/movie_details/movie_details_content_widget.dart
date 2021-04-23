@@ -23,14 +23,10 @@ class MovieDetailsContentWidget extends StatelessWidget {
         switch (_supportedWidgets()[position]) {
           case 'title':
             return HeaderItem();
-            break;
           case 'characters':
             return CharactersItem();
-            break;
           case 'plot':
             return PlotItem();
-            break;
-
           default:
             return HeaderItem();
         }
@@ -98,7 +94,7 @@ class CharactersItem implements ListItem {
             style:
                 const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold)),
         const SizedBox(height: 5.0),
-        Text(movie.character)
+        Text(movie.characters.join(', '))
       ],
     );
   }

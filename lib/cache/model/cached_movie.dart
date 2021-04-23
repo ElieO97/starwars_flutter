@@ -1,5 +1,6 @@
 /// Model used solely for the caching of a Movie
 import 'package:hive/hive.dart';
+import 'package:star_wars_flutter/cache/model/cached_character.dart';
 
 part 'cached_movie.g.dart';
 
@@ -13,7 +14,6 @@ class CachedMovie extends HiveObject {
       required this.producer,
       required this.plot,
       required this.url,
-      this.characters,
       this.imdbRating});
 
   @HiveField(0)
@@ -31,7 +31,7 @@ class CachedMovie extends HiveObject {
   @HiveField(6)
   final String url;
   @HiveField(7)
-  HiveList? characters;
+  HiveList characters;
   @HiveField(8)
   double? imdbRating;
 }

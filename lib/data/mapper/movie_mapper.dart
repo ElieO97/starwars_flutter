@@ -15,7 +15,7 @@ class MovieMapper implements Mapper<MovieEntity, Movie> {
         producer: type.producer,
         plot: type.plot,
         url: type.url,
-        character: type.character,
+        characters: type.characters,
         imdbRating: type.imdbRating);
   }
 
@@ -29,7 +29,7 @@ class MovieMapper implements Mapper<MovieEntity, Movie> {
         producer: type.producer,
         plot: type.plot,
         url: type.url,
-        character: type.character,
+        characters: type.characters,
         imdbRating: type.imdbRating);
   }
 }

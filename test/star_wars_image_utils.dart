@@ -13,7 +13,7 @@ void main() {
           producer: '',
           plot: '',
           url: '',
-          character: ''),
+          characters: ['']),
       MovieView(
           id: 2,
           title: 'film3',
@@ -22,7 +22,7 @@ void main() {
           producer: '',
           plot: '',
           url: '',
-          character: ''),
+          characters: ['']),
       MovieView(
           id: 3,
           title: 'film2',
@@ -31,7 +31,7 @@ void main() {
           producer: '',
           plot: '',
           url: '',
-          character: ''),
+          characters: ['']),
       MovieView(
           id: 4,
           title: 'film4',
@@ -40,7 +40,7 @@ void main() {
           producer: '',
           plot: '',
           url: '',
-          character: ''),
+          characters: ['']),
     ];
 
     expect(sortMoviesByReleaseDate(movies)[0].title, 'film4');

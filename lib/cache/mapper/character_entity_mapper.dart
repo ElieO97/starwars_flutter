@@ -8,27 +8,18 @@ class CharacterEntityMapper
   CharacterEntity mapFromCached(CachedCharacter type) {
     return CharacterEntity(
         id: type.id,
-        birthDay: type.birthDay,
-        eyeColor: type.eyeColor,
-        gender: type.gender,
-        hairColor: type.hairColor,
-        height: type.height,
-        homeWorld: type.homeWorld,
-        mass: type.mass,
-        name: type.name);
+        birthDay: type.birthDay ?? '',
+        eyeColor: type.eyeColor ?? '',
+        gender: type.gender ?? '',
+        hairColor: type.hairColor ?? '',
+        height: type.height ?? '',
+        homeWorld: type.homeWorld ?? '',
+        mass: type.mass ?? '',
+        name: type.name ?? '');
   }
 
   @override
   CachedCharacter mapToCached(CharacterEntity type) {
-    return CachedCharacter(
-        id: type.id,
-        birthDay: type.birthDay,
-        eyeColor: type.eyeColor,
-        gender: type.gender,
-        hairColor: type.hairColor,
-        height: type.height,
-        homeWorld: type.homeWorld,
-        mass: type.mass,
-        name: type.name);
+    throw UnimplementedError();
   }
 }

@@ -18,6 +18,6 @@ class MovieEntity {
   final String producer;
   final String plot;
   final String url;
-  String characters;
+  List<String> characters;
   double? imdbRating;
 }
