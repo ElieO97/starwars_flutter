@@ -1,6 +1,11 @@
 /// Model used solely for the caching of a Movie
+import 'package:hive/hive.dart';
+import 'package:star_wars_flutter/cache/model/cached_character.dart';
 
-class CachedMovie {
+part 'cached_movie.g.dart';
+
+@HiveType(typeId: 1)
+class CachedMovie extends HiveObject {
   CachedMovie(
       {required this.id,
       required this.title,
@@ -9,30 +14,28 @@ class CachedMovie {
       required this.producer,
       required this.plot,
       required this.url,
-      required this.character,
+      required this.characters,
+      required this.characterUrls,
       this.imdbRating});
 
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String title;
+  @HiveField(2)
   final String director;
+  @HiveField(3)
   final String releaseDate;
+  @HiveField(4)
   final String producer;
+  @HiveField(5)
   final String plot;
+  @HiveField(6)
   final String url;
-  String character;
-  double? imdbRating;
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'title': title,
-      'director': director,
-      'releaseDate': releaseDate,
-      'producer': producer,
-      'plot': plot,
-      'url': url,
-      'character': character,
-      'imdbRating': imdbRating
-    };
-  }
+  @HiveField(7)
+  final List<CachedCharacter> characters;
+  @HiveField(8)
+  final List<String> characterUrls;
+  @HiveField(9)
+  final double? imdbRating;
 }

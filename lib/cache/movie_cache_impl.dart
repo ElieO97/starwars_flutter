@@ -45,7 +45,7 @@ class MovieCacheImpl implements MovieCache {
   @override
   Future<List<CharacterEntity>> fetchMovieCharacters(int movieId) async {
     final List<CachedCharacter> cachedCharacters =
-        await _database.getCharacterWithMovieId(movieId);
+        await _database.getCharactersForMovieId(movieId);
 
     return cachedCharacters
         .map((CachedCharacter character) =>
@@ -56,7 +56,7 @@ class MovieCacheImpl implements MovieCache {
   @override
   Future<bool> isCachedCharacters(int id) async {
     final List<CachedCharacter> movieCharacters =
-        await _database.getCharacterWithMovieId(id);
+        await _database.getCharactersForMovieId(id);
 
     return movieCharacters.isNotEmpty;
   }

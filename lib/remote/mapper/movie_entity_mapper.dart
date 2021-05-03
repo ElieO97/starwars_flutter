@@ -14,7 +14,7 @@ class MovieEntityMapper
       producer: type.producer,
       plot: type.plot,
       url: type.url,
-      character: type.character.join(','),
+      characters: type.characters,
     );
   }
 }

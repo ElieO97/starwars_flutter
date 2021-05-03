@@ -7,7 +7,7 @@ class Movie {
       required this.producer,
       required this.plot,
       required this.url,
-      required this.character,
+      required this.characters,
       this.imdbRating});
 
   final int id;
@@ -17,11 +17,11 @@ class Movie {
   final String producer;
   final String plot;
   final String url;
-  String character;
+  List<String> characters;
   double? imdbRating;
 
   @override
   String toString() {
-    return 'Movie{id: $id, title: $title, director: $director, releaseDate: $releaseDate, producer: $producer, plot: $plot, url: $url, character: $character, imdbRating: $imdbRating}';
+    return 'Movie{id: $id, title: $title, director: $director, releaseDate: $releaseDate, producer: $producer, plot: $plot, url: $url, characters: $characters, imdbRating: $imdbRating}';
   }
 }

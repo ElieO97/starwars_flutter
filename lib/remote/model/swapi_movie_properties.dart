@@ -10,7 +10,7 @@ class SwapiMovieProperties {
       required this.director,
       required this.releaseDate,
       required this.producer,
-      required this.character,
+      required this.characters,
       required this.id,
       required this.url,
       required this.plot});
@@ -31,7 +31,7 @@ class SwapiMovieProperties {
   String plot;
 
   @JsonKey(name: 'characters')
-  List<String> character;
+  List<String> characters;
 
   @JsonKey(name: 'episode_id')
   int id;
@@ -45,7 +45,7 @@ class SwapiMovieProperties {
   Map<String, dynamic> toJson() => _$SwapiMoviePropertiesToJson(this);
 
   Movie toMovie() {
-    print('toMovie: characters: $character');
+    print('toMovie: characters: $characters');
     return Movie(
         id: id,
         title: title,
@@ -54,6 +54,6 @@ class SwapiMovieProperties {
         producer: producer,
         plot: plot,
         url: url,
-        character: character.join(','));
+        characters: characters);
   }
 }

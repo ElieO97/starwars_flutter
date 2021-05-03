@@ -1,4 +1,5 @@
 import 'package:star_wars_flutter/cache/mapper/entity_mapper.dart';
+import 'package:star_wars_flutter/cache/model/cached_character.dart';
 import 'package:star_wars_flutter/cache/model/cached_movie.dart';
 import 'package:star_wars_flutter/data/model/movie_entity.dart';
 
@@ -17,7 +18,7 @@ class MovieEntityMapper implements EntityMapper<CachedMovie, MovieEntity> {
         producer: type.producer,
         plot: type.plot,
         url: type.url,
-        character: type.character,
+        characters: type.characterUrls,
         imdbRating: type.imdbRating);
   }
 
@@ -32,7 +33,8 @@ class MovieEntityMapper implements EntityMapper<CachedMovie, MovieEntity> {
         producer: type.producer,
         plot: type.plot,
         url: type.url,
-        character: type.character,
+        characters: [],
+        characterUrls: type.characters,
         imdbRating: type.imdbRating);
   }
 }

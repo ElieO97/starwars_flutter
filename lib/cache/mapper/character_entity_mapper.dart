@@ -6,8 +6,7 @@ class CharacterEntityMapper
     implements EntityMapper<CachedCharacter, CharacterEntity> {
   @override
   CharacterEntity mapFromCached(CachedCharacter type) {
-    return CharacterEntity(
-        id: type.id,
+    final CharacterEntity char = CharacterEntity(
         birthDay: type.birthDay,
         eyeColor: type.eyeColor,
         gender: type.gender,
@@ -16,6 +15,8 @@ class CharacterEntityMapper
         homeWorld: type.homeWorld,
         mass: type.mass,
         name: type.name);
+    char.id = type.id;
+    return char;
   }
 
   @override

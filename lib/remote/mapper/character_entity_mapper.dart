@@ -6,8 +6,7 @@ class CharacterEntityMapper
     implements EntityMapper<SwapiCharacterProperties, CharacterEntity> {
   @override
   CharacterEntity mapFromRemote(SwapiCharacterProperties type) {
-    return CharacterEntity(
-        id: type.id,
+    final char = CharacterEntity(
         birthDay: type.birthDay,
         eyeColor: type.eyeColor,
         gender: type.gender,
@@ -16,5 +15,7 @@ class CharacterEntityMapper
         homeWorld: type.homeWorld,
         mass: type.mass,
         name: type.name);
+    char.id = type.id ?? '';
+    return char;
   }
 }

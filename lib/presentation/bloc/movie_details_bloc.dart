@@ -32,7 +32,7 @@ class MovieDetailsBloc extends BlocBase {
   Stream<MovieDetailsState> fetchCharacters() async* {
     try {
       final Map<int, List<String>> map = <int, List<String>>{};
-      map[movie.id] = MovieUtils.charatersUrlsToIds(movie.character.split(','));
+      map[movie.id] = MovieUtils.charatersUrlsToIds(movie.characters);
 
       print('fetchCharacters called');
 
@@ -41,8 +41,8 @@ class MovieDetailsBloc extends BlocBase {
       if (characters.isEmpty) {
         yield MovieDetailsEmpty();
       } else {
-        movie.character =
-            characters.map((Character character) => character.name).join(',');
+        movie.characters =
+            characters.map((Character character) => character.name).toList();
         yield MovieDetailsPopulated(movie, characters);
       }
     } catch (e) {

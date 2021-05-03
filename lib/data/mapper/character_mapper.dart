@@ -5,8 +5,7 @@ import 'package:star_wars_flutter/domain/model/character.dart';
 class CharacterMapper implements Mapper<CharacterEntity, Character> {
   @override
   Character mapFromEntity(CharacterEntity type) {
-    return Character(
-        id: type.id,
+    final char = Character(
         birthDay: type.birthDay,
         eyeColor: type.eyeColor,
         gender: type.gender,
@@ -15,12 +14,13 @@ class CharacterMapper implements Mapper<CharacterEntity, Character> {
         homeWorld: type.homeWorld,
         mass: type.mass,
         name: type.name);
+    char.id = type.id;
+    return char;
   }
 
   @override
   CharacterEntity mapToEntity(Character type) {
-    return CharacterEntity(
-        id: type.id,
+    final char = CharacterEntity(
         birthDay: type.birthDay,
         eyeColor: type.eyeColor,
         gender: type.gender,
@@ -29,5 +29,7 @@ class CharacterMapper implements Mapper<CharacterEntity, Character> {
         homeWorld: type.homeWorld,
         mass: type.mass,
         name: type.name);
+    char.id = type.id;
+    return char;
   }
 }
