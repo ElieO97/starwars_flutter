@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
-import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/router/star_wars_router.dart';
 
@@ -30,7 +30,7 @@ class MovieSummaryWidget extends StatelessWidget {
           color: Colors.grey,
         ),
         const SizedBox(height: 20),
-        Text(S.of(context).director,
+        Text(AppLocalizations.of(context)!.director,
             style: const TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,
@@ -38,7 +38,7 @@ class MovieSummaryWidget extends StatelessWidget {
         const SizedBox(height: 5.0),
         Text(movie.director, style: const TextStyle(fontSize: 12.0)),
         const SizedBox(height: 20),
-        Text(S.of(context).producers,
+        Text(AppLocalizations.of(context)!.producers,
             style: const TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +61,6 @@ class _MyAppState extends State {
     delegate.setNewRoutePath(MoviesPageConfig);
     Get.put(delegate);
 
-    print('build called');
     return MultiProvider(
       providers: <Provider<dynamic>>[
         Provider<MovieMapper>(
@@ -129,6 +129,7 @@ class _MyAppState extends State {
                   ? currentTheme.currentTheme
                   : ThemeMode.system,
               localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+                AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
