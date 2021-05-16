@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/generated/l10n.dart';
-import 'package:star_wars_flutter/presentation/model/movie_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:star_wars_flutter/cache/shared_prefs.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
-import 'package:star_wars_flutter/cache/shared_prefs.dart';
+import 'package:star_wars_flutter/presentation/model/movie_state.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
@@ -82,21 +82,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(S().appName),
+          title: Text(AppLocalizations.of(context)!.appName),
         ),
         drawer: Drawer(
             child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text(S().appName.toUpperCase()),
+              child: Text(AppLocalizations.of(context)!.appName.toUpperCase()),
               decoration:
                   BoxDecoration(color: Theme.of(context).appBarTheme.color),
             ),
             ListTile(
                 title: Text(sharedPrefs.isDarkTheme
-                    ? S.of(context).turn_off_dark_mode
-                    : S.of(context).turn_on_dark_mode),
+                    ? AppLocalizations.of(context)!.turn_off_dark_mode
+                    : AppLocalizations.of(context)!.turn_on_dark_mode),
                 trailing: PlatformSwitch(
                   value: sharedPrefs.isDarkTheme,
                   onChanged: (bool value) {

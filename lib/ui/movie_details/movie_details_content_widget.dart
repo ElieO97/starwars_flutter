@@ -1,10 +1,10 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:marquee/marquee.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MovieDetailsContentWidget extends StatelessWidget {
   const MovieDetailsContentWidget(this.movie);
@@ -90,7 +90,7 @@ class CharactersItem implements ListItem {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(S().characters.toUpperCase(),
+        Text(AppLocalizations.of(context)!.characters.toUpperCase(),
             style:
                 const TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold)),
         const SizedBox(height: 5.0),

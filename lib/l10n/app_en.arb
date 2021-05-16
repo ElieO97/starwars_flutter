@@ -1,7 +1,5 @@
-
 {
-  "@@locale": "en",
-  "appName" : "Starwars",
+  "appName": "Starwars",
   "director": "director",
   "producers": "producers",
   "characters": "characters",

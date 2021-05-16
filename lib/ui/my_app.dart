@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 import 'package:star_wars_flutter/cache/db/hive_database.dart';
+import 'package:star_wars_flutter/cache/db/starwars_database.dart';
+import 'package:star_wars_flutter/cache/mapper/character_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/mapper/movie_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/movie_cache_impl.dart';
+import 'package:star_wars_flutter/cache/shared_prefs.dart';
+import 'package:star_wars_flutter/data/mapper/character_mapper.dart';
 import 'package:star_wars_flutter/data/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/data/movie_data_repository.dart';
 import 'package:star_wars_flutter/data/repository/movie_cache.dart';
@@ -14,25 +20,20 @@ import 'package:star_wars_flutter/data/source/movie_remote_data_store.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_movies.dart';
 import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
-import 'package:star_wars_flutter/generated/l10n.dart';
 import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
-import 'package:star_wars_flutter/cache/shared_prefs.dart';
-import 'package:star_wars_flutter/remote/movie_client.dart';
-import 'package:star_wars_flutter/remote/movie_remote_impl.dart';
-import 'package:get/get.dart';
-import 'package:star_wars_flutter/ui/router/router_delegate.dart';
-import 'package:star_wars_flutter/ui/router/starwars_parser.dart';
-import 'package:star_wars_flutter/ui/router/ui_pages.dart';
-import 'package:star_wars_flutter/cache/mapper/character_entity_mapper.dart';
-import 'package:star_wars_flutter/data/mapper/character_mapper.dart';
+import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
+    as presentation_mapper;
+import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart'
+    as character_remote_mapper;
 import 'package:star_wars_flutter/remote/mapper/movie_entity_mapper.dart'
     as remote_mapper;
 import 'package:star_wars_flutter/remote/mapper/movie_rating_entity_mapper.dart';
-import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart'
-    as character_remote_mapper;
-import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
-    as presentation_mapper;
+import 'package:star_wars_flutter/remote/movie_client.dart';
+import 'package:star_wars_flutter/remote/movie_remote_impl.dart';
+import 'package:star_wars_flutter/ui/router/router_delegate.dart';
+import 'package:star_wars_flutter/ui/router/starwars_parser.dart';
+import 'package:star_wars_flutter/ui/router/ui_pages.dart';
 import 'package:star_wars_flutter/ui/theme/custom_theme.dart';
 
 class MyApp extends StatefulWidget {
@@ -60,7 +61,6 @@ class _MyAppState extends State {
     delegate.setNewRoutePath(MoviesPageConfig);
     Get.put(delegate);
 
-    print('build called');
     return MultiProvider(
       providers: <Provider<dynamic>>[
         Provider<MovieMapper>(
@@ -129,9 +129,12 @@ class _MyAppState extends State {
                   ? currentTheme.currentTheme
                   : ThemeMode.system,
               localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-                S.delegate,
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: S.delegate.supportedLocales,
+              supportedLocales: const <Locale>[Locale('en'), Locale('fr')],
               routerDelegate: delegate,
               routeInformationParser: parser,
             ),
