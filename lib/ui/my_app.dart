@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,6 @@ import 'package:star_wars_flutter/data/source/movie_remote_data_store.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_movies.dart';
 import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
-import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
     as presentation_mapper;

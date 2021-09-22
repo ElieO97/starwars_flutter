@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:star_wars_flutter/cache/shared_prefs.dart';
-import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/presentation/model/movie_state.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view.dart';
@@ -34,37 +34,33 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  StreamBuilder<MoviesState> buildStreamBuilder(
+  BlocBuilder<dynamic, MoviesState> buildStreamBuilder(
       BuildContext context, MoviesBloc moviesBloc) {
-    return StreamBuilder<MoviesState>(
-        key: const Key('streamBuilder'),
-        initialData: moviesBloc.moviesPopulated,
-        stream: moviesBloc.stream,
-        builder: (BuildContext context, AsyncSnapshot<MoviesState> snapshot) {
-          final MoviesState? data = snapshot.data;
-          print('data snapshot = $data');
+    return BlocBuilder(
+        bloc: BlocProvider.of<MoviesBloc>(context),
+        builder: (BuildContext context, dynamic state) {
           return Column(
             children: <Widget>[
               Expanded(
                 child: Stack(key: const Key('content'), children: <Widget>[
                   // Fade in an Empty Result screen if the search contained
                   // no items
-                  EmptyWidget(visible: data is MoviesEmpty),
+                  EmptyWidget(visible: state is MoviesEmpty),
 
                   // Fade in a loading screen when results are being fetched
-                  LoadingWidget(visible: data is MoviesLoading),
+                  LoadingWidget(visible: state is MoviesLoading),
 
                   // Fade in an error if something went wrong when fetching
                   // the results
                   ErrorsWidget(
-                      visible: data is MoviesError,
-                      error: data is MoviesError ? data.error : ''),
+                      visible: state is MoviesError,
+                      error: state is MoviesError ? state.error : ''),
 
                   // Fade in the Result if available
                   MoviesWidget(
                       moviesBloc: moviesBloc,
-                      movies: data is MoviesPopulated
-                          ? data.movies
+                      movies: state is MoviesPopulated
+                          ? state.movies
                               .map((MovieView movie) =>
                                   mapper.mapToViewModel(movie))
                               .toList()
