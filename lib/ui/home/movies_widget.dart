@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
 import 'package:star_wars_flutter/ui/home/movie_summary_widget.dart';
-import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 
 class MoviesWidget extends StatefulWidget {
   const MoviesWidget({Key? key, required this.movies, required this.moviesBloc})

@@ -34,9 +34,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  BlocBuilder<dynamic, MoviesState> buildStreamBuilder(
+  BlocBuilder<MoviesBloc, MoviesState> buildStreamBuilder(
       BuildContext context, MoviesBloc moviesBloc) {
-    return BlocBuilder(
+    return BlocBuilder<MoviesBloc, MoviesState>(
         bloc: BlocProvider.of<MoviesBloc>(context),
         builder: (BuildContext context, dynamic state) {
           return Column(
@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context)!;
+    final MoviesBloc moviesBloc = BlocProvider.of<MoviesBloc>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -106,7 +106,39 @@ class _HomeScreenState extends State<HomeScreen> {
         )),
         body: Column(key: const Key('rootColumn'), children: <Widget>[
           Flexible(
-            child: buildStreamBuilder(context, moviesBloc),
+            child: BlocBuilder<MoviesBloc, MoviesState>(
+                builder: (BuildContext context, dynamic state) {
+              return Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Stack(key: const Key('content'), children: <Widget>[
+                      // Fade in an Empty Result screen if the search contained
+                      // no items
+                      EmptyWidget(visible: state is MoviesEmpty),
+
+                      // Fade in a loading screen when results are being fetched
+                      LoadingWidget(visible: state is MoviesLoading),
+
+                      // Fade in an error if something went wrong when fetching
+                      // the results
+                      ErrorsWidget(
+                          visible: state is MoviesError,
+                          error: state is MoviesError ? state.error : ''),
+
+                      // Fade in the Result if available
+                      MoviesWidget(
+                          moviesBloc: moviesBloc,
+                          movies: state is MoviesPopulated
+                              ? state.movies
+                                  .map((MovieView movie) =>
+                                      mapper.mapToViewModel(movie))
+                                  .toList()
+                              : <MovieViewModel>[]),
+                    ]),
+                  ),
+                ],
+              );
+            }),
           ),
         ]));
   }

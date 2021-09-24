@@ -122,24 +122,26 @@ class _MyAppState extends State {
       ],
       builder: (BuildContext context, Widget? child) {
         return BlocProvider<MoviesBloc>(
-            child: MaterialApp.router(
-              theme: CustomTheme.lightTheme(context),
-              darkTheme: CustomTheme.darkTheme(context),
-              themeMode: sharedPrefs.hasUserOverriddenSystemTheme
-                  ? currentTheme.currentTheme
-                  : ThemeMode.system,
-              localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-              supportedLocales: const <Locale>[Locale('en'), Locale('fr')],
-              routerDelegate: delegate,
-              routeInformationParser: parser,
-            ),
-            bloc: MoviesBloc(Provider.of<GetMovies>(context, listen: false),
-                presentation_mapper.MovieMapper()));
+          create: (BuildContext context) => MoviesBloc(
+              Provider.of<GetMovies>(context, listen: false),
+              presentation_mapper.MovieMapper()),
+          child: MaterialApp.router(
+            theme: CustomTheme.lightTheme(context),
+            darkTheme: CustomTheme.darkTheme(context),
+            themeMode: sharedPrefs.hasUserOverriddenSystemTheme
+                ? currentTheme.currentTheme
+                : ThemeMode.system,
+            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const <Locale>[Locale('en'), Locale('fr')],
+            routerDelegate: delegate,
+            routeInformationParser: parser,
+          ),
+        );
       },
     );
   }
