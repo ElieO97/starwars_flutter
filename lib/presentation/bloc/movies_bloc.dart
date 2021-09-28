@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:star_wars_flutter/domain/interactor/future_use_case.dart';
@@ -46,7 +45,6 @@ class MoviesBloc extends Bloc<dynamic, MoviesState> {
                 movies.map((Movie movie) => mapper.mapToView(movie)).toList()));
       }
     } catch (e) {
-      print('error $e');
       yield MoviesError(e.toString());
     }
   }
@@ -69,7 +67,6 @@ class MoviesBloc extends Bloc<dynamic, MoviesState> {
 
     try {
       final List<Movie> movies = await getMoviesUseCase.execute(null);
-      debugPrint('fetchMovies: nuMovies = ${movies.length} $movies');
       if (movies.isEmpty && _hasNoExistingData()) {
         yield MoviesEmpty();
       } else {
@@ -78,7 +75,6 @@ class MoviesBloc extends Bloc<dynamic, MoviesState> {
                 movies.map((Movie movie) => mapper.mapToView(movie)).toList()));
       }
     } catch (e) {
-      print('error $e');
       yield MoviesError(e.toString());
     }
   }

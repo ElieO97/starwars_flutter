@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/presentation/model/movie_details_state.dart';
-import 'package:star_wars_flutter/presentation/bloc/bloc_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:star_wars_flutter/presentation/bloc/movie_details_bloc.dart';
+import 'package:star_wars_flutter/presentation/model/movie_details_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
@@ -15,43 +15,35 @@ class MovieDetailsScreen extends StatefulWidget {
 }
 
 class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
-  late MovieDetailsBloc movieDetailsBloc;
   MovieMapper mapper = MovieMapper();
   String title = '';
 
   @override
   Widget build(BuildContext context) {
-    movieDetailsBloc = BlocProvider.of<MovieDetailsBloc>(context)!;
+    final MovieDetailsBloc movieDetailsBloc =
+        BlocProvider.of<MovieDetailsBloc>(context)!;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(movieDetailsBloc.movie.title),
       ),
-      body: StreamBuilder<MovieDetailsState>(
-        key: const Key('streamBuilder'),
-        stream: movieDetailsBloc.stream,
-        initialData: movieDetailsBloc.movieDetailsState,
-        builder:
-            (BuildContext context, AsyncSnapshot<MovieDetailsState> snapshot) {
-          final MovieDetailsState? data = snapshot.data;
-
-          print('data shot = $data');
-
+      body: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
+        builder: (BuildContext context, dynamic state) {
           return Column(
             children: <Widget>[
               Expanded(
                 child: Stack(key: const Key('content'), children: <Widget>[
-                  EmptyWidget(visible: data is MovieDetailsEmpty),
-                  LoadingWidget(visible: data is MovieDetailsLoading),
+                  EmptyWidget(visible: state is MovieDetailsEmpty),
+                  LoadingWidget(visible: state is MovieDetailsLoading),
                   ErrorsWidget(
-                      visible: data is MovieDetailsError,
-                      error: data is MovieDetailsError ? data.error : ''),
+                      visible: state is MovieDetailsError,
+                      error: state is MovieDetailsError ? state.error : ''),
                   Stack(
                     key: const Key('content'),
                     children: <Widget>[
-                      if (data is MovieDetailsPopulated)
+                      if (state is MovieDetailsPopulated)
                         MovieDetailsWidget(
-                            movie: mapper.mapToViewModel(data.movie))
+                            movie: mapper.mapToViewModel(state.movie))
                     ],
                   )
                 ]),
