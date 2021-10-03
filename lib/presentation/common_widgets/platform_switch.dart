@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/ui/common_widgets/platform_widget.dart';
+import 'package:star_wars_flutter/presentation/common_widgets/platform_widget.dart';
 
 class PlatformSwitch extends PlatformWidget {
   PlatformSwitch(

@@ -1,4 +1,4 @@
-import 'package:star_wars_flutter/ui/utils/star_wars_image_utils.dart';
+import 'package:star_wars_flutter/presentation/utils/star_wars_image_utils.dart';
 
 /// Representation for a [MovieViewModel] fetched from an external layer data source
 class MovieViewModel {

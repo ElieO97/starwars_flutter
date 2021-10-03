@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/ui/my_app.dart';
+import 'package:star_wars_flutter/my_app.dart';
 import 'main_common.dart';
 
 Future<void> main() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view_model.dart';
-import 'package:star_wars_flutter/ui/home/movie_summary_widget.dart';
+import 'package:star_wars_flutter/presentation/home/movie_summary_widget.dart';
 
 class MoviesWidget extends StatefulWidget {
   const MoviesWidget({Key? key, required this.movies}) : super(key: key);

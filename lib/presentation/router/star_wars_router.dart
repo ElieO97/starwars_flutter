@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view_model.dart';
-import 'package:star_wars_flutter/ui/movie_details/movie_details_bloc.dart';
-import 'package:star_wars_flutter/ui/movie_details/movie_details_screen.dart';
-import 'package:star_wars_flutter/ui/router/router_delegate.dart';
-import 'package:star_wars_flutter/ui/router/ui_pages.dart';
+import 'package:star_wars_flutter/presentation/movie_details/movie_details_bloc.dart';
+import 'package:star_wars_flutter/presentation/movie_details/movie_details_screen.dart';
+import 'package:star_wars_flutter/presentation/router/router_delegate.dart';
+import 'package:star_wars_flutter/presentation/router/ui_pages.dart';
 
 void goToMovieDetailsScreen(BuildContext context, MovieViewModel movieView) {
   final StarWarsRouterDelegate delegate = Get.find<StarWarsRouterDelegate>();
