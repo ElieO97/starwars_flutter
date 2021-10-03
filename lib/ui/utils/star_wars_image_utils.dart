@@ -1,4 +1,4 @@
-import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/presentation/model/movie_view_model.dart';
 
 const Map<String, String> _imagesMoviesMap = <String, String>{
   'a new hope': 'assets/anewhope.jpg',

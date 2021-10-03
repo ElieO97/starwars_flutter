@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:marquee/marquee.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/presentation/model/movie_view_model.dart';
 
 class MovieDetailsContentWidget extends StatelessWidget {
   const MovieDetailsContentWidget(this.movie);

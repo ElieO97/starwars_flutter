@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:star_wars_flutter/presentation/model/movie_details_state.dart';
+import 'package:star_wars_flutter/ui/movie_details/movie_details_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';

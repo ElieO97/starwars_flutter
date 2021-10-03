@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
+import 'package:star_wars_flutter/presentation/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/utils/star_wars_image_utils.dart';
 
 void main() {
