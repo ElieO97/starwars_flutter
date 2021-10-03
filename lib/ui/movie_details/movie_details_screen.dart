@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:star_wars_flutter/presentation/bloc/movie_details_bloc.dart';
 import 'package:star_wars_flutter/presentation/model/movie_details_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
+import 'package:star_wars_flutter/ui/movie_details/movie_details_bloc.dart';
 import 'package:star_wars_flutter/ui/movie_details/movie_details_widget.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -21,14 +21,14 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final MovieDetailsBloc movieDetailsBloc =
-        BlocProvider.of<MovieDetailsBloc>(context)!;
+        BlocProvider.of<MovieDetailsBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(movieDetailsBloc.movie.title),
       ),
       body: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(
-        builder: (BuildContext context, dynamic state) {
+        builder: (BuildContext context, MovieDetailsState state) {
           return Column(
             children: <Widget>[
               Expanded(

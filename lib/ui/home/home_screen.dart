@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:star_wars_flutter/cache/shared_prefs.dart';
-import 'package:star_wars_flutter/presentation/bloc/movies_bloc.dart';
+import 'package:star_wars_flutter/ui/home/movies_bloc.dart';
 import 'package:star_wars_flutter/presentation/model/movie_state.dart';
 import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
