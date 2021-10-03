@@ -9,10 +9,9 @@ import 'package:star_wars_flutter/cache/db/starwars_database.dart';
 import 'package:star_wars_flutter/cache/mapper/character_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/mapper/movie_entity_mapper.dart';
 import 'package:star_wars_flutter/cache/movie_cache_impl.dart';
-import 'package:star_wars_flutter/cache/shared_prefs.dart';
+import '../presentation/lib/shared_prefs.dart';
 import 'package:star_wars_flutter/data/mapper/character_mapper.dart';
 import 'package:star_wars_flutter/data/mapper/movie_mapper.dart';
-import 'package:star_wars_flutter/data/movie_data_repository.dart';
 import 'package:star_wars_flutter/data/repository/movie_cache.dart';
 import 'package:star_wars_flutter/data/repository/movie_remote.dart';
 import 'package:star_wars_flutter/data/source/movie_cache_data_store.dart';
@@ -35,6 +34,8 @@ import 'package:star_wars_flutter/remote/mapper/movie_entity_mapper.dart'
 import 'package:star_wars_flutter/remote/mapper/movie_rating_entity_mapper.dart';
 import 'package:star_wars_flutter/remote/movie_client.dart';
 import 'package:star_wars_flutter/remote/movie_remote_impl.dart';
+
+import '../data/lib/movie_data_repository.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
