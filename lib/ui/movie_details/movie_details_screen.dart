@@ -4,7 +4,6 @@ import 'package:star_wars_flutter/presentation/model/movie_details_state.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
-import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/ui/movie_details/movie_details_bloc.dart';
 import 'package:star_wars_flutter/ui/movie_details/movie_details_widget.dart';
 
@@ -15,7 +14,6 @@ class MovieDetailsScreen extends StatefulWidget {
 }
 
 class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
-  MovieMapper mapper = MovieMapper();
   String title = '';
 
   @override
@@ -42,8 +40,7 @@ class _MovieDetailsScreenStatefulState extends State<MovieDetailsScreen> {
                     key: const Key('content'),
                     children: <Widget>[
                       if (state is MovieDetailsPopulated)
-                        MovieDetailsWidget(
-                            movie: mapper.mapToViewModel(state.movie))
+                        MovieDetailsWidget(movie: state.movie)
                     ],
                   )
                 ]),

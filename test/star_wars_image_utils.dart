@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:star_wars_flutter/presentation/model/movie_view.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/utils/star_wars_image_utils.dart';
 
 void main() {
   test('Sort Movies by Release date', () {
-    final List<MovieView> movies = <MovieView>[
-      MovieView(
+    final List<MovieViewModel> movies = <MovieViewModel>[
+      MovieViewModel(
           id: 1,
           title: 'film1',
           director: 'director1',
@@ -14,7 +14,7 @@ void main() {
           plot: '',
           url: '',
           characters: ['']),
-      MovieView(
+      MovieViewModel(
           id: 2,
           title: 'film3',
           director: 'director2',
@@ -23,7 +23,7 @@ void main() {
           plot: '',
           url: '',
           characters: ['']),
-      MovieView(
+      MovieViewModel(
           id: 3,
           title: 'film2',
           director: 'director2',
@@ -32,7 +32,7 @@ void main() {
           plot: '',
           url: '',
           characters: ['']),
-      MovieView(
+      MovieViewModel(
           id: 4,
           title: 'film4',
           director: 'director2',

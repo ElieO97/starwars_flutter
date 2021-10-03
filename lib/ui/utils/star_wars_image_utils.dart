@@ -1,4 +1,4 @@
-import 'package:star_wars_flutter/presentation/model/movie_view.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 
 const Map<String, String> _imagesMoviesMap = <String, String>{
   'a new hope': 'assets/anewhope.jpg',
@@ -19,12 +19,12 @@ String? findMovieImageAssetPath(String movieTitle) {
   }
 }
 
-List<MovieView> sortMoviesByReleaseDate(List<MovieView> movies) {
-  movies.sort((MovieView movie1, MovieView movie2) =>
+List<MovieViewModel> sortMoviesByReleaseDate(List<MovieViewModel> movies) {
+  movies.sort((MovieViewModel movie1, MovieViewModel movie2) =>
       _releaseDateTime(movie1).compareTo(_releaseDateTime(movie2)));
   return movies.reversed.toList();
 }
 
-DateTime _releaseDateTime(MovieView movie) {
+DateTime _releaseDateTime(MovieViewModel movie) {
   return DateTime.parse(movie.releaseDate);
 }

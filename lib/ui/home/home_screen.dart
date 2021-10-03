@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:star_wars_flutter/cache/shared_prefs.dart';
-import 'package:star_wars_flutter/ui/home/movies_bloc.dart';
 import 'package:star_wars_flutter/presentation/model/movie_state.dart';
-import 'package:star_wars_flutter/presentation/model/movie_view.dart';
 import 'package:star_wars_flutter/ui/common_widgets/empty_result_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/errors_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/loading_widget.dart';
 import 'package:star_wars_flutter/ui/common_widgets/platform_switch.dart';
+import 'package:star_wars_flutter/ui/home/movies_bloc.dart';
 import 'package:star_wars_flutter/ui/home/movies_widget.dart';
-import 'package:star_wars_flutter/ui/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/theme/custom_theme.dart';
 
@@ -22,8 +20,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final MovieMapper mapper = MovieMapper();
-
   @override
   void initState() {
     super.initState();
@@ -89,9 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       MoviesWidget(
                           movies: state is MoviesPopulated
                               ? state.movies
-                                  .map((MovieView movie) =>
-                                      mapper.mapToViewModel(movie))
-                                  .toList()
                               : <MovieViewModel>[]),
                     ]),
                   ),

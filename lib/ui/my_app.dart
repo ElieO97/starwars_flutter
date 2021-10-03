@@ -21,7 +21,6 @@ import 'package:star_wars_flutter/data/source/movie_remote_data_store.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
 import 'package:star_wars_flutter/domain/interactor/movies/get_movies.dart';
 import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
-import 'package:star_wars_flutter/ui/home/movies_bloc.dart';
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
     as presentation_mapper;
 import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart'
@@ -31,6 +30,7 @@ import 'package:star_wars_flutter/remote/mapper/movie_entity_mapper.dart'
 import 'package:star_wars_flutter/remote/mapper/movie_rating_entity_mapper.dart';
 import 'package:star_wars_flutter/remote/movie_client.dart';
 import 'package:star_wars_flutter/remote/movie_remote_impl.dart';
+import 'package:star_wars_flutter/ui/home/movies_bloc.dart';
 import 'package:star_wars_flutter/ui/router/router_delegate.dart';
 import 'package:star_wars_flutter/ui/router/starwars_parser.dart';
 import 'package:star_wars_flutter/ui/router/ui_pages.dart';

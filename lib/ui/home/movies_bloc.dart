@@ -3,7 +3,7 @@ import 'package:star_wars_flutter/domain/interactor/future_use_case.dart';
 import 'package:star_wars_flutter/domain/model/movie.dart';
 import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart';
 import 'package:star_wars_flutter/presentation/model/movie_state.dart';
-import 'package:star_wars_flutter/presentation/model/movie_view.dart';
+import 'package:star_wars_flutter/ui/model/movie_view_model.dart';
 import 'package:star_wars_flutter/ui/utils/star_wars_image_utils.dart';
 
 import 'movies_event.dart';
@@ -15,7 +15,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
 
   FutureUseCase<void, List<Movie>> getMoviesUseCase;
   MovieMapper mapper;
-  MoviesPopulated moviesPopulated = MoviesPopulated(<MovieView>[]);
+  MoviesPopulated moviesPopulated = MoviesPopulated(<MovieViewModel>[]);
 
   @override
   Stream<MoviesState> mapEventToState(MoviesEvent event) async* {
@@ -27,7 +27,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
         } else {
           yield moviesPopulated.update(
               nuMovies: sortMoviesByReleaseDate(movies
-                  .map((Movie movie) => mapper.mapToView(movie))
+                  .map((Movie movie) => mapper.mapToViewModel(movie))
                   .toList()));
         }
       }
