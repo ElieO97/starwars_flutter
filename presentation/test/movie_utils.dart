@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:star_wars_flutter/presentation/utils/movie_utils.dart';
+import 'package:presentation/utils/movie_utils.dart';
 
 void main() {
   test('Get ids from urls', () {

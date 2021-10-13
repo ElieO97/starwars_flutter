@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:star_wars_flutter/presentation/model/movie_view_model.dart';
-import 'package:star_wars_flutter/presentation/utils/star_wars_image_utils.dart';
+import 'package:presentation/model/movie_view_model.dart';
+import 'package:presentation/utils/star_wars_image_utils.dart';
 
 void main() {
   test('Sort Movies by Release date', () {

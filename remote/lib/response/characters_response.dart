@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:star_wars_flutter/remote/model/swapi_character.dart';
+import 'package:remote/model/swapi_character.dart';;
 
 part 'characters_response.g.dart';
 

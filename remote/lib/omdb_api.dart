@@ -1,6 +1,6 @@
-import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
-import 'package:star_wars_flutter/remote/model/omdb_movie_rating.dart';
+import 'package:remote/model/omdb_movie_rating.dart';
+import 'package:retrofit/http.dart';
 
 import 'constants/api_constants.dart';
 

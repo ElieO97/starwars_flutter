@@ -1,15 +1,16 @@
-import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart';
-import 'package:star_wars_flutter/data/model/character_entity.dart';
-import 'package:star_wars_flutter/data/model/movie_entity.dart';
-import 'package:star_wars_flutter/data/model/movie_rating_entity.dart';
-import 'package:star_wars_flutter/data/repository/movie_remote.dart';
-import 'package:star_wars_flutter/remote/mapper/movie_entity_mapper.dart';
-import 'package:star_wars_flutter/remote/mapper/movie_rating_entity_mapper.dart';
-import 'package:star_wars_flutter/remote/model/omdb_movie_rating.dart';
-import 'package:star_wars_flutter/remote/model/swapi_character.dart';
-import 'package:star_wars_flutter/remote/movie_client.dart';
-import 'package:star_wars_flutter/remote/response/movies_response.dart';
+import 'package:data/model/character_entity.dart';
+import 'package:data/model/movie_entity.dart';
+import 'package:data/model/movie_rating_entity.dart';
+import 'package:data/repository/movie_remote.dart';
+import 'package:remote/response/movies_response.dart';
+
+import 'mapper/character_entity_mapper.dart';
+import 'mapper/movie_entity_mapper.dart';
+import 'mapper/movie_rating_entity_mapper.dart';
+import 'model/omdb_movie_rating.dart';
+import 'model/swapi_character.dart';
 import 'model/swapi_movie.dart';
+import 'movie_client.dart';
 
 class MovieRemoteImpl implements MovieRemote {
   MovieRemoteImpl(this._movieClient, this._movieEntityMapper,

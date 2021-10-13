@@ -1,4 +1,3 @@
-import 'package:remote/lib/base_client.dart';
 import 'package:remote/model/omdb_movie_rating.dart';
 import 'package:remote/model/swapi_character.dart';
 import 'package:remote/omdb_api.dart';
@@ -6,6 +5,7 @@ import 'package:remote/response/characters_response.dart';
 import 'package:remote/response/movies_response.dart';
 import 'package:remote/swapi.dart';
 
+import 'base_client.dart';
 import 'constants/api_constants.dart';
 
 class MovieClient extends BaseNetworkClient {
