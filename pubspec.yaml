@@ -32,6 +32,10 @@ dependencies:
      path: ./domain/
   data:
      path: ./data/
+  remote:
+    path: ./remote/
+  cache:
+    path: ./cache/
   json_annotation: ^4.0.1
   http: ^0.13.1
   rxdart: ^0.26.0

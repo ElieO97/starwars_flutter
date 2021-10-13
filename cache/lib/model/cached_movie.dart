@@ -1,6 +1,6 @@
 /// Model used solely for the caching of a Movie
+import 'package:cache/model/cached_character.dart';
 import 'package:hive/hive.dart';
-import 'package:star_wars_flutter/cache/model/cached_character.dart';
 
 part 'cached_movie.g.dart';
 

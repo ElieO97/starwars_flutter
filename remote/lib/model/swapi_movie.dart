@@ -1,4 +1,4 @@
-import 'package:domain/model/movie.dart';
+import 'package:data/model/movie_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote/model/swapi_movie_properties.dart';
 
@@ -19,11 +19,5 @@ class SwapiMovie {
 
   MovieEntity toMovie() {
     return properties.toMovie();
-  }
-
-  static List<Movie> toMovies(List<SwapiMovie> swapiMovies) {
-    return swapiMovies
-        .map((SwapiMovie swapiMovie) => swapiMovie.toMovie())
-        .toList();
   }
 }

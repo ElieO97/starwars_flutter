@@ -1,41 +1,38 @@
+import 'package:cache/db/hive_database.dart';
+import 'package:cache/db/starwars_database.dart';
+import 'package:cache/mapper/character_entity_mapper.dart';
+import 'package:cache/mapper/movie_entity_mapper.dart';
+import 'package:cache/movie_cache_impl.dart';
+import 'package:data/mapper/character_mapper.dart';
+import 'package:data/mapper/movie_mapper.dart';
+import 'package:data/movie_data_repository.dart';
+import 'package:data/repository/movie_cache.dart';
+import 'package:data/repository/movie_remote.dart';
+import 'package:data/source/movie_cache_data_store.dart';
+import 'package:data/source/movie_data_store_factory.dart';
+import 'package:data/source/movie_remote_data_store.dart';
+import 'package:domain/interactor/movies/get_characters.dart';
+import 'package:domain/interactor/movies/get_movies.dart';
+import 'package:domain/repository/movie_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:presentation/home/movies_bloc.dart';
+import 'package:presentation/mapper/movie_mapper.dart' as presentation_mapper;
+import 'package:presentation/router/router_delegate.dart';
+import 'package:presentation/router/starwars_parser.dart';
+import 'package:presentation/router/ui_pages.dart';
+import 'package:presentation/shared_prefs.dart';
+import 'package:presentation/theme/custom_theme.dart';
 import 'package:provider/provider.dart';
-import 'package:star_wars_flutter/cache/db/hive_database.dart';
-import 'package:star_wars_flutter/cache/db/starwars_database.dart';
-import 'package:star_wars_flutter/cache/mapper/character_entity_mapper.dart';
-import 'package:star_wars_flutter/cache/mapper/movie_entity_mapper.dart';
-import 'package:star_wars_flutter/cache/movie_cache_impl.dart';
-import '../presentation/lib/shared_prefs.dart';
-import 'package:star_wars_flutter/data/mapper/character_mapper.dart';
-import 'package:star_wars_flutter/data/mapper/movie_mapper.dart';
-import 'package:star_wars_flutter/data/repository/movie_cache.dart';
-import 'package:star_wars_flutter/data/repository/movie_remote.dart';
-import 'package:star_wars_flutter/data/source/movie_cache_data_store.dart';
-import 'package:star_wars_flutter/data/source/movie_data_store_factory.dart';
-import 'package:star_wars_flutter/data/source/movie_remote_data_store.dart';
-import 'package:star_wars_flutter/domain/interactor/movies/get_characters.dart';
-import 'package:star_wars_flutter/domain/interactor/movies/get_movies.dart';
-import 'package:star_wars_flutter/domain/repository/movie_repository.dart';
-import 'package:star_wars_flutter/presentation/home/movies_bloc.dart';
-import 'package:star_wars_flutter/presentation/mapper/movie_mapper.dart'
-    as presentation_mapper;
-import 'package:star_wars_flutter/presentation/router/router_delegate.dart';
-import 'package:star_wars_flutter/presentation/router/starwars_parser.dart';
-import 'package:star_wars_flutter/presentation/router/ui_pages.dart';
-import 'package:star_wars_flutter/presentation/theme/custom_theme.dart';
-import 'package:star_wars_flutter/remote/mapper/character_entity_mapper.dart'
+import 'package:remote/mapper/character_entity_mapper.dart'
     as character_remote_mapper;
-import 'package:star_wars_flutter/remote/mapper/movie_entity_mapper.dart'
-    as remote_mapper;
-import 'package:star_wars_flutter/remote/mapper/movie_rating_entity_mapper.dart';
-import 'package:star_wars_flutter/remote/movie_client.dart';
-import 'package:star_wars_flutter/remote/movie_remote_impl.dart';
-
-import '../data/lib/movie_data_repository.dart';
+import 'package:remote/mapper/movie_entity_mapper.dart' as remote_mapper;
+import 'package:remote/mapper/movie_rating_entity_mapper.dart';
+import 'package:remote/movie_client.dart';
+import 'package:remote/movie_remote_impl.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
