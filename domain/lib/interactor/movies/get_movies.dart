@@ -11,7 +11,7 @@ class GetMovies extends FutureUseCase<void, List<Movie>> {
 
   @override
   Future<List<Movie>> execute(void params) async {
-    final List<Movie> movies = await moviesRepository.fetchAllMovies();
+    final List<Movie> movies = await moviesRepository.getMovies();
     return movies;
   }
 }

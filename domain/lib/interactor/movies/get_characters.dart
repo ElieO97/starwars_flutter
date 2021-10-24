@@ -19,7 +19,7 @@ class GetCharacters
     }
 
     final List<Character> characters =
-        await moviesRepository.fetchMovieCharacters(movieId, charactersIds);
+        await moviesRepository.getMovieCharacters(movieId, charactersIds);
 
     return characters;
   }

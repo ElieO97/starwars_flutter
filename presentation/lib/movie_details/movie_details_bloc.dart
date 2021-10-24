@@ -1,9 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/interactor/future_use_case.dart';
 import 'package:domain/model/character.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:presentation/model/movie_view_model.dart';
 import 'package:presentation/movie_details/movie_details_state.dart';
 import 'package:presentation/utils/movie_utils.dart';
+
 import 'movie_details_event.dart';
 
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
@@ -13,7 +14,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   }
 
   FutureUseCase<Map<int, List<String>>, List<Character>> getCharactersUseCase;
-  MovieViewModel movie;
+  final MovieViewModel movie;
 
   @override
   Stream<MovieDetailsState> mapEventToState(MovieDetailsEvent event) async* {
@@ -24,12 +25,14 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
 
         final List<Character> characters =
             await getCharactersUseCase.execute(map);
+
         if (characters.isEmpty) {
           yield MovieDetailsEmpty();
         } else {
-          movie.characters =
+          final List<String> characterNames =
               characters.map((Character character) => character.name).toList();
-          yield MovieDetailsPopulated(movie);
+          yield MovieDetailsPopulated(
+              movie.copyWith(characters: characterNames));
         }
       }
     } catch (e) {

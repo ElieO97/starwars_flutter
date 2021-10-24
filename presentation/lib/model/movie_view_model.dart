@@ -20,8 +20,8 @@ class MovieViewModel {
   final String producer;
   final String plot;
   final String url;
-  List<String> characters;
-  double? imdbRating;
+  final List<String> characters;
+  final double? imdbRating;
 
   String? getImagePath() {
     return findMovieImageAssetPath(title);
@@ -30,5 +30,27 @@ class MovieViewModel {
   @override
   String toString() {
     return 'Movie{id: $id, title: $title, director: $director, releaseDate: $releaseDate, producer: $producer, plot: $plot, url: $url, characters: $characters, imdbRating: $imdbRating}';
+  }
+
+  MovieViewModel copyWith(
+      {int? id,
+      String? title,
+      String? director,
+      String? releaseDate,
+      String? producer,
+      String? plot,
+      String? url,
+      List<String>? characters,
+      double? imdbRating}) {
+    return MovieViewModel(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        director: director ?? this.director,
+        releaseDate: releaseDate ?? this.releaseDate,
+        producer: producer ?? this.producer,
+        plot: plot ?? this.plot,
+        url: url ?? this.url,
+        characters: characters ?? this.characters,
+        imdbRating: imdbRating ?? this.imdbRating);
   }
 }

@@ -10,8 +10,8 @@ class MovieCacheDataStore implements MovieDataStore {
   final MovieCache _movieCache;
 
   @override
-  Future<List<MovieEntity>> fetchAllMovies() {
-    return _movieCache.fetchAllMovies();
+  Future<List<MovieEntity>> getMovies() {
+    return _movieCache.getMovies();
   }
 
   @override
@@ -20,17 +20,14 @@ class MovieCacheDataStore implements MovieDataStore {
   }
 
   @override
-  Future<void> clearMovies() async {}
-
-  @override
-  Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity) {
+  Future<MovieRatingEntity> getMovieRating(MovieEntity movieEntity) {
     throw UnimplementedError();
   }
 
   @override
-  Future<List<CharacterEntity>> fetchMovieCharacters(
+  Future<List<CharacterEntity>> getMovieCharacters(
       int movieId, List<String> charactersIds) async {
-    return await _movieCache.fetchMovieCharacters(movieId);
+    return await _movieCache.getMovieCharacters(movieId);
   }
 
   @override

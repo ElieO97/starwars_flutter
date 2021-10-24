@@ -10,13 +10,8 @@ class MovieRemoteDataStore implements MovieDataStore {
   final MovieRemote _movieRemote;
 
   @override
-  Future<List<MovieEntity>> fetchAllMovies() {
-    return _movieRemote.fetchAllMovies();
-  }
-
-  @override
-  Future<void> clearMovies() {
-    throw UnimplementedError();
+  Future<List<MovieEntity>> getMovies() {
+    return _movieRemote.getMovies();
   }
 
   @override
@@ -25,14 +20,14 @@ class MovieRemoteDataStore implements MovieDataStore {
   }
 
   @override
-  Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity) {
-    return _movieRemote.fetchMovieRating(movieEntity);
+  Future<MovieRatingEntity> getMovieRating(MovieEntity movieEntity) {
+    return _movieRemote.getMovieRating(movieEntity);
   }
 
   @override
-  Future<List<CharacterEntity>> fetchMovieCharacters(
+  Future<List<CharacterEntity>> getMovieCharacters(
       int movieId, List<String> charactersIds) {
-    return _movieRemote.fetchMovieCharacters(movieId, charactersIds);
+    return _movieRemote.getMovieCharacters(movieId, charactersIds);
   }
 
   @override

@@ -5,7 +5,8 @@ import 'package:presentation/common_widgets/errors_widget.dart';
 import 'package:presentation/common_widgets/loading_widget.dart';
 import 'package:presentation/movie_details/movie_details_bloc.dart';
 import 'package:presentation/movie_details/movie_details_state.dart';
-import 'package:presentation/movie_details/movie_details_widget.dart';
+
+import 'movie_details_widget.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   @override

@@ -22,7 +22,7 @@ class MovieRemoteImpl implements MovieRemote {
   final CharacterEntityMapper _characterEntityMapper;
 
   @override
-  Future<List<MovieEntity>> fetchAllMovies() async {
+  Future<List<MovieEntity>> getMovies() async {
     final MoviesResponse response = await _movieClient.fetchAllMovies();
     final List<SwapiMovie> swapiMovies = response.result;
 
@@ -35,7 +35,7 @@ class MovieRemoteImpl implements MovieRemote {
   }
 
   @override
-  Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity) async {
+  Future<MovieRatingEntity> getMovieRating(MovieEntity movieEntity) async {
     final OMDBMovieRating response =
         await _movieClient.fetchMovieRating(movieEntity.title);
     final MovieRatingEntity rating =
@@ -44,7 +44,7 @@ class MovieRemoteImpl implements MovieRemote {
   }
 
   @override
-  Future<List<CharacterEntity>> fetchMovieCharacters(
+  Future<List<CharacterEntity>> getMovieCharacters(
       int movieId, List<String> charactersIds) async {
     final List<SwapiCharacter> swapiCharacters =
         await _movieClient.fetchMovieCharacters(charactersIds);

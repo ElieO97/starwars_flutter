@@ -3,7 +3,7 @@ import 'package:data/model/movie_entity.dart';
 import 'package:data/model/movie_rating_entity.dart';
 
 abstract class MovieCache {
-  Future<List<MovieEntity>> fetchAllMovies();
+  Future<List<MovieEntity>> getMovies();
 
   Future<bool> isCached();
 
@@ -14,7 +14,7 @@ abstract class MovieCache {
   Future<void> saveCharacters(
       int movieId, List<CharacterEntity> characterEntities);
 
-  Future<MovieRatingEntity> fetchMovieRating(MovieEntity movieEntity);
+  Future<MovieRatingEntity> getMovieRating(MovieEntity movieEntity);
 
-  Future<List<CharacterEntity>> fetchMovieCharacters(int movieId);
+  Future<List<CharacterEntity>> getMovieCharacters(int movieId);
 }

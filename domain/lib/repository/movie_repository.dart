@@ -5,12 +5,8 @@ import 'package:domain/model/movie.dart';
 /// This is to be implemented by the data layer, setting the requirements for the
 /// operations that need to be implemented
 abstract class MoviesRepository {
-  Future<List<Movie>> fetchAllMovies();
+  Future<List<Movie>> getMovies();
 
-  Future<void> clearMovies();
-
-  Future<void> saveMovies(List<Movie> movies);
-
-  Future<List<Character>> fetchMovieCharacters(
+  Future<List<Character>> getMovieCharacters(
       int movieId, List<String> charactersIds);
 }

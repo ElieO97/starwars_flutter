@@ -18,22 +18,21 @@ class MoviesDataRepository implements MoviesRepository {
   final CharacterMapper _characterMapper;
 
   @override
-  Future<List<Movie>> fetchAllMovies() async {
+  Future<List<Movie>> getMovies() async {
     final MovieDataStore dataStore = await _factory.retrieveDataStore();
-    final List<MovieEntity> movies = await dataStore.fetchAllMovies();
+    final List<MovieEntity> movies = await dataStore.getMovies();
 
     if (dataStore is MovieRemoteDataStore) {
       for (final MovieEntity movie in movies) {
         final MovieRatingEntity movieRating =
-            await dataStore.fetchMovieRating(movie);
-        print('movie rating: ${movieRating.rating}');
+            await dataStore.getMovieRating(movie);
 
         if (movieRating.rating.isNotEmpty && movieRating.rating != 'N/A') {
           movie.imdbRating = double.parse(movieRating.rating);
         }
       }
 
-      await _saveMoviesEntities(movies);
+      await _factory.retrieveCachedDataStore().saveMovies(movies);
     }
 
     return movies
@@ -43,39 +42,18 @@ class MoviesDataRepository implements MoviesRepository {
   }
 
   @override
-  Future<void> clearMovies() async {}
-
-  @override
-  Future<void> saveMovies(List<Movie> movies) {
-    final List<MovieEntity> movieEntities =
-        movies.map((Movie movie) => _movieMapper.mapToEntity(movie)).toList();
-    return _saveMoviesEntities(movieEntities);
-  }
-
-  Future<void> _saveMoviesEntities(List<MovieEntity> movies) {
-    return _factory.retrieveCachedDataStore().saveMovies(movies);
-  }
-
-  Future<void> _saveCharactersEntities(
-      int movieId, List<CharacterEntity> characters) {
-    return _factory
-        .retrieveCachedDataStore()
-        .saveCharacters(movieId, characters);
-  }
-
-  @override
-  Future<List<Character>> fetchMovieCharacters(
+  Future<List<Character>> getMovieCharacters(
       int movieId, List<String> charactersIds) async {
     final MovieDataStore dataStore =
         await _factory.retrieveDataStore(id: movieId);
 
-    print('fetchMovieCharacters: DataStore = $dataStore');
-
     final List<CharacterEntity> characters =
-        await dataStore.fetchMovieCharacters(movieId, charactersIds);
+        await dataStore.getMovieCharacters(movieId, charactersIds);
 
     if (dataStore is MovieRemoteDataStore) {
-      await _saveCharactersEntities(movieId, characters);
+      await _factory
+          .retrieveCachedDataStore()
+          .saveCharacters(movieId, characters);
     }
 
     return characters
