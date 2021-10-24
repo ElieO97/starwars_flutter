@@ -1,9 +1,9 @@
+import 'package:cache/model/cached_character.dart';
+import 'package:cache/model/cached_movie.dart';
 import 'package:flutter/material.dart';
-import 'package:star_wars_flutter/cache/model/cached_character.dart';
-import 'package:star_wars_flutter/cache/model/cached_movie.dart';
-import 'package:star_wars_flutter/cache/shared_prefs.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:presentation/shared_prefs.dart';
 
 Future<void> appInit() async {
   WidgetsFlutterBinding.ensureInitialized();
